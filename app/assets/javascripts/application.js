@@ -15,4 +15,6 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require modernizr-2.8.3.min
+//= require taboverride-4.0.3.min
+//= require enable-taboverride
 //= require_tree .
