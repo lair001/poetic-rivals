@@ -9,7 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    binding.pry
+    configure_sign_up_params
     super
   end
 
