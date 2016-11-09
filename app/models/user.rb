@@ -1,9 +1,9 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, authentication_keys: [:username]
-  devise :omniauthable, :omniauth_providers => [:facebook]
-  devise :registerable, :recoverable, :rememberable, :trackable, :validatable
+	# Include default devise modules. Others available are:
+	# :confirmable, :lockable, :timeoutable and :omniauthable
+	devise :database_authenticatable, authentication_keys: [:username]
+	devise :omniauthable, :omniauth_providers => [:facebook]
+	devise :registerable, :recoverable, :rememberable, :trackable, :validatable
 
 	def self.from_omniauth(auth)
 		where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
