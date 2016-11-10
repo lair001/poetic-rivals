@@ -1,19 +1,19 @@
 @include import-global-font;
 
 a:link {
-    color: #F8C64B;
+    color: $global-link-color;
 }
 
 a:visited {
-    color: #78764B;
+    color: $global-visited-link-color;
 }
 
 a:hover {
-    color: #F8C68B;
+    color: $global-hover-link-color;
 }
 
 a:active {
-    color: #F8F69B;
+    color: $global-active-link-color;
 }
 
 body {
@@ -24,7 +24,7 @@ body {
   background-attachment: fixed;
   margin-top: 80px;
   margin-bottom: 30px;
-  color: #dda10d;
+  color: $global-text-color;
 }
 
 ul {

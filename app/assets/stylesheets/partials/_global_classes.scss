@@ -40,7 +40,7 @@
 }
 
 .citation {
-  color: #dda10d;
+  color: $global-text-color;
 }
 
 .clearfix:after {
@@ -53,8 +53,8 @@
 }
 
 .jumbotron {
-  background-color: #66023C;
-  border-color: #B8860B;
+  background-color: $global-middle-level-background-color;
+  border-color: $global-border-color;
   border-style: solid;
   border-width: 5px;
 }
@@ -80,7 +80,7 @@
 }
 
 .quote {
-  border-color: #B8860B;
+  border-color: $global-border-color;
 }
 
 .width-40px {
