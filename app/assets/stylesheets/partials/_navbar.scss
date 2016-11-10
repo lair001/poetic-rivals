@@ -7,41 +7,36 @@
   color: $global-text-color;
   background-color: $global-top-level-background-color;
   border-bottom: 5px solid $global-border-color;
+  .submit-btn {
+    color: $global-text-color;
+    background-color: $global-top-level-background-color;
+    border-color: $global-top-level-background-color;
+    &:hover, &:focus {
+      color: $navbar-hover-link-color;
+      background-color: $global-bottom-level-background-color;
+    }
+  }
 }
 
-#myNavbar a:link,
-#myNavbar a:visited,
-#myNavbar a:active {
-	color: $global-text-color;
-}
-
-#myNavbar a:hover {
-	color: $navbar-hover-link-color;
-	background-color: $global-bottom-level-background-color;
-}
-
-#myNavbar .dropdown-menu {
-  @include navbar-dropdown-font-size;
-	background-color: $global-middle-level-background-color;
-	border-radius: 5px;
-	border: 5px solid $global-border-color;
-}
-
-#myNavbar .open>a {
-	background-color: $global-top-level-background-color;
-}
-
-.navbar-inverse .submit-btn,
-.navbar-inverse .submit-btn:active {
-  color: $global-text-color;
-  background-color: $global-top-level-background-color;
-  border-color: $global-top-level-background-color;
-}
-
-.navbar-inverse .submit-btn:hover, 
-.navbar-inverse .submit-btn:focus {
-  color: $navbar-hover-link-color;
-  background-color: $global-bottom-level-background-color;
+#myNavbar {
+  a {
+    &:link, &:visited, &:active {
+    	color: $global-text-color;
+    }
+    &:hover {
+      color: $navbar-hover-link-color;
+      background-color: $global-bottom-level-background-color;
+    }
+  }
+  .dropdown-menu {
+    @include navbar-dropdown-font-size;
+    background-color: $global-middle-level-background-color;
+    border-radius: 5px;
+    border: 5px solid $global-border-color;
+  }
+  .open>a {
+    background-color: $global-top-level-background-color;
+  }
 }
 
 #brand_image {
@@ -52,10 +47,6 @@
 	background-color: $global-bottom-level-background-color;
 	border-color: $global-bottom-level-background-color;
 	color: $global-text-color;
-}
-
-#google_search:focus {
-	border-color: $global-bottom-level-background-color;
 }
 
 #google_search::-webkit-input-placeholder { /* Chrome/Opera/Safari */

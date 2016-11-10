@@ -1,19 +1,23 @@
 @include import-global-font;
 
-a:link {
+a {
+
+  &:link {
     color: $global-link-color;
-}
+  }
 
-a:visited {
+  &:visited {
     color: $global-visited-link-color;
-}
+  }
 
-a:hover {
+  &:hover {
     color: $global-hover-link-color;
-}
+  }
 
-a:active {
+  &:active {
     color: $global-active-link-color;
+  }
+
 }
 
 body {
