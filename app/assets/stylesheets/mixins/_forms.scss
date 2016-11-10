@@ -1,0 +1,17 @@
+@mixin style-input-placeholders {
+	opacity: 1;
+	color: $global-text-color;
+}
+
+@mixin generate-input-placeholders {
+  &::-webkit-input-placeholder {@content}; /* Chrome/Opera/Safari */
+  &:-moz-placeholder           {@content}; /* Firefox 18- */
+  &::-moz-placeholder          {@content}; /* Firefox 19+ */
+  &:-ms-input-placeholder      {@content}; /* IE 10+ */
+}
+
+@mixin input-placeholders {
+	@include generate-input-placeholders {
+		@include style-input-placeholders;
+	}
+}
