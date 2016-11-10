@@ -1,0 +1,7 @@
+@mixin import-global-font {
+	@import url($global-font-uri);
+}
+
+@mixin global-font-family {
+	font-family: $global-font-list;
+}
