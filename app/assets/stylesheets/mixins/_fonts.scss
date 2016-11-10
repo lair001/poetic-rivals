@@ -5,3 +5,11 @@
 @mixin global-font-family {
 	font-family: $global-font-list;
 }
+
+@mixin navbar-font-size {
+	font-size: $navbar-font-size;
+}
+
+@mixin navbar-dropdown-font-size {
+	font-size: $navbar-dropdown-font-size;
+}

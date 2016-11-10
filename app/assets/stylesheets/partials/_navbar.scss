@@ -3,6 +3,7 @@
 }
 
 .navbar-inverse {
+  @include navbar-font-size;
   color: #dda10d;
   background-color: #400125;
   border-bottom: 5px solid #B8860B;
@@ -20,6 +21,7 @@
 }
 
 #myNavbar .dropdown-menu {
+  @include navbar-dropdown-font-size;
 	background-color: #66023C;
 	border-radius: 5px;
 	border: 5px solid #B8860B;
