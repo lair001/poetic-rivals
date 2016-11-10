@@ -4,4 +4,8 @@ class VisitorController < ApplicationController
 
   end
 
+  def aqm
+
+  end
+
 end
