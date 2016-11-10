@@ -18,11 +18,10 @@ a:active {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  background: url(/images/Theodosian_Walls.jpg);
-  background-repeat: no-repeat;
+  background: $global-background-image;
+  background-repeat: repeat;
   background-position: center center;
   background-attachment: fixed;
-  background-size: cover;
   margin-top: 80px;
   margin-bottom: 30px;
   color: #dda10d;
