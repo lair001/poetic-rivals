@@ -1,0 +1,33 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+a:link {
+    color: #F8C64B;
+}
+
+a:visited {
+    color: #78764B;
+}
+
+a:hover {
+    color: #F8C68B;
+}
+
+a:active {
+    color: #F8F69B;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: url(/images/Theodosian_Walls.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  margin-top: 80px;
+  margin-bottom: 30px;
+  color: #dda10d;
+}
+
+ul {
+    list-style-type: "⚔ ";
+}
