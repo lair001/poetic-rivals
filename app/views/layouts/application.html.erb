@@ -8,7 +8,12 @@
   </head>
   <body>
   	<%= render 'layouts/navbar' %>
-    <%= yield %>
+    <div class="container" id="top">
+      <%= yield %>
+      <div class="shadow center-block seventh-width" id="credit_box">
+        <footer class="text-center">Coded by <a href="http://samlair.com" target="_blank">Samuel Lair</a>.</footer>
+      </div>
+    </div>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>
