@@ -1,1 +1,9 @@
-<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<% if current_page?(aqm_path) %>
+
+	<%= javascript_include_tag 'aqm', 'data-turbolinks-track': 'reload' %>
+
+<% else %>
+
+	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+<% end %>

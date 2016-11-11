@@ -1,0 +1,65 @@
+@include import-global-font;
+
+@media(min-width:90em){.machineBtn{width: 150px; font-size: 200%} #title{font-size: 400%;} #quoteEdit{font-size: 320%;} #quoteFtr{font-size: 220%;}}
+
+@media(max-width:89.999em) and (min-width:60em){.machineBtn{width: 150px; font-size: 200%} #title{font-size: 350%;} #quoteEdit{font-size: 250%;} #quoteFtr{font-size: 180%;}}
+
+@media(max-width:59.999em) and (min-width:30em){.machineBtn{width: 150px; font-size: 200%} #title{font-size: 250%;} #quoteEdit{font-size: 200%;} #quoteFtr{font-size: 160%;}}
+
+@media(max-width:29.999em) and (min-width:20em){.machineBtn{width: 80px; font-size: 100%} #title{font-size: 160%;} #quoteEdit{font-size: 100%;} #quoteFtr{font-size: 80%;}}
+
+#title {
+  display: inline-block;
+  text-align: center;
+  color: #000000;
+  border-bottom: 2px solid #000000;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  transition: all 0.5s ease-in-out;
+}
+
+#quoteJmbtrn {
+  text-align: center;
+  width: 90vw;
+  height: 75vh;
+  background-color: #333333;
+  color: #AFAFAF;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5vh;
+}
+
+#quoteBlock{
+  display:block;
+  alight-left: auto;
+  alight-right: auto;
+  text-align: left;
+  border-color: #AFAFAF;
+  margin-top: 5vh;
+}
+
+#tweetQuote {
+  display: block;
+  margin-right:auto;
+  color: #333333;
+  background-color: #AFAFAF;
+  border-color: #AFAFAF;
+}
+
+#tweetQuote a {
+  color: #333333;
+  text-decoration: none;
+}
+
+#getQuote {
+  display: block;
+  margin-left:auto;
+  color: #333333;
+  background-color: #AFAFAF;
+  border-color: #AFAFAF;
+}
+
+#quoteFtr {
+  text-align: right;
+  color: #AFAFAF;
+}
