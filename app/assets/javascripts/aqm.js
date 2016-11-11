@@ -3,4 +3,4 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap-dropdown-fix
-//= require aqm
+//= require aqm-scripts
