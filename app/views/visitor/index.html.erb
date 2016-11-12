@@ -1,24 +1,33 @@
 <div class="jumbotron shadow">
-	<h1 class="text-center">
+	<h1>
 	  <%= root_page_title %>
 	</h1>
-	<h2 class="text-center">
+	<h2>
 	  <em>
 	    <%= root_page_tagline %>
 	  </em>
 	</h2>
 </div>
 <img src="<%= asset_path('the-petticoat-duellists.jpg') %>" class="img-rounded center-block shadow" alt="Petticoat Duelists" id="root_page_title_image">
-	<div class="jumbotron">
-		<div class="row">
-			<div class="col-xs-4">
-			IPSUM LOREM
-			</div>
-			<div class="col-xs-4">
-<%= link_to "Sign in with Facebook",user_facebook_omniauth_authorize_path %>
-			</div>
-			<div class="col-xs-4">
-			<%= fa_stacked_icon "dollar inverse", base: "circle", class: "fa-5x" %>
-			</div>
+<% if !user_signed_in? %>
+	<div class="row">
+		<div class="col-xs-6">
+			<%= link_to new_user_registration_path do %>
+				<div class="jumbotron shadow">
+					<h2 class="text-center">Sign up</h2>
+				</div>
+			<% end %>
+		</div>
+		<div class="col-xs-6">
+			<%= link_to new_user_session_path do %>
+				<div class='jumbotron shadow'><h2 class='text-center'>Log in</h2></div>
+			<% end %>
 		</div>
 	</div>
+<% else %>
+	<a href="/forum_threads">
+		<div class="jumbotron shadow">
+			<h2 class="text-center">View Threads</h2>
+		</div>
+	</a>
+<% end %>

@@ -1,0 +1,17 @@
+@mixin style-input-placeholder-pseudo-classes {
+	opacity: 1;
+	color: $global-text-color;
+}
+
+@mixin generate-input-placeholder-pseudo-classes {
+  &::-webkit-input-placeholder { @content }; /* Chrome/Opera/Safari */
+  &:-moz-placeholder           { @content }; /* Firefox 18- */
+  &::-moz-placeholder          { @content }; /* Firefox 19+ */
+  &:-ms-input-placeholder      { @content }; /* IE 10+ */
+}
+
+@mixin input-placeholder-styling {
+	@include generate-input-placeholder-pseudo-classes {
+		@include style-input-placeholder-pseudo-classes;
+	}
+}

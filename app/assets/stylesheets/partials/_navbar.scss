@@ -47,5 +47,5 @@
 	background-color: $global-bottom-level-background-color;
 	border-color: $global-bottom-level-background-color;
 	color: $global-text-color;
-  @include input-placeholders;
+  @include input-placeholder-styling;
 }
