@@ -2,11 +2,13 @@
   padding: 10px;
 }
 
-.navbar-inverse {
+#app-navbar {
+  @include navbar-font-family;
   @include navbar-font-size;
+  @include global-shadow;
   color: $global-text-color;
   background-color: $global-top-level-background-color;
-  border-bottom: 5px solid $global-border-color;
+  border-bottom: $global-border-width $global-border-style $global-border-color;
   .submit-btn {
     color: $global-text-color;
     background-color: $global-top-level-background-color;
@@ -30,12 +32,14 @@
   }
   .dropdown-menu {
     @include navbar-dropdown-font-size;
+    @include global-shadow;
+    @include global-border;
     background-color: $global-middle-level-background-color;
-    border-radius: 5px;
-    border: 5px solid $global-border-color;
   }
-  .open>a {
-    background-color: $global-top-level-background-color;
+  .open {
+    &>a {
+      background-color: $global-top-level-background-color;
+    }
   }
 }
 

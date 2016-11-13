@@ -11,5 +11,17 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_self
- *= require global_styles
  */
+
+@import "config/**/*";
+
+@import "partials/global_tags";
+@import "partials/global_classes";
+
+@import "partials/navbar";
+
+@import "partials/global_ids";
+
+@import "partials/root_page";
+
+@import "partials/aqm_page";

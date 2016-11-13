@@ -1,0 +1,6 @@
+@mixin global-border {
+	border-color: $global-border-color;
+	border-style: $global-border-style;
+	border-width: $global-border-width;
+	border-radius: $global-border-radius;
+}

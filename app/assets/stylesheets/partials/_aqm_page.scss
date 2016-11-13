@@ -1,5 +1,3 @@
-@include import-global-font;
-
 @media(min-width:90em){.machineBtn{width: 150px; font-size: 200%} #title{font-size: 400%;} #quoteEdit{font-size: 320%;} #quoteFtr{font-size: 220%;}}
 
 @media(max-width:89.999em) and (min-width:60em){.machineBtn{width: 150px; font-size: 200%} #title{font-size: 350%;} #quoteEdit{font-size: 250%;} #quoteFtr{font-size: 180%;}}
@@ -19,48 +17,46 @@
 }
 
 #quoteJmbtrn {
+  @include global-shadow;
   text-align: center;
   width: 90vw;
   height: 75vh;
-  background-color: #333333;
-  color: #AFAFAF;
+  background-color: $aqm-default-background-color;
+  color: $aqm-default-text-color;
   margin-left: auto;
   margin-right: auto;
   padding: 5vh;
-  border: 0px;
 }
 
 #quoteBlock{
-  display:block;
-  alight-left: auto;
-  alight-right: auto;
+  @extend .center-block;
   text-align: left;
-  border-color: #AFAFAF;
+  border-color: $aqm-default-text-color;
   margin-top: 5vh;
 }
 
-#tweetQuote {
+%aqm-quote-btn {
   display: block;
-  margin-right:auto;
-  color: #333333;
-  background-color: #AFAFAF;
-  border-color: #AFAFAF;
+  color: $aqm-default-background-color;
+  background-color: $aqm-default-text-color;
+  border-color: $aqm-default-text-color;
 }
 
-#tweetQuote a {
-  color: #333333;
-  text-decoration: none;
+#tweetQuote {
+  @extend %aqm-quote-btn;
+  margin-right:auto;
+  a {
+    color: $aqm-default-background-color;
+    text-decoration: none;
+  }
 }
 
 #getQuote {
-  display: block;
+  @extend %aqm-quote-btn;
   margin-left:auto;
-  color: #333333;
-  background-color: #AFAFAF;
-  border-color: #AFAFAF;
 }
 
 #quoteFtr {
   text-align: right;
-  color: #AFAFAF;
+  color: $aqm-default-text-color;
 }

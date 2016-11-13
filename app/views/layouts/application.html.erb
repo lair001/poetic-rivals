@@ -8,8 +8,10 @@
   </head>
   <body>
   	<%= render 'layouts/navbar' %>
-    <div class="<%= current_page?(aqm_path) ? "container-fluid" : "container" %> text-center" id="top">
+    <div class="<%= current_page?(aqm_path) ? "container-fluid" : "container" %> global-font-family text-center" id="top">
         <%= yield %>
+    </div>
+    <div class="container global-font-family text-center">
         <div class="shadow center-block seventh-width" id="credit_box">
           <footer class="text-center">Coded by <a href="http://samlair.com" target="_blank">Samuel Lair</a>.</footer>
       </div>

@@ -2,8 +2,18 @@
 	@import url($global-font-uri);
 }
 
+@mixin import-navbar-font {
+	@if $navbar-font-uri != $global-font-uri {
+		@import url($navbar-font-uri);
+	}
+}
+
 @mixin global-font-family {
 	font-family: $global-font-list;
+}
+
+@mixin navbar-font-family {
+	font-family: $navbar-font-list;
 }
 
 @mixin navbar-font-size {

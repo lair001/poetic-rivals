@@ -4,3 +4,6 @@
 
 @import "../variables/**/*";
 @import "../mixins/**/*";
+
+@include import-global-font;
+@include import-navbar-font;

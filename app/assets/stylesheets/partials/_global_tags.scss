@@ -1,5 +1,3 @@
-@include import-global-font;
-
 a {
 
   &:link {
@@ -21,7 +19,6 @@ a {
 }
 
 body {
-  @include global-font-family;
   background: $global-background-image;
   background-repeat: repeat;
   background-position: center center;

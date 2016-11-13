@@ -1,15 +1,5 @@
 #credit_box {
+  @include global-shadow;
+  @include global-border;
   background-color: $global-middle-level-background-color;
-  border-color: $global-border-color;
-  border-style: solid;
-  border-width: 5px;
-  border-radius: 5px;
-}
-
-#root_page_title_image {
-  border-color: $global-border-color;
-  border-style: solid;
-  border-width: 5px;
-  margin-bottom: 30px;
-  width: 50%;
 }
