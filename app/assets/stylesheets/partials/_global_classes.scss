@@ -50,7 +50,7 @@
 .global-jumbotron {
   @include global-shadow;
   @include global-border;
-  @include jumbotron($global-middle-level-background-color, $global-text-color);
+  @include jumbotron($global-middle-level-background-color);
 }
 
 .half-width {
