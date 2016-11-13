@@ -2,7 +2,7 @@
   padding: 10px;
 }
 
-#app-navbar {
+#app_navbar {
   @include navbar-font-family;
   @include navbar-font-size;
   @include global-shadow;
@@ -33,7 +33,7 @@
   }
 }
 
-#myNavbar {
+#my_navbar {
   a {
     &:link, &:visited, &:active {
     	color: $global-text-color;

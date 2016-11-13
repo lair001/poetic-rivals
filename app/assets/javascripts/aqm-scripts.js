@@ -22,7 +22,7 @@ function randomColors() {
     {"bkgrndclr":"#66A5AD", "txtclr":"#07575B"},
     {"bkgrndclr":"#07575B", "txtclr":"#C4DFE6"},
     {"bkgrndclr":"#C4DFE6", "txtclr":"#07575B"},
-    {"bkgrndclr":"#055160", "txtclr":"#598234"},    
+    {"bkgrndclr":"#055160", "txtclr":"#598234"},
     {"bkgrndclr":"#598234", "txtclr":"#055160"},
     {"bkgrndclr":"#AEBD38", "txtclr":"#68829E"},
     {"bkgrndclr":"#68829E", "txtclr":"#AEBD38"},
@@ -30,19 +30,19 @@ function randomColors() {
     {"bkgrndclr":"#AFAFAF", "txtclr":"#333333"}
   ];
   var rndmNum = Math.floor(Math.random() * colors.length);
-  $("#quoteJmbtrn").css({"background-color": colors[rndmNum].bkgrndclr, "color": colors[rndmNum].txtclr, transition: "all 0.5s ease-in-out"});
-  $("#quoteBlock").css({"border-color": colors[rndmNum].txtclr, transition: "all 0.5s ease-in-out"});
-  $("#quoteFtr").css({"color": colors[rndmNum].txtclr, transition: "all 0.5s ease-in-out 0.5s"});
-  $("#getQuote").css({"background-color": colors[rndmNum].txtclr, "border-color": colors[rndmNum].txtclr, "color": colors[rndmNum].bkgrndclr, transition: "all 0.5s ease-in-out"});
-  $("#tweetQuote").css({"background-color": colors[rndmNum].txtclr, "border-color": colors[rndmNum].txtclr,"color": colors[rndmNum].bkgrndclr, transition: "all 0.5s ease-in-out"});
-  $("#tweetQuote a").css({"color": colors[rndmNum].bkgrndclr, transition: "all 0.5s ease-in-out"});
+  $("#quote_jumbotron").css({"background-color": colors[rndmNum].bkgrndclr, "color": colors[rndmNum].txtclr, transition: "all 0.5s ease-in-out"});
+  $("#quote_block").css({"border-color": colors[rndmNum].txtclr, transition: "all 0.5s ease-in-out"});
+  $("#quote_footer").css({"color": colors[rndmNum].txtclr, transition: "all 0.5s ease-in-out 0.5s"});
+  $("#get_quote").css({"background-color": colors[rndmNum].txtclr, "border-color": colors[rndmNum].txtclr, "color": colors[rndmNum].bkgrndclr, transition: "all 0.5s ease-in-out"});
+  $("#tweet_quote").css({"background-color": colors[rndmNum].txtclr, "border-color": colors[rndmNum].txtclr,"color": colors[rndmNum].bkgrndclr, transition: "all 0.5s ease-in-out"});
+  $("#tweet_quote a").css({"color": colors[rndmNum].bkgrndclr, transition: "all 0.5s ease-in-out"});
   console.log(colors[rndmNum].bkgrndclr + " " + colors[rndmNum].txtclr);
 };
 
 function processQuote(quoteJSON) {
-  $("#quoteEdit").html('<i class="fa fa-quote-left"></i> ' + quoteJSON.quote + ' <i class="fa fa-quote-right"></i><br><br>');
-  $("#quoteFtr").html(quoteJSON.author);
-  $("#tweetLink").attr("href", "https://twitter.com/intent/tweet?&text=" + quoteJSON.quote + " — " + quoteJSON.author);
+  $("#quote_edit").html('<i class="fa fa-quote-left"></i> ' + quoteJSON.quote + ' <i class="fa fa-quote-right"></i><br><br>');
+  $("#quote_footer").html(quoteJSON.author);
+  $("#tweet_link").attr("href", "https://twitter.com/intent/tweet?&text=" + quoteJSON.quote + " — " + quoteJSON.author);
 };
 
 function getQuote() {
@@ -61,7 +61,7 @@ function getQuote() {
   });
 };
 
-$("#getQuote").click( function() {
+$("#get_quote").click( function() {
   randomColors();
   getQuote();
 });
