@@ -2,8 +2,9 @@
 @import "bootstrap";
 @import "font-awesome";
 
-@import "../variables/**/*";
-@import "../mixins/**/*";
+@import "../lib/variables/**/*";
+@import "../lib/mixins/**/*";
+@import "../lib/placeholders/**/*";
 
 @include import-global-font;
 @include import-navbar-font;

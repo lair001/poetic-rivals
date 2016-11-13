@@ -15,13 +15,13 @@
 
 @import "config/**/*";
 
-@import "partials/global_tags";
-@import "partials/global_classes";
+@import "lib/partials/global_tags";
+@import "lib/partials/global_classes";
 
-@import "partials/navbar";
+@import "lib/partials/navbar";
 
-@import "partials/global_ids";
+@import "lib/partials/global_ids";
 
-@import "partials/root_page";
+@import "lib/partials/root_page";
 
-@import "partials/aqm_page";
+@import "lib/partials/aqm_page";
