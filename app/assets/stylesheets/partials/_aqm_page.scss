@@ -29,7 +29,7 @@
 }
 
 #quoteBlock{
-  @extend .center-block;
+  @include center-block;
   text-align: left;
   border-color: $aqm-default-text-color;
   margin-top: 5vh;
