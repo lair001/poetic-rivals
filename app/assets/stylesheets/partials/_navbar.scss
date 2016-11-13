@@ -31,6 +31,7 @@
       background-color: $navbar-hover-link-color;
     }
   }
+
 }
 
 #my_navbar {
@@ -38,7 +39,7 @@
     &:link, &:visited, &:active {
     	color: $global-text-color;
     }
-    &:hover {
+    &:hover, &:focus {
       color: $navbar-hover-link-color;
       background-color: $global-bottom-level-background-color;
     }
