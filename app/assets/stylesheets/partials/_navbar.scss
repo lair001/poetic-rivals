@@ -20,6 +20,19 @@
   }
 }
 
+#app_navbar_icon_bar_btn {
+  border-color: $global-top-level-background-color;
+  .icon-bar {
+    background-color: $global-text-color;
+  }
+  &:hover, &:focus {
+    background-color: $global-bottom-level-background-color;
+    .icon-bar {
+      background-color: $navbar-hover-link-color;
+    }
+  }
+}
+
 #myNavbar {
   a {
     &:link, &:visited, &:active {
