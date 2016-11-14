@@ -1,13 +1,13 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
+  include Users::OmniauthCallbacksHelper
+
   def facebook
-    @user = User.from_omniauth(request.env["omniauth.auth"])
-    sign_in_and_redirect @user
+    omniauth_authentication
   end
 
   def google_oauth2
-    @user = User.from_omniauth(request.env["omniauth.auth"])
-    sign_in_and_redirect @user
+    omniauth_authentication
   end
 
   # You should configure your model like this:
