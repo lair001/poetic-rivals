@@ -9,7 +9,8 @@
   <body>
   	<%= render 'layouts/navbar' %>
     <div class="<%= current_page?(aqm_path) ? "container-fluid" : "container" %> global-font-family text-center" id="top">
-        <%= yield %>
+      <%= render 'layouts/flash_messages' %>
+      <%= yield %>
     </div>
     <div class="container global-font-family text-center">
         <div class="shadow center-block seventh-width" id="credit_box">
