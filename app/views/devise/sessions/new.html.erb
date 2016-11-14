@@ -1,4 +1,7 @@
-<h2>Log in</h2>
+<div class="global-jumbotron">
+  <h1><%= new_user_session_page_title %></h1>
+  <h2><em><%= new_user_session_page_tagline %></em></h2>
+</div>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
