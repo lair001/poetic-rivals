@@ -2,6 +2,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   include Users::OmniauthCallbacksHelper
 
+  def amazon
+    omniauth_authentication
+  end
+
   def facebook
     omniauth_authentication
   end

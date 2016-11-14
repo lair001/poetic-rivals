@@ -31,6 +31,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'devise'
+
+gem 'omniauth-amazon'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
 gem "omniauth-google-oauth2"
