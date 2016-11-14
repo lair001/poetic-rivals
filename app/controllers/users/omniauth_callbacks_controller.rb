@@ -6,6 +6,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     omniauth_authentication
   end
 
+  def github
+    omniauth_authentication
+  end
+
   def google_oauth2
     omniauth_authentication
   end

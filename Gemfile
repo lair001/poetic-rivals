@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'omniauth-github'
 gem "omniauth-google-oauth2"
 
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
