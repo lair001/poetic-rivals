@@ -1,5 +1,18 @@
 #credit_box {
   @include global-shadow;
-  @include global-border;
+  @include border;
   background-color: $global-middle-level-background-color;
+  padding: $global-small-box-padding;
+}
+
+#flash_error{
+	@include messages;
+}
+
+#flash_notice{
+	@include messages;
+}
+
+#flash_alert{
+	@include messages;
 }

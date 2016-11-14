@@ -49,7 +49,7 @@
 
 .global-jumbotron {
   @include global-shadow;
-  @include global-border;
+  @include border;
   @include jumbotron($global-middle-level-background-color);
 }
 

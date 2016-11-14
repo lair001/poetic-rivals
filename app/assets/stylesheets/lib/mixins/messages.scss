@@ -1,0 +1,10 @@
+@mixin messages($border-width: $global-form-field-border-width, $border-color: $global-error-border-color, $color: $global-error-text-color, $background-color: $global-error-bg-color, $width: $global-form-width, $margin-bottom: $jumbotron-padding, $padding: $global-small-box-padding) {
+	@include border($border-width: $global-form-field-border-width, $border-color: $global-error-border-color);
+	@include center-block;
+	@include global-shadow;
+	color: $global-error-text-color;
+	background-color: $global-error-bg-color;
+	width: $global-form-width;
+	margin-bottom: $jumbotron-padding;
+	padding: $global-small-box-padding;
+}
