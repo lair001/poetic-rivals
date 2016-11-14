@@ -1,8 +1,20 @@
+.global-form {
+  @include center-block;
+  width: $global-form-width;
+}
+
+.global-form-half-width {
+  @include center-block;
+  width: $global-form-width * 0.5;
+}
+
 .btn-forum,
 .btn-forum:active {
+  @include global-shadow;
+  font-size: $global-form-btn-font-size;
   background-color: $global-top-level-background-color;
   border-color: $global-border-color;
-  color: $global-border-color;
+  color: $global-text-color;
   width: 100%;
   border-width: 3px;
   border-radius: 5px;

@@ -10,9 +10,9 @@
 }
 
 #flash_notice{
-	@include messages;
+	@include messages($color: $global-notice-text-color, $background-color: $global-notice-bg-color, $border-color: $global-notice-border-color);
 }
 
 #flash_alert{
-	@include messages;
+	@include messages($color: $global-alert-text-color, $background-color: $global-alert-bg-color, $border-color: $global-alert-border-color);;
 }
