@@ -1,6 +1,4 @@
-module ApplicationHelper
-	include PagesHelper::Titles
-	include PagesHelper::Taglines
+module EnvHelper
 
 	def current_env
 		@current_env ||= request.env

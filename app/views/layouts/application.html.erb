@@ -10,6 +10,8 @@
   	<%= render 'layouts/navbar' %>
     <div class="<%= current_page?(aqm_path) ? "container-fluid" : "container" %> global-font-family text-center" id="top">
       <%= render 'layouts/flash_messages' %>
+      <% binding.pry %>
+      <%= raise Rails.application.routes.recognize_path(request.request_uri) %>
       <%= yield %>
     </div>
     <div class="container global-font-family text-center">
