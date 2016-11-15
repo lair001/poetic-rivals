@@ -6,7 +6,7 @@ module RoutesHelper
 		end
 
 		def paths
-			@paths = routes_array.collect { |route| route[2] }
+			@paths ||= routes_array.collect { |route| route[2] }
 		end
 
 		def current_path_name
