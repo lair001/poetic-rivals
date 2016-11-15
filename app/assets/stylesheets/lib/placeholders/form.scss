@@ -1,0 +1,7 @@
+%global-form-input {
+  @include border($border-width: $global-form-field-border-width);
+  @include global-shadow;
+  @include input-placeholder-styling;
+  background-color: $global-bottom-level-background-color;
+  color: $global-text-color;
+}

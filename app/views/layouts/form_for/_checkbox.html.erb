@@ -1,6 +1,14 @@
   <div class=".form-check">
-    <%= model.check_box attr_sym, class: "form-check-input global-form-checkbox" %>
-    <%= model.label attr_sym, class: "form-check-label" do %>
-      <span></span>Remember me<br>
+  	<% if local_assigns.has_key?(:checked_value) %>
+  		<% if local_assigns.has_key?(:unchecked_value) %>
+  			<%= model.check_box method_sym, { class: "form-check-input global-form-checkbox" } , checked_value, unchecked_value %>
+  		<% else %>
+  			<%= model.check_box method_sym, { class: "form-check-input global-form-checkbox" } , checked_value %>
+  		<% end %>
+  	<% else %>
+  	    <%= model.check_box method_sym, class: "form-check-input global-form-checkbox" %>
     <% end %>
+    <%= model.label method_sym, class: "form-check-label" do
+      raw("<span></span>#{content}<br>")
+    end %>
   </div>

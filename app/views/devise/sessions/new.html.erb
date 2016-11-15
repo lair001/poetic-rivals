@@ -8,20 +8,20 @@
 
     <div class="form-group">
       <%= f.label :username %><br />
-      <%= f.text_field :username, autofocus: true, class: "form-control forum-input" %>
+      <%= f.text_field :username, autofocus: true, class: "form-control global-form-input" %>
     </div>
 
     <div class="form-group">
       <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "off", class: "form-control forum-input" %>
+      <%= f.password_field :password, autocomplete: "off", class: "form-control global-form-input" %>
     </div>
 
     <% if devise_mapping.rememberable? -%>
-      <%= render partial: 'layouts/form_for/checkbox', locals: {model: f, attr_sym: :remember_me} %>
+      <%= render partial: 'layouts/form_for/checkbox', locals: {model: f, method_sym: :remember_me, content: "Remember me"} %>
     <% end -%>
 
     <div class="actions">
-      <%= f.submit "Log in", class: "btn btn-primary btn-forum" %>
+      <%= f.submit "Log in", class: "btn global-form-btn" %>
     </div>
   <% end %>
 </div>
