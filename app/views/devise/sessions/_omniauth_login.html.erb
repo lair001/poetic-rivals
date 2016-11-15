@@ -1,5 +1,5 @@
 <div class="global-jumbotron" id="omniauth_log_in">
-  <h3>If you have another account with the same email address, you may log in using the following providers:</h3>
+  <h3>If you have another account with one of the following providers:</h3>
   <div class="row">
     <div class="col-xs-3">
       <form method="get" action="<%=omniauth_authorize_path(resource_name, :amazon) %>">
@@ -22,4 +22,5 @@
       </form>
     </div>
   </div>
+  <h3>And it has the same email address as your <em><strong><%= project_title %></strong></em> account, you may use it to log in.</h3>
 </div>
