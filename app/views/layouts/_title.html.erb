@@ -1,0 +1,8 @@
+<div class="global-jumbotron">
+	<% if self.respond_to?("#{current_path_name}_page_title") %>
+		<h1><%= self.send("#{current_path_name}_page_title") %></h1>
+	<% end %>
+	<% if self.respond_to?("#{current_path_name}_page_tagline") %>
+		<h2><em><%= self.send("#{current_path_name}_page_tagline") %></em></h2>
+	<% end %>
+</div>

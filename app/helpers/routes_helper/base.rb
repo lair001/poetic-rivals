@@ -10,7 +10,7 @@ module RoutesHelper
 		end
 
 		def current_path_name
-			@current_path_name ||= path_path_name_hash[current_path]
+			@current_path_name ||= path_method_path_name_hash[current_path][current_request_method]
 		end
 
 		def current_action

@@ -20,17 +20,18 @@ module RoutesHelper
 			routes_row_array.collect { |row| row.split("\s")  }
 		end
 
-		def generate_path_path_name_hash
-			path_path_name_hash = {}
+		def generate_path_method_path_name_hash
+			path_method_path_name_hash = {}
 			routes_array.each do |route|
 				path = route[2].gsub("(.:format)", "")
-				path_path_name_hash[path] = route[0]
+				path_method_path_name_hash[path] = {} if !path_method_path_name_hash.has_key?(path)
+				route[1].split("|").each { |method| path_method_path_name_hash[path][method] = route[0] }
 			end
-			path_path_name_hash
+			path_method_path_name_hash
 		end
 
-		def path_path_name_hash
-			@path_path_name_hash ||= generate_path_path_name_hash
+		def path_method_path_name_hash
+			@path_method_path_name_hash ||= generate_path_method_path_name_hash
 		end
 
 	end

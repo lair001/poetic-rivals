@@ -3,14 +3,15 @@
   <head>
     <title><%= project_title %></title>
     <%= csrf_meta_tags %>
-
     <%= render 'layouts/stylesheet_links' %>
   </head>
   <body>
   	<%= render 'layouts/navbar' %>
     <div class="<%= current_page?(aqm_path) ? "container-fluid" : "container" %> global-font-family text-center" id="top">
+      <% if current_path_name != "aqm" && (self.respond_to?("#{current_path_name}_page_title") || self.respond_to?("#{current_path_name}_page_tagline")) %>
+        <%= render 'layouts/title' %>
+      <% end %>
       <%= render 'layouts/flash_messages' %>
-      <% binding.pry %>
       <%= yield %>
     </div>
     <div class="container global-font-family text-center">
