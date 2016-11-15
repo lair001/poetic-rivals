@@ -16,3 +16,10 @@
 #flash_alert{
 	@include messages($color: $global-alert-text-color, $background-color: $global-alert-bg-color, $border-color: $global-alert-border-color);;
 }
+
+#global_title {
+	h1 {
+		display: block;
+		border-bottom: 2px solid $global-border-color;
+	}
+}
