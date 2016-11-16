@@ -40,12 +40,22 @@ gem "omniauth-google-oauth2"
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem "font-awesome-rails", '~> 4.7'
 
+gem "faker"
+gem 'require_all'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug', platform: :mri
   gem 'dotenv-rails'
   gem 'pry-rails'
   gem 'pry-byebug'
+
+  gem "rspec-rails"
+  gem "capybara", require: [ 'capybara/rspec', 'capybara/dsl' ]
+  gem "factory_girl_rails"
+  gem "rack-test"
+  gem 'rack_session_access'
+  gem "database_cleaner"
 end
 
 group :development do
