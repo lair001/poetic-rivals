@@ -8,3 +8,18 @@
 	margin-bottom: $margin-bottom;
 	padding: $padding;
 }
+
+@mixin blockquote-messages($border-color: $global-error-border-color, $color: $global-error-text-color, $background-color: $global-error-bg-color, $width: $global-form-width, $margin-bottom: $jumbotron-padding, $padding: $global-small-box-padding) {
+	@include global-shadow;
+	@include center-block;
+	border-style: solid;
+	border-color: $border-color;
+	color: $color;
+	background-color: $background-color;
+	width: $width;
+	margin-bottom: $margin-bottom;
+	padding: $padding;
+	& footer {
+		color: $color;
+	}
+}

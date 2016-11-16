@@ -18,6 +18,10 @@ module PagesHelper
 			"Log in"
 		end
 
+		def new_user_registration_page_title
+			"Sign up"
+		end
+
 	end
 
 end

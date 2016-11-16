@@ -1,11 +1,12 @@
 class User < ApplicationRecord
+
+	validates :username, presence: true
+
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, authentication_keys: [:username]
 	devise :omniauthable, :omniauth_providers => [:amazon, :facebook, :github, :google_oauth2]
 	devise :registerable, :recoverable, :rememberable, :trackable, :validatable
-
-	validates :username, presence: true
 
 	def self.from_omniauth(auth)
 		# where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

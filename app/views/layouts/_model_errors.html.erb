@@ -1,0 +1,8 @@
+<% error_messages = ""
+  @user.errors.full_messages.each do |error|
+    error_messages += error + "<br>"
+end %>
+<blockquote id="model_errors">
+  <p><%=raw(error_messages)%></p>
+  <footer><cite>The Prima Donna</cite></footer>
+</blockquote>
