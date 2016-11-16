@@ -8,7 +8,7 @@
   	<% else %>
   	    <%= form_builder.check_box method_symbol, class: "form-check-input global-form-checkbox" %>
     <% end %>
-    <%= form_builder.label class: "form-check-label" do
+    <%= form_builder.label method_symbol, class: "form-check-label" do
       raw("<span></span>#{label}<br>")
     end %>
   </div>
