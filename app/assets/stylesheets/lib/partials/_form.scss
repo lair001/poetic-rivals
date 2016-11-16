@@ -50,18 +50,6 @@
   }
 }
 
-.forum-divider-bottom {
-  display: block;
-  border-bottom: 1px solid $global-border-color;
-  padding-bottom: 5px;
-}
-
-.forum-divider-top {
-  display: block;
-  border-top: 1px solid $global-border-color;
-  margin-top: 5px;
-}
-
 .global-form-input {
   @extend %global-form-input;
   &:focus {

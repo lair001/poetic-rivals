@@ -23,7 +23,3 @@
 		border-bottom: 2px solid $global-border-color;
 	}
 }
-
-#model_errors {
-	@include blockquote-messages
-}

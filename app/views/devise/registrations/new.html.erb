@@ -1,6 +1,6 @@
 <div class="global-jumbotron">
   <% if @user.errors.any? %>
-    <%= render 'layouts/model_errors' %>
+    <%= render partial: 'layouts/model_errors', locals: { model: @user } %>
   <% end %>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "global-form-half-width" }) do |f| %>
 

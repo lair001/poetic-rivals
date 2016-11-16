@@ -14,6 +14,14 @@ module PagesHelper
 			"Vie for the admiration of countless fans!"
 		end
 
+		def new_user_password_page_tagline
+			"The stress is making you senile . . ."
+		end
+
+		def edit_user_registration_page_tagline
+			"It may be time to rework your image . . ."
+		end
+
 	end
 
 end

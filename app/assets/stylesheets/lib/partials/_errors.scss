@@ -7,7 +7,7 @@
 		border-color: $global-error-border-color;
 		background-color: $global-error-bg-color;
 	}
-	&+em {
+	&+em, &+i {
 		color: $global-error-text-color;
 	}
 }

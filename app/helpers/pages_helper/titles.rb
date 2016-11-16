@@ -22,6 +22,14 @@ module PagesHelper
 			"Sign up"
 		end
 
+		def new_user_password_page_title
+			"Forgot your passord?"
+		end
+
+		def edit_user_registration_page_title
+			"Update Account"
+		end
+
 	end
 
 end

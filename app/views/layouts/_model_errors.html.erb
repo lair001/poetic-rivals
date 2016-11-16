@@ -1,5 +1,5 @@
 <% error_messages = ""
-  @user.errors.full_messages.each do |error|
+  model.errors.full_messages.each do |error|
     error_messages += error + "<br>"
 end %>
 <blockquote id="model_errors">
