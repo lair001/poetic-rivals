@@ -82,3 +82,11 @@
 .width-40px {
   width: 40px
 }
+
+.global-divider-bottom {
+  @include divider(bottom);
+}
+
+.global-divider-top {
+  @include divider(top);
+}
