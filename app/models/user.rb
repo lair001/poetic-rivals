@@ -18,6 +18,8 @@ class User < ApplicationRecord
 	devise :omniauthable, :omniauth_providers => [:amazon, :facebook, :github, :google_oauth2]
 	devise :registerable, :recoverable, :rememberable, :trackable, :validatable
 
+	enum role: [:banned, :normal, :administrator, :moderator, :superuser]
+
 	def self.from_omniauth(auth)
 		# where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
 		# 	user.username = auth.info.email
@@ -30,6 +32,24 @@ class User < ApplicationRecord
 		# 	user.password = Devise.friendly_token[0,20]
 		# end
 		where(email: auth.info.email).first
+	end
+
+	def title
+		@title ||= self.grant_title
+	end
+
+	def grant_title
+		if self.banned?
+			"Banned"
+		elsif self.superuser?
+			"Superuser"
+		elsif self.administrator?
+			"Administrator"
+		elsif self.moderator?
+			"Moderator"
+		else
+			"Poet"
+		end
 	end
 
 end
