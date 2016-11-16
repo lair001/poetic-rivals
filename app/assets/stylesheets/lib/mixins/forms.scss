@@ -1,6 +1,6 @@
-@mixin style-input-placeholder-pseudo-classes {
+@mixin style-input-placeholder-pseudo-classes($text-color: $global-text-color) {
 	opacity: 1;
-	color: $global-text-color;
+	color: $text-color;
 }
 
 @mixin generate-input-placeholder-pseudo-classes {
@@ -10,8 +10,8 @@
   &:-ms-input-placeholder      { @content }; /* IE 10+ */
 }
 
-@mixin input-placeholder-styling {
+@mixin input-placeholder-styling($text-color: $global-text-color) {
 	@include generate-input-placeholder-pseudo-classes {
-		@include style-input-placeholder-pseudo-classes;
+		@include style-input-placeholder-pseudo-classes($text-color);
 	}
 }
