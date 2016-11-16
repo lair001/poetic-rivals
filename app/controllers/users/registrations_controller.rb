@@ -28,7 +28,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       clean_up_passwords resource
       set_minimum_password_length
-      @current_path_name = "new_user_session" # need to manually set this for the title block to display
+      @current_path_name = "new_user_registration" # need to manually set this for the title block to display
       respond_with resource
     end
   end
