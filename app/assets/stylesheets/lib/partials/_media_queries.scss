@@ -1,0 +1,39 @@
+@media only screen and (max-width : 480px) {
+    .quarter-width {
+      width: 32%;
+    }
+
+    #credit_box {
+      width: 23%
+    }
+}
+
+@media only screen and (min-width: 480.01px) and (max-width : 768px) {
+    .quarter-width {
+      width: 28%;
+    }
+
+    #credit_box {
+      width: 21%
+    }
+}
+
+@media only screen and (min-width : 768.01px) and (max-width: 992px ) {
+    .quarter-width {
+      width: 25%;
+    }
+
+    #credit_box {
+      width: 18%
+    }
+}
+
+@media only screen and (min-width : 992.01px) {
+    .quarter-width {
+      width: 20%;
+    }
+
+    #credit_box {
+      width: 14.28571%
+    }
+}
