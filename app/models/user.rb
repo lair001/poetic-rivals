@@ -2,6 +2,23 @@ class User < ApplicationRecord
 
  	include UserForbiddable::InstanceMethods
 
+ 	has_many :poems, foreign_key: :author_id
+ 	has_many :genres, -> { distinct }, through: :poems
+ 	has_many :commentaries, foreign_key: :commentator_id
+ 	has_many :commentators, -> { distinct }, through: :poems
+
+ 	has_many :rivalry_declarations, class_name: :rival_victim, foreign_key: :rival_id
+ 	has_many :victimizations, class_name: :rival_victim, foreign_key: :victim_id
+
+ 	has_many :victims, -> { distinct }, through: :rivalry_declarations
+	has_many :rivals, -> { distinct }, through: :victimizations
+
+ 	has_many :fandom_declarations, class_name: :fan_idol, foreign_key: :fan_id
+ 	has_many :idolizations, class_name: :fan_idol, foreign_key: :idol_id
+
+ 	has_many :idols, -> { distinct }, through: :fandom_declarations
+	has_many :fans, -> { distinct }, through: :idolizations
+
 	validates :username, { uniqueness: true, length: { in: 2..20 }, format: { without: Devise.email_regexp, message: "cannot be an email address" } }
 
 	validate do

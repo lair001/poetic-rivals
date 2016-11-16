@@ -10,7 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161109085949) do
+ActiveRecord::Schema.define(version: 20161116114425) do
+
+  create_table "commentaries", force: :cascade do |t|
+    t.integer  "commentator_id"
+    t.integer  "poem_id"
+    t.text     "comment"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "fan_idols", force: :cascade do |t|
+    t.integer  "fan_id"
+    t.integer  "idol_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "poem_genres", force: :cascade do |t|
+    t.integer  "poem_id"
+    t.integer  "genre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "poems", force: :cascade do |t|
+    t.integer  "author_id"
+    t.string   "title"
+    t.text     "body"
+    t.boolean  "private?",   default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "rival_victims", force: :cascade do |t|
+    t.integer  "rival_id"
+    t.integer  "victim_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username",               default: "", null: false
