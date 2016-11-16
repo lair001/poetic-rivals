@@ -12,7 +12,7 @@
     </div>
 
     <% if devise_mapping.rememberable? -%>
-      <%= render partial: 'layouts/form_for/checkbox', locals: {model: f, method_sym: :remember_me, content: "Remember me"} %>
+      <%= render partial: 'layouts/form_for/checkbox', locals: {form_builder: f, method_symbol: :remember_me, label: "Remember me"} %>
     <% end -%>
 
     <div class="actions">
