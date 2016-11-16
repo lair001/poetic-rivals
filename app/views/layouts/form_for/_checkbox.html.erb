@@ -1,14 +1,14 @@
-  <div class=".form-check">
-  	<% if local_assigns.has_key?(:checked_value) %>
-  		<% if local_assigns.has_key?(:unchecked_value) %>
-  			<%= form_builder.check_box method_symbol, { class: "form-check-input global-form-checkbox" } , checked_value, unchecked_value %>
-  		<% else %>
-  			<%= form_builder.check_box method_symbol, { class: "form-check-input global-form-checkbox" } , checked_value %>
-  		<% end %>
-  	<% else %>
-  	    <%= form_builder.check_box method_symbol, class: "form-check-input global-form-checkbox" %>
-    <% end %>
-    <%= form_builder.label method_symbol, class: "form-check-label" do
-      raw("<span></span>#{label}<br>")
-    end %>
-  </div>
+<div class=".form-check">
+	<% if local_assigns.has_key?(:checked_value) %>
+		<% if local_assigns.has_key?(:unchecked_value) %>
+			<%= form_builder.check_box method_symbol, { class: "form-check-input global-form-checkbox" } , checked_value, unchecked_value %>
+		<% else %>
+			<%= form_builder.check_box method_symbol, { class: "form-check-input global-form-checkbox" } , checked_value %>
+		<% end %>
+	<% else %>
+	    <%= form_builder.check_box method_symbol, class: "form-check-input global-form-checkbox" %>
+  <% end %>
+  <%= form_builder.label method_symbol, class: "form-check-label" do
+    raw("<span></span>#{label}<br>")
+  end %>
+</div>

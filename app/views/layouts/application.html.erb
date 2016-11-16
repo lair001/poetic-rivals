@@ -8,10 +8,10 @@
   <body>
   	<%= render 'layouts/navbar' %>
     <div class="<%= current_page?(aqm_path) ? "container-fluid" : "container" %> global-font-family text-center" id="top">
+      <%= render 'layouts/flash_messages' %>
       <% if current_path_name != "aqm" && (self.respond_to?("#{current_path_name}_page_title") || self.respond_to?("#{current_path_name}_page_tagline")) %>
         <%= render 'layouts/title' %>
       <% end %>
-      <%= render 'layouts/flash_messages' %>
       <%= yield %>
     </div>
     <div class="container global-font-family text-center">
