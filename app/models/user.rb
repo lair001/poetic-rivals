@@ -1,6 +1,16 @@
 class User < ApplicationRecord
 
-	validates :username, presence: true
+ 	include UserForbiddable::InstanceMethods
+
+	validates :username, { uniqueness: true, length: { in: 2..20 }, format: { without: Devise.email_regexp, message: "cannot be an email address" } }
+
+	validate do
+		absence_of_forbidden_characters_in :username
+		absence_of_forbidden_characters_in :password
+		only_spaces_as_whitespace_in :username
+		absence_of_whitespace_in :email
+		absence_of_whitespace_in :password
+	end
 
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
