@@ -1,0 +1,2 @@
+class RivalVictim < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class PoemGenre < ApplicationRecord
+end
