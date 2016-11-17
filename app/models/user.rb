@@ -49,6 +49,14 @@ class User < ApplicationRecord
 		where(email: auth.info.email).first
 	end
 
+	def score
+		@score ||= 100 * (self.fans.count - self.rivals.count)
+	end
+
+	def score_per_poem
+		@score_per_poem ||= score.to_f / [1, self.poems.count].max # avoid division by zero
+	end
+
 	def title
 		@title ||= self.grant_title
 	end
