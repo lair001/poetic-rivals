@@ -15,7 +15,6 @@ RSpec.describe User, type: :model do
 
 	it 'validates that the username is not an email address' do
 		email = fake_email
-		puts email
 		expect(build(:user, username: email).save).to eq(false)
 	end
 
@@ -26,7 +25,6 @@ RSpec.describe User, type: :model do
 
 	it 'validates for unique email address' do
 		email = fake_email
-		puts email
 		create(:user, email: email)
 		expect(build(:user, email: email).save).to eq(false)
 	end
@@ -127,6 +125,30 @@ RSpec.describe User, type: :model do
 		user3 = create(:user)
 		user1.fans.push(user2, user3)
 		expect(user1.fans).to contain_exactly(user2, user3)
+	end
+
+	it 'has many idols' do
+		user1 = create(:user)
+		user2 = create(:user)
+		user3 = create(:user)
+		user1.idols.push(user2, user3)
+		expect(user1.idols).to contain_exactly(user2, user3)
+	end
+
+	it 'has many rivals' do
+		user1 = create(:user)
+		user2 = create(:user)
+		user3 = create(:user)
+		user1.rivals.push(user2, user3)
+		expect(user1.rivals).to contain_exactly(user2, user3)
+	end
+
+	it 'has many victims' do
+		user1 = create(:user)
+		user2 = create(:user)
+		user3 = create(:user)
+		user1.victims.push(user2, user3)
+		expect(user1.victims).to contain_exactly(user2, user3)
 	end
 
 end
