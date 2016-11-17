@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :genre do
-    name "MyString"
-    banned false
+    name fake_genre
+    banned? false
   end
 end

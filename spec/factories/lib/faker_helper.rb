@@ -17,3 +17,7 @@ end
 def fake_email
 	Faker::Internet.safe_email
 end
+
+def fake_genre
+	Faker::Book.genre
+end
