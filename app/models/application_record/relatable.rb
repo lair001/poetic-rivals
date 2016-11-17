@@ -1,19 +1,21 @@
 class ApplicationRecord
 	module Relatable
 
-		RELATABLE_MODEL_CLASSES_WITH_FOREIGN_KEYS = [[FanIdol, :fan_id, :idol_id], [RivalVictim, :rival_id, :victim_id]]
+		RELATABLE_MODEL_CLASSES_WITH_FOREIGN_KEYS = { FanIdol => [:fan_id, :idol_id], RivalVictim => [:rival_id, :victim_id] }
 
 		module InstanceMethods
 
-			def relationship(first_foreign_key, second_foreign_key)
-				first_foreign_key_value = self.send(first_foreign_key)
-				second_foreign_key_value = self.send(second_foreign_key)
-				if first_foreign_key_value == second_foreign_key_value
-					errors.add(:base, "Cannot have a relationship with yourself")
-					return
-				end
-				RELATABLE_MODEL_CLASSES_WITH_FOREIGN_KEYS.each do |model_class_with_foreign_keys|
-					if model_class_with_foreign_keys[0].all.where(model_class_with_foreign_keys[1] => first_foreign_key_value, model_class_with_foreign_keys[2] => second_foreign_key_value).first
+			def foreign_keys
+				@foreign_keys ||= RELATABLE_MODEL_CLASSES_WITH_FOREIGN_KEYS[self.class]
+			end
+
+			def cannot_have_a_relationship_with_yourself
+				errors.add(:base, "Cannot have a relationship with yourself") if self.send(foreign_keys[0]) == self.send(foreign_keys[1])
+			end
+
+			def absence_of_identical_relationship_among_relatable_models
+				RELATABLE_MODEL_CLASSES_WITH_FOREIGN_KEYS.each do |model_class, model_foreign_keys|
+					if model_class.all.where(model_foreign_keys[0] => self.send(foreign_keys[0]), model_foreign_keys[1] => self.send(foreign_keys[1])).first
 						errors.add(:base, "A couple can have only one relationship")
 						return
 					end

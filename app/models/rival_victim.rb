@@ -6,7 +6,8 @@ class RivalVictim < ApplicationRecord
 	validates :rival, :victim, presence: true
 
 	validate do
-		relationship :rival_id, :victim_id
+		cannot_have_a_relationship_with_yourself
+		absence_of_identical_relationship_among_relatable_models if !self.errors.any?
 	end
 
 end
