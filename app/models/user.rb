@@ -19,7 +19,7 @@ class User < ApplicationRecord
  	has_many :idols, -> { distinct }, through: :fandom_declarations
 	has_many :fans, -> { distinct }, through: :idolizations
 
-	validates :username, { uniqueness: true, length: { in: 2..20 }, format: { without: Devise.email_regexp, message: "cannot be an email address" } }
+	validates :username, { uniqueness: true, length: { in: 2..30 }, format: { without: Devise.email_regexp, message: "cannot be an email address" } }
 
 	validate do
 		absence_of_forbidden_characters_in :username
