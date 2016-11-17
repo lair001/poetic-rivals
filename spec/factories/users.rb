@@ -10,8 +10,8 @@ FactoryGirl.define do
 			role 'banned'
 		end
 
-		trait :admininistrator do
-			role 'admininistrator'
+		trait :administrator do
+			role 'administrator'
 		end
 
 		trait :moderator do
