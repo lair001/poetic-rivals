@@ -7,7 +7,7 @@ class FanIdol < ApplicationRecord
 
 	validate do
 		cannot_have_a_relationship_with_yourself
-		absence_of_identical_relationship_among_relatable_models if !self.errors.any?
+		a_couple_can_only_have_one_relationship_with_each_other if !self.errors.any?
 	end
 
 end

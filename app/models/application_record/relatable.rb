@@ -13,10 +13,10 @@ class ApplicationRecord
 				errors.add(:base, "Cannot have a relationship with yourself") if self.send(foreign_keys[0]) == self.send(foreign_keys[1])
 			end
 
-			def absence_of_identical_relationship_among_relatable_models
+			def a_couple_can_only_have_one_relationship_with_each_other
 				RELATABLE_MODEL_CLASSES_WITH_FOREIGN_KEYS.each do |model_class, model_foreign_keys|
 					if model_class.all.where(model_foreign_keys[0] => self.send(foreign_keys[0]), model_foreign_keys[1] => self.send(foreign_keys[1])).first
-						errors.add(:base, "A couple can have only one relationship")
+						errors.add(:base, "A couple can have only one relationship with each other")
 						return
 					end
 				end
