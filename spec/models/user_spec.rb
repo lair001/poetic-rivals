@@ -3,70 +3,83 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
 
 	it 'knows its username' do 
-		user1 = build_stubbed(:user, username: "Billy Bob")
-		expect(user1.username).to eq("Billy Bob")
+		username = fake_username
+		expect(build_stubbed(:user, username: username).username).to eq(username)
 	end
 
 	it 'validates for unique username' do
-		user1 = create(:user, username: "Billy Bob")
-		user2 = build(:user, username: "Billy Bob")
-		expect(user2.save).to eq(false)
+		username = fake_username
+		create(:user, username: username)
+		expect(build(:user, username: username).save).to eq(false)
 	end
 
-	it 'validates that the username is not an email address' do 
-		user1 = build(:user, username: "BillyBob@example.com")
-		expect(user1.save).to eq(false)
+	it 'validates that the username is not an email address' do
+		email = fake_email
+		expect(build(:user, username: email).save).to eq(false)
 	end
 
-	it 'knows its email address' do 
-		user1 = build_stubbed(:user, email: "BillyBob@example.com")
-		expect(user1.email).to eq("BillyBob@example.com")
+	it 'knows its email address' do
+		email = fake_email
+		expect(build_stubbed(:user, email: email).email).to eq(email)
 	end
 
 	it 'validates for unique email address' do
-		user1 = create(:user, email: "BillyBob@example.com")
-		user2 = build(:user, email: "BillyBob@example.com")
-		expect(user2.save).to eq(false)
+		email = fake_email
+		create(:user, email: email)
+		expect(build(:user, email: email).save).to eq(false)
+	end
+
+	it 'has an encrypted password' do
+		password = fake_password
+		user1 = create(:user, password: password)
+		user1 = User.find(user1.id)
+		expect(user1.password).to eq(nil)
+		expect(user1.encrypted_password).to be_a(String)
+		expect(user1.encrypted_password).to_not eq("")
+		expect(user1.encrypted_password).to_not eq(password)
 	end
 
 	it 'is a normal user by default' do
-		user1 = build_stubbed(:user)
-		expect_user_role_to_be(user1, :normal)
+		expect_user_role_to_be(build_stubbed(:user), :normal)
 	end
 
 	it 'knows whether it has been banned' do
-		user1 = build_stubbed(:user, :banned)
-		expect_user_role_to_be(user1, :banned)
+		expect_user_role_to_be(build_stubbed(:user, :banned), :banned)
 	end
 
 	it 'knows whether it is a moderator' do
-		user1 = build_stubbed(:user, :moderator)
-		expect_user_role_to_be(user1, :moderator)
+		expect_user_role_to_be(build_stubbed(:user, :moderator), :moderator)
 	end
 
 	it 'knows whether it is an administrator' do
-		user1 = build_stubbed(:user, :administrator)
-		expect_user_role_to_be(user1, :administrator)
+		expect_user_role_to_be(build_stubbed(:user, :administrator), :administrator)
 	end
 
 	it 'knows whether it is a superuser' do
-		user1 = build_stubbed(:user, :superuser)
-		expect_user_role_to_be(user1, :superuser)
+		expect_user_role_to_be(build_stubbed(:user, :superuser), :superuser)
 	end
 
 	it 'knows when it was created' do
-		user = build(:user)
-		expect(user.created_at).to be_a(Time)
+		user1 = build(:user)
+		expect(user1.created_at).to be_a(Time)
 		time = Time.now
-		user.update(created_at: time)
-		expect(user.created_at).to eq(time)
+		user1.update(created_at: time)
+		expect(user1.created_at).to eq(time)
 	end
 
 	it 'knows when it was updated' do
-		user = build(:user)
-		user.update(attributes_for(:user))
-		expect(user.updated_at).to be_a(Time)
-		expect(user.updated_at).to be.>(user.created_at)
+		user1 = build(:user)
+		user1.update(attributes_for(:user))
+		expect(user1.updated_at).to be_a(Time)
+		expect(user1.updated_at).to be.>(user1.created_at)
+	end
+
+	it 'has many poems' do
+		user1 = create(:user)
+		poem1 = create(:poem, author: user1)
+		poem2 = create(:poem, author: user1)
+		user1 = User.find(user1.id)
+		expect(user1.poems).to include(poem1, poem2)
 	end
 
 end
