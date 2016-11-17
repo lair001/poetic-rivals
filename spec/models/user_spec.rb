@@ -26,6 +26,7 @@ RSpec.describe User, type: :model do
 
 	it 'validates for unique email address' do
 		email = fake_email
+		puts email
 		create(:user, email: email)
 		expect(build(:user, email: email).save).to eq(false)
 	end
@@ -80,24 +81,44 @@ RSpec.describe User, type: :model do
 		poem1 = create(:poem, author: user1)
 		poem2 = create(:poem, author: user1)
 		user1 = User.find(user1.id)
-		expect(user1.poems).to include(poem1, poem2)
+		expect(user1.poems).to contain_exactly(poem1, poem2)
 	end
 
 	it 'has many genres' do
   		user1 = create(:user)
-  		poem1 = create(:poem)
+  		poem1 = create(:poem, author: user1)
 		genre1 = create(:genre)
 		genre2 = create(:genre)
 		poem1.genres.push(genre1, genre2)
 		poem1.save
-		poem2 = create(:poem)
+		poem2 = create(:poem, author: user1)
 		genre3 = create(:genre)
 		genre4 = create(:genre)
 		poem2.genres.push(genre2, genre3, genre4)
 		poem2.save
-		user1.poems.push(poem1, poem2)
-		user1.save
 		expect(user1.genres).to contain_exactly(genre1, genre2, genre3, genre4)
+	end
+
+	it 'has many commentaries' do
+		user1 = create(:user)
+		commentary1 = create(:commentary, commentator: user1)
+		commentary2 = create(:commentary, commentator: user1)
+		expect(user1.commentaries).to contain_exactly(commentary1, commentary2)
+	end
+
+	it 'has many commentators' do
+		user1 = create(:user)
+		user2 = create(:user)
+		user3 = create(:user)
+		user4 = create(:user)
+		poem1 = create(:poem, author: user1)
+		poem2 = create(:poem, author: user1)
+		create(:commentary, poem: poem2, commentator: user2)
+		create(:commentary, poem: poem2, commentator: user2)
+		create(:commentary, poem: poem1, commentator: user3)
+		create(:commentary, poem: poem2, commentator: user3)
+		create(:commentary, poem: poem1, commentator: user4)
+		expect(user1.commentators).to contain_exactly(user2, user3, user4)
 	end
 
 end
