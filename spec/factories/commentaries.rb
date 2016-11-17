@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :commentary do
-    critic_id 1
-    critique "MyText"
+    comment fake_two_paragraphs
+    poem
+    association :commentator, factory: :user
   end
 end
