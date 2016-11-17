@@ -53,6 +53,7 @@ group :development, :test do
   gem "rspec-rails"
   gem "capybara", require: [ 'capybara/rspec', 'capybara/dsl' ]
   gem "factory_girl_rails"
+  gem 'to_factory'
   gem "rack-test"
   gem 'rack_session_access'
   gem "database_cleaner"
