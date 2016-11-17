@@ -15,6 +15,7 @@ RSpec.describe User, type: :model do
 
 	it 'validates that the username is not an email address' do
 		email = fake_email
+		puts email
 		expect(build(:user, username: email).save).to eq(false)
 	end
 
@@ -80,6 +81,23 @@ RSpec.describe User, type: :model do
 		poem2 = create(:poem, author: user1)
 		user1 = User.find(user1.id)
 		expect(user1.poems).to include(poem1, poem2)
+	end
+
+	it 'has many genres' do
+  		user1 = create(:user)
+  		poem1 = create(:poem)
+		genre1 = create(:genre)
+		genre2 = create(:genre)
+		poem1.genres.push(genre1, genre2)
+		poem1.save
+		poem2 = create(:poem)
+		genre3 = create(:genre)
+		genre4 = create(:genre)
+		poem2.genres.push(genre2, genre3, genre4)
+		poem2.save
+		user1.poems.push(poem1, poem2)
+		user1.save
+		expect(user1.genres).to contain_exactly(genre1, genre2, genre3, genre4)
 	end
 
 end

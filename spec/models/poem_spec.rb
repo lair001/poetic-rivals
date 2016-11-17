@@ -23,4 +23,14 @@ RSpec.describe Poem, type: :model do
   	user1 = build_stubbed(:user)
   	expect(build(:poem, author: user1).author).to eq(user1)
   end
+
+  it 'has many genres' do
+  		poem1 = create(:poem)
+		genre1 = create(:genre)
+		genre2 = create(:genre)
+		poem1.genres.push(genre1, genre2)
+		poem1.save
+		expect(poem1.genres).to include(genre1, genre2)
+  end
+
 end

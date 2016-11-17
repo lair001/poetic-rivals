@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Genre, type: :model do
+
 	it 'knows its name' do
 		genre = fake_genre
 		expect(build(:genre, name: genre).name).to eq(genre)
@@ -22,6 +23,5 @@ RSpec.describe Genre, type: :model do
 		genre1.save
 		expect(genre1.poems).to include(poem1, poem2)
 	end
-
 
 end
