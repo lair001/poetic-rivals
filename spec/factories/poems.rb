@@ -3,6 +3,6 @@ FactoryGirl.define do
     author_id 1
     title "MyString"
     body "MyText"
-    private false
+    private? false
   end
 end

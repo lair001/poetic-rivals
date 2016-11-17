@@ -29,8 +29,9 @@ ActiveRecord::Schema.define(version: 20161116114425) do
 
   create_table "genres", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "banned?",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "poem_genres", force: :cascade do |t|
