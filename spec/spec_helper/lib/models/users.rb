@@ -9,3 +9,15 @@ def expect_user_role_to_be(user, reference_role)
 		end
 	end
 end
+
+def generate_fans_for(user, number_of_fans)
+	number_of_fans.times do
+		user.fans.build(attributes_for :user)
+	end
+end
+
+def generate_rivals_for(user, number_of_rivals)
+		number_of_rivals.times do
+		user.rivals.build(attributes_for :user)
+	end
+end

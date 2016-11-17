@@ -151,38 +151,24 @@ RSpec.describe User, type: :model do
 		expect(user1.victims).to contain_exactly(user2, user3)
 	end
 
-	it 'knows its score' do
+	it 'knows its score and score per poem' do
 		user1 = create(:user)
 
-		3.times do
-			user1.rivals.build(attributes_for :user)
-		end
-
-		4.times do
-			user1.fans.build(attributes_for :user)
-		end
-
+		generate_fans_for(user1, 4)
+		generate_rivals_for(user1, 3)
+		generate_poems_for(user1, 8)
 		user1.save
 		expect(user1.score).to eq(100)
-	end
+		expect(user1.score_per_poem).to eq(12.5)
 
-	it 'knows its score per poem' do
 		user1 = create(:user)
 
-		3.times do
-			user1.rivals.build(attributes_for :user)
-		end
-
-		4.times do
-			user1.fans.build(attributes_for :user)
-		end
-
-		8.times do
-			user1.poems.build(attributes_for :poem)
-		end
-
+		generate_fans_for(user1, 3)
+		generate_rivals_for(user1, 4)
+		generate_poems_for(user1, 8)
 		user1.save
-		expect(user1.score_per_poem).to eq(12.5)
+		expect(user1.score).to eq(-100)
+		expect(user1.score_per_poem).to eq(-12.5)
 	end
 
 end
