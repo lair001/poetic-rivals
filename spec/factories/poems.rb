@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :poem do
-    title Faker::Lorem.sentence.chomp(".").titleize
-    body Faker::Lorem.paragraphs(2)
+    title fake_title
+    body fake_two_paragraphs
     association :author, factory: :user
   end
 
