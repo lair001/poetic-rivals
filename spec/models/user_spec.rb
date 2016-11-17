@@ -161,12 +161,9 @@ RSpec.describe User, type: :model do
 		expect(user1.score).to eq(100)
 		expect(user1.score_per_poem).to eq(12.5)
 
-		user1 = create(:user)
-
-		generate_fans_for(user1, 3)
-		generate_rivals_for(user1, 4)
-		generate_poems_for(user1, 8)
+		generate_rivals_for(user1, 2)
 		user1.save
+		user1 = User.find(user1.id)
 		expect(user1.score).to eq(-100)
 		expect(user1.score_per_poem).to eq(-12.5)
 	end

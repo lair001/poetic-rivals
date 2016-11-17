@@ -17,7 +17,7 @@ def generate_fans_for(user, number_of_fans)
 end
 
 def generate_rivals_for(user, number_of_rivals)
-		number_of_rivals.times do
+	number_of_rivals.times do
 		user.rivals.build(attributes_for :user)
 	end
 end
