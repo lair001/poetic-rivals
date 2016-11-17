@@ -1,7 +1,5 @@
 class User < ApplicationRecord
 
- 	include UserForbiddable::InstanceMethods
-
  	has_many :poems, foreign_key: :author_id
  	has_many :genres, -> { distinct }, through: :poems
  	has_many :commentaries, foreign_key: :commentator_id
