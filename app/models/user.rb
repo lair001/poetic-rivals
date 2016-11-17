@@ -7,14 +7,14 @@ class User < ApplicationRecord
  	has_many :commentaries, foreign_key: :commentator_id
  	has_many :commentators, -> { distinct }, through: :poems
 
- 	has_many :rivalry_declarations, class_name: :rival_victim, foreign_key: :rival_id
- 	has_many :victimizations, class_name: :rival_victim, foreign_key: :victim_id
+ 	has_many :rivalry_declarations, class_name: :RivalVictim, foreign_key: :rival_id
+ 	has_many :victimizations, class_name: :RivalVictim, foreign_key: :victim_id
 
  	has_many :victims, -> { distinct }, through: :rivalry_declarations
 	has_many :rivals, -> { distinct }, through: :victimizations
 
- 	has_many :fandom_declarations, class_name: :fan_idol, foreign_key: :fan_id
- 	has_many :idolizations, class_name: :fan_idol, foreign_key: :idol_id
+ 	has_many :fandom_declarations, class_name: :FanIdol, foreign_key: :fan_id
+ 	has_many :idolizations, class_name: :FanIdol, foreign_key: :idol_id
 
  	has_many :idols, -> { distinct }, through: :fandom_declarations
 	has_many :fans, -> { distinct }, through: :idolizations

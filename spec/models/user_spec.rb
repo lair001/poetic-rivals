@@ -121,4 +121,12 @@ RSpec.describe User, type: :model do
 		expect(user1.commentators).to contain_exactly(user2, user3, user4)
 	end
 
+	it 'has many fans' do
+		user1 = create(:user)
+		user2 = create(:user)
+		user3 = create(:user)
+		user1.fans.push(user2, user3)
+		expect(user1.fans).to contain_exactly(user2, user3)
+	end
+
 end
