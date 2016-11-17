@@ -4,4 +4,9 @@ class RivalVictim < ApplicationRecord
 	belongs_to :victim, class_name: :User
 
 	validates :rival, :victim, presence: true
+
+	validate do
+		relationship :rival_id, :victim_id
+	end
+
 end
