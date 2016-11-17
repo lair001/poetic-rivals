@@ -1,7 +1,7 @@
 FactoryGirl.define do
 	factory :user do
 		sequence(:username) { |n| "lair00#{n}" }
-		sequence(:username) { |n| "lair00#{n}@example.com" }
+		sequence(:email) { |n| "lair00#{n}@example.com" }
 		password "password"
 		created_at { 10.days.ago }
 		updated_at { Time.now }
