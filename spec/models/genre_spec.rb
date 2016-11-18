@@ -7,6 +7,12 @@ RSpec.describe Genre, type: :model do
 		expect(build(:genre, name: genre).name).to eq(genre)
 	end
 
+	it 'it validates its name for uniqueness regardless of letter case' do
+		genre1 = create(:genre)
+		expect(build(:genre, name: genre1.name.upcase).save).to eq(false)
+		expect(build(:genre, name: genre1.name.downcase).save).to eq(false)
+	end
+
 	it "isn't banned by default" do
 		expect(build(:genre).banned?).to eq(false)
 	end
