@@ -1,2 +1,0 @@
-class PoemDownvote < ApplicationRecord
-end

@@ -2,6 +2,7 @@ class User < ApplicationRecord
 
  	has_many :poems, foreign_key: :author_id
  	has_many :genres, -> { distinct }, through: :poems
+ 	has_many :poem_votes, -> { distinct }, through: :poems
  	has_many :commentaries, foreign_key: :commentator_id
  	has_many :commentators, -> { distinct }, through: :poems
 
@@ -50,7 +51,7 @@ class User < ApplicationRecord
 	end
 
 	def score
-		@score ||= 100 * (self.fans.count - self.rivals.count)
+		@score ||= 100 * (self.fans.count - self.rivals.count) + self.poem_votes.where(value: 1).count - self.poem_votes.where(value: -1).count
 	end
 
 	def score_per_poem
