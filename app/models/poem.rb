@@ -1,5 +1,4 @@
 class Poem < ApplicationRecord
-	include Forbiddable::InstanceMethods
 
 	belongs_to :author, class_name: :User
 	has_many :poem_genres
@@ -11,4 +10,9 @@ class Poem < ApplicationRecord
 	validates :author, presence: true
 	validates :title, length: { in: 2..255 }
 	validates :body, length: { in: 20..65536 }
+
+	def genre_attributes=(genre_params)
+		self.genres << Genre.find_or_create_by(name: genre_params[:name].downcase)
+	end
+
 end

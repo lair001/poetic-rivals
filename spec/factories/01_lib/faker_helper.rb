@@ -19,5 +19,5 @@ def fake_email
 end
 
 def fake_genre
-	Faker::Book.genre
+	Genre.format_genre_name(Faker::Book.genre)
 end

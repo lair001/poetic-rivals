@@ -164,10 +164,8 @@ RSpec.describe User, type: :model do
 
 		build_fans_for(user1, 4)
 		build_rivals_for(user1, 3)
-		user1.save
 		build_poems_for(user1, 8, 3, 1)
 		user1.save
-		user1 = User.find(user1.id)
 		expect(user1.score).to eq(116)
 		expect(user1.score_per_poem).to eq(14.5)
 
