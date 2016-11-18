@@ -3,10 +3,7 @@ def fake_title
 end
 
 def fake_username
-	while true
-		username = Faker::Internet.user_name
-		return username unless User.exists?(username: username)
-	end
+	return unique_value(-> { Faker::Internet.user_name }, User, :username )
 end
 
 def fake_two_paragraphs
@@ -18,15 +15,16 @@ def fake_password
 end
 
 def fake_email
-	while true
-		email = Faker::Internet.safe_email
-		return email unless User.exists?(email: email)
-	end
+	return unique_value(-> { Faker::Internet.safe_email }, User, :email )
 end
 
 def fake_genre
+	return unique_value(-> { Genre.format_genre_name(Faker::Book.genre) }, Genre, :name)
+end
+
+def unique_value(value_generator_lambda, model_class, model_attribute)
 	while true
-		genre = Genre.format_genre_name(Faker::Book.genre)
-		return genre unless Genre.exists?(name: genre)
+		value = value_generator_lambda.()
+		return value unless model_class.exists?(model_attribute => value)
 	end
 end
