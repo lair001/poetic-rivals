@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116114425) do
+ActiveRecord::Schema.define(version: 20161118041249) do
 
   create_table "commentaries", force: :cascade do |t|
     t.integer  "commentator_id"
@@ -34,9 +34,21 @@ ActiveRecord::Schema.define(version: 20161116114425) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "poem_downvotes", force: :cascade do |t|
+    t.integer  "poem_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "poem_genres", force: :cascade do |t|
     t.integer  "poem_id"
     t.integer  "genre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "poem_upvotes", force: :cascade do |t|
+    t.integer  "poem_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

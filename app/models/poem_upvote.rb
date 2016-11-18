@@ -1,0 +1,2 @@
+class PoemUpvote < ApplicationRecord
+end
