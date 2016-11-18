@@ -41,8 +41,9 @@ ActiveRecord::Schema.define(version: 20161118042532) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "poem_votes", force: :cascade do |t|
+  create_table "poem_voters", force: :cascade do |t|
     t.integer  "poem_id"
+    t.integer  "voter_id"
     t.integer  "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -6,7 +6,7 @@ class Poem < ApplicationRecord
 	has_many :genres, -> { distinct }, through: :poem_genres
 	has_many :commentaries
 	has_many :commentators, -> { distinct }, through: :commentaries
-	has_many :poem_votes
+	has_many :poem_voters
 
 	validates :author, presence: true
 	validates :title, length: { in: 2..255 }

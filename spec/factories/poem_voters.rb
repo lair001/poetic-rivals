@@ -1,6 +1,7 @@
 FactoryGirl.define do
-  factory :poem_vote do
+  factory :poem_voter do
     poem
+    association :voter, factory: :user
 
     trait :up do
     	value 1

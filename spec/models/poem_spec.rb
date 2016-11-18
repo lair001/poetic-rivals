@@ -50,4 +50,11 @@ RSpec.describe Poem, type: :model do
 		expect(poem1.commentators).to contain_exactly(user1, user2)
 	end
 
+	it 'has many votes' do
+		poem1 = create(:poem)
+		poem_vote1 = create(:poem_vote, :up, poem: poem1)
+		poem_vote2 = create(:poem_vote, :down, poem: poem1)
+		expect(poem1.poem_votes).to contain_exactly(poem_vote1, poem_vote2)
+	end
+
 end
