@@ -4,4 +4,9 @@ class Commentary < ApplicationRecord
 
 	validates :commentator, :poem, presence: true
 	validates :comment, length: { in: 1..65536 }
+
+	validate do
+		absence_of_forbidden_characters_in :comment
+	end
+
 end

@@ -23,6 +23,7 @@ class User < ApplicationRecord
 	validate do
 		absence_of_forbidden_characters_in :username
 		absence_of_forbidden_characters_in :password
+		absence_of_forbidden_characters_in :email
 		only_spaces_as_whitespace_in :username
 		absence_of_whitespace_in :email
 		absence_of_whitespace_in :password

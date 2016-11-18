@@ -5,6 +5,11 @@ class Genre < ApplicationRecord
 
 	validates :name, { uniqueness: true, length: { in: 2..30 } }
 
+	validate do
+		absence_of_forbidden_characters_in :name
+	end
+
+
 	def name=(name)
 		write_attribute(:name, self.class.format_genre_name(name))
 	end

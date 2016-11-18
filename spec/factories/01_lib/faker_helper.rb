@@ -3,7 +3,10 @@ def fake_title
 end
 
 def fake_username
-	Faker::Internet.user_name
+	while true
+		username = Faker::Internet.user_name
+		return username unless User.exists?(username: username)
+	end
 end
 
 def fake_two_paragraphs
@@ -15,9 +18,15 @@ def fake_password
 end
 
 def fake_email
-	Faker::Internet.safe_email
+	while true
+		email = Faker::Internet.safe_email
+		return email unless User.exists?(email: email)
+	end
 end
 
 def fake_genre
-	Genre.format_genre_name(Faker::Book.genre)
+	while true
+		genre = Genre.format_genre_name(Faker::Book.genre)
+		return genre unless Genre.exists?(name: genre)
+	end
 end
