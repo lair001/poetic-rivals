@@ -10,14 +10,14 @@ def expect_user_role_to_be(user, reference_role)
 	end
 end
 
-def generate_fans_for(user, number_of_fans)
-	number_of_fans.times do
+def build_fans_for(user, number_of_fans)
+	(1..number_of_fans).to_a.collect do
 		user.fans.build(attributes_for :user)
 	end
 end
 
-def generate_rivals_for(user, number_of_rivals)
-	number_of_rivals.times do
+def build_rivals_for(user, number_of_rivals)
+	(1..number_of_rivals).to_a.collect do
 		user.rivals.build(attributes_for :user)
 	end
 end
