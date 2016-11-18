@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require_relative '../spec/rails_helper'
+include FactoryGirl::Syntax::Methods
+require_all 'spec/spec_helper/config/faker'
 
 build_stubbed(:poem)
