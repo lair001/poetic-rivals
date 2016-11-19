@@ -26,6 +26,4 @@ Rails.application.routes.draw do
 		resources :rivals, only: [:create, :destroy]
 	end
 
-	resources :commentaries, only: [:edit, :update, :destroy]
-
 end
