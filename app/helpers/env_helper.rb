@@ -4,12 +4,16 @@ module EnvHelper
 		@current_env ||= request.env
 	end
 
+	def previous_path_or_root
+		@previous_route_or_root ||= current_env['HTTP_REFERER'] || '/'
+	end
+
 	def rack_errors
 		@rack_errors ||= current_env["rack.errors"]
 	end
 
 	def current_request_path
-		@current_request_path = current_env["REQUEST_PATH"]
+		@current_request_path ||= current_env["REQUEST_PATH"]
 	end
 
 	def current_path

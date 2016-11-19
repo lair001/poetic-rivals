@@ -1,8 +1,4 @@
-<% error_messages = ""
-  model.errors.full_messages.each do |error|
-    error_messages += error + "<br>"
-end %>
 <blockquote id="model_errors">
-  <p><%=raw(error_messages)%></p>
+  <p><%=raw(model_error_messages_as_html(model))%></p>
   <footer><cite>The Prima Donna</cite></footer>
 </blockquote>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 	resources :genres, only: [:new, :create, :edit, :update]
 	resources :commentaries, only: [:edit, :update, :destroy]
 	resources :poems, only: [:new, :create, :edit, :update, :destroy] do 
-		resources :voters, only: [:create, :destroy]
+		resources :voters, only: [:create, :destroy], param: :voter_id
 		resources :commentaries, only: [:index, :new, :create]
 	end
 
@@ -19,11 +19,11 @@ Rails.application.routes.draw do
 	end
 
 	resources :idols, only: [] do
-		resources :fans, only: [:create, :destroy]
+		resources :fans, only: [:create, :destroy], param: :fan_id
 	end
 
 	resources :victims, only: [] do
-		resources :rivals, only: [:create, :destroy]
+		resources :rivals, only: [:create, :destroy], param: :rival_id
 	end
 
 end
