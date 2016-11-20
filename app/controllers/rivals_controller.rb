@@ -13,8 +13,9 @@ class RivalsController < ApplicationController
 
 	def destroy
 		@rival_victim = RivalVictim.find_by(rivals_params)
-		authorize current_user, @rival_victim
-		redirect_to previous_route_or_root
+		authorize @rival_victim
+		@rival_victim.destroy
+		redirect_to previous_path_or_root
 	end
 
 	def rivals_params

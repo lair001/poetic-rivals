@@ -1,11 +1,11 @@
 class RivalVictimPolicy < ApplicationPolicy
 
 	def create?
-		!@user.banned?
+		true
 	end
 
 	def destroy?
-		!@user.banned? || @user == @record.rival || @user.admin? || @user.superuser?
+		@user == @record.rival || @user.administrator? || @user.superuser?
 	end
 
 end
