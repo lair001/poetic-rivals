@@ -18,21 +18,21 @@ module FactoryContext
   let(:upvoter) { build(:poem_voter, :up) }
   let(:downvoter) { build(:poem_voter, :down) }
 
-  let(:user_stubbed) { build_stubbed(:user) }
-  let(:user_a_stubbed) { build_stubbed(:user) }
-  let(:user_b_stubbed) { build_stubbed(:user) }
-  let(:banned_stubbed) { build_stubbed(:user, :banned) }
-  let(:administrator_stubbed) { build_stubbed(:user, :administrator) }
-  let(:moderator_stubbed) { build_stubbed(:user, :moderator) }
-  let(:superuser_stubbed) { build_stubbed(:user, :superuser) }
-  let(:poem_stubbed) { build_stubbed(:poem) }
-  let(:genre_stubbed) { build_stubbed(:genre) }
-  let(:commentary_stubbed) { build_stubbed(:commentary) }
-  let(:poem_genre_stubbed) { build_stubbed(:poem_genre) }
-  let(:rival_victim_stubbed) { build_stubbed(:rival_victim) }
-  let(:fan_idol_stubbed) { build_stubbed(:fan_idol) }
-  let(:upvoter_stubbed) { build_stubbed(:poem_voter, :up) }
-  let(:downvoter_stubbed) { build_stubbed(:poem_voter, :down) }
+  let(:stubbed_user) { build_stubbed(:user) }
+  let(:stubbed_user_a) { build_stubbed(:user) }
+  let(:stubbed_user_b) { build_stubbed(:user) }
+  let(:stubbed_banned) { build_stubbed(:user, :banned) }
+  let(:stubbed_administrator) { build_stubbed(:user, :administrator) }
+  let(:stubbed_moderator) { build_stubbed(:user, :moderator) }
+  let(:stubbed_superuser) { build_stubbed(:user, :superuser) }
+  let(:stubbed_poem) { build_stubbed(:poem) }
+  let(:stubbed_genre) { build_stubbed(:genre) }
+  let(:stubbed_commentary) { build_stubbed(:commentary) }
+  let(:stubbed_poem_genre) { build_stubbed(:poem_genre) }
+  let(:stubbed_rival_victim) { build_stubbed(:rival_victim) }
+  let(:stubbed_fan_idol) { build_stubbed(:fan_idol) }
+  let(:stubbed_upvoter) { build_stubbed(:poem_voter, :up) }
+  let(:stubbed_downvoter) { build_stubbed(:poem_voter, :down) }
 end
 
 RSpec.configure do |config|

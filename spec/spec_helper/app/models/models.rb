@@ -7,3 +7,7 @@ def build_poems_for(model, number_of_poems, number_of_upvotes_per_poem = nil, nu
 		poem
 	end
 end
+
+def save_models(*models)
+	models.each { |model| model.save }
+end

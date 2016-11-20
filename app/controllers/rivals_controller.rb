@@ -1,8 +1,8 @@
 class RivalsController < ApplicationController
 
 	def create
-		authorize current_user
-		@rival_victim = RivalVictim.new(victim_id: rival_params[:victim_id], rival_id: current_user.id)
+		authorize :rival_victim
+		@rival_victim = RivalVictim.new(victim_id: rivals_params[:victim_id], rival_id: current_user.id)
 		if @rival_victim.save
 			redirect_to previous_path_or_root
 		else
