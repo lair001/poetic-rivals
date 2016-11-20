@@ -4,8 +4,12 @@ module EnvHelper
 		@current_env ||= request.env
 	end
 
+	def store_http_referer_in_session_for_next_action
+		session['HTTP_REFERER'] = current_path
+	end
+
 	def previous_path_or_root
-		@previous_route_or_root ||= current_env['HTTP_REFERER'] || '/'
+		@previous_route_or_root ||= current_env['HTTP_REFERER'] || session['HTTP_REFERER'] || '/'
 	end
 
 	def rack_errors
