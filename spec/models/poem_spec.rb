@@ -57,4 +57,14 @@ RSpec.describe Poem, type: :model do
 		expect(poem1.poem_voters).to contain_exactly(poem_voter1, poem_voter2)
 	end
 
+	it 'accepts nested params for genre' do
+		save_models user
+		genre_name = fake_genre
+		params = attributes_for :poem
+		params[:author_id] = user.id
+		params[:genre_attributes] = {name: genre_name}
+		poem_1 = Poem.create(params)
+		expect(poem_1.genres.where(name: genre_name).count).to eq(1)
+	end
+
 end

@@ -106,7 +106,5 @@ RSpec.describe RivalsController, type: :controller do
 			expect(RivalVictim.all.count).to eq(0)
 		end
 
-
 	end
-
 end
