@@ -4,10 +4,22 @@ def expect_redirect
   expect(response.status).to eq(200)
 end
 
-def expect_path(symbol)
+def expect_path(symbol, model = nil)
 	expect(path).to eq(self.send("#{symbol}_path"))
-	expect(response.body).to include(self.send("#{symbol}_page_title")) if self.respond_to?("#{symbol}_page_title")
-	expect(response.body).to include(self.send("#{symbol}_page_tagline")) if self.respond_to?("#{symbol}_page_tagline")
+	if self.respond_to?("#{symbol}_page_title")
+		if self.method("#{symbol}_page_title").arity != 0
+			expect(response.body).to include(self.send("#{symbol}_page_title", model))
+		else
+			expect(response.body).to include(self.send("#{symbol}_page_title"))
+		end
+	end
+	if self.respond_to?("#{symbol}_page_tagline")
+		if self.method("#{symbol}_page_tagline").arity != 0
+			expect(response.body).to include(self.send("#{symbol}_page_tagline", model))
+		else
+			expect(response.body).to include(self.send("#{symbol}_page_tagline"))
+		end
+	end
 end
 
 def expect_redirect_to_previous_path_or_root
