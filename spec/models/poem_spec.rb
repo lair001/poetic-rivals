@@ -67,4 +67,16 @@ RSpec.describe Poem, type: :model do
 		expect(poem_1.genres.where(name: genre_name).count).to eq(1)
 	end
 
+	it 'does not duplicate a genre that already exists' do
+		save_models user
+		genre_name = fake_genre
+		create(:genre, name: genre_name)
+		params = attributes_for :poem
+		params[:author_id] = user.id
+		params[:genre_attributes] = {name: genre_name}
+		poem_1 = Poem.create(params)
+		expect(poem_1.genres.where(name: genre_name).count).to eq(1)
+		expect(Genre.where(name: genre_name).count).to eq(1)
+	end
+
 end
