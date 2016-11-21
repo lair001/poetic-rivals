@@ -5,6 +5,7 @@ module ApplicationHelper
 	include RoutesHelper::Mapper
 	include AuthorizationHelper::Access
 	include AuthorizationHelper::Pundit
+	include EnvHelper
 
 
 end
