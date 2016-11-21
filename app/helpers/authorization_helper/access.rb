@@ -6,7 +6,7 @@ module AuthorizationHelper
 		end
 
 		def authorize_access
-			if !['visitor', 'sessions', 'registrations', 'passwords', 'confirmations', 'unlocks'].include?(controller_name)
+			if !['visitor', 'sessions', 'registrations', 'passwords', 'confirmations', 'unlocks', 'omniauth_callbacks'].include?(controller_name)
 				if !user_signed_in? || current_user.banned?
 					flash[:error] = unauthorized_access_message
 					redirect_to root_path
