@@ -7,7 +7,7 @@ RSpec.describe RivalsController, type: :controller do
 			save_models user_a, user_b
 			expect(RivalVictim.all.where(rival_id: user_a.id, victim_id: user_b.id).count).to eq(0)
 			sign_in user_a
-			get :create, params: { victim_id: user_b.id }
+			post :create, params: { victim_id: user_b.id }
 			expect(RivalVictim.all.where(rival_id: user_a.id, victim_id: user_b.id).first).to be_a(RivalVictim)
 		end
 
@@ -16,16 +16,16 @@ RSpec.describe RivalsController, type: :controller do
 			expect(RivalVictim.all.count).to eq(0)
 			sign_in user
 			begin
-				get :create, params: { victim_id: user.id + 1 }
+				post :create, params: { victim_id: user.id + 1 }
 			rescue NameError
 			end
 			expect(RivalVictim.all.count).to eq(0)
 			begin
-				get :create, params: { victim_id: '' }
+				post :create, params: { victim_id: '' }
 			rescue NameError
 			end
 			expect(RivalVictim.all.count).to eq(0)
-			get :create, params: { victim_id: user.id }
+			post :create, params: { victim_id: user.id }
 			expect(RivalVictim.all.count).to eq(0)
 		end
 
@@ -33,9 +33,17 @@ RSpec.describe RivalsController, type: :controller do
 			save_models banned, user
 			expect(RivalVictim.all.count).to eq(0)
 			sign_in banned
-			get :create, params: { victim_id: user.id }
+			post :create, params: { victim_id: user.id }
 			expect(RivalVictim.all.count).to eq(0)
 		end
+
+		it 'does not create a new RivalVictim if not signed in' do
+			save_models user
+			expect(RivalVictim.all.count).to eq(0)
+			post :create, params: { victim_id: user.id }
+			expect(RivalVictim.all.count).to eq(0)
+		end
+
 	end
 
 	describe "#destroy" do
@@ -45,8 +53,24 @@ RSpec.describe RivalsController, type: :controller do
 			rival_victim = create(:rival_victim, rival: user)
 			expect(RivalVictim.exists?(rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id)).to be(true)
 			sign_in user
-			get :destroy, params: { rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id }
+			delete :destroy, params: { rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id }
 			expect(RivalVictim.exists?(rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id)).to be(false)
+		end
+
+		it 'does not allow a banned user to destroy RivalVictims even when it is the rival' do
+			save_models banned
+			rival_victim = create(:rival_victim, rival: banned)
+			expect(RivalVictim.exists?(rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id)).to be(true)
+			sign_in banned
+			delete :destroy, params: { rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id }
+			expect(RivalVictim.exists?(rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id)).to be(true)
+		end
+
+		it 'does not allow destruction of RivalVictims if not signed in' do
+			rival_victim = create(:rival_victim)
+			expect(RivalVictim.exists?(rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id)).to be(true)
+			delete :destroy, params: { rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id }
+			expect(RivalVictim.exists?(rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id)).to be(true)
 		end
 
 		it 'does not allow a user to destroy RivalVictims where it is the victim' do
@@ -54,7 +78,7 @@ RSpec.describe RivalsController, type: :controller do
 			rival_victim = create(:rival_victim, victim: user)
 			expect(RivalVictim.exists?(rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id)).to be(true)
 			sign_in user
-			get :destroy, params: { rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id }
+			delete :destroy, params: { rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id }
 			expect(RivalVictim.exists?(rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id)).to be(true)
 		end
 
@@ -66,7 +90,7 @@ RSpec.describe RivalsController, type: :controller do
 			create(:rival_victim, victim: administrator)
 			expect(RivalVictim.all.count).to eq(4)
 			sign_in administrator
-			RivalVictim.all.each { |rival_victim| get :destroy, params: { rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id } }
+			RivalVictim.all.each { |rival_victim| delete :destroy, params: { rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id } }
 			expect(RivalVictim.all.count).to eq(0)
 		end
 
@@ -78,7 +102,7 @@ RSpec.describe RivalsController, type: :controller do
 			create(:rival_victim, victim: superuser)
 			expect(RivalVictim.all.count).to eq(4)
 			sign_in superuser
-			RivalVictim.all.each { |rival_victim| get :destroy, params: { rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id } }
+			RivalVictim.all.each { |rival_victim| delete :destroy, params: { rival_id: rival_victim.rival_id, victim_id: rival_victim.victim_id } }
 			expect(RivalVictim.all.count).to eq(0)
 		end
 
