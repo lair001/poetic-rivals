@@ -2,7 +2,7 @@ class VotersController < ApplicationController
 
 	def create
 		authorize :poem_voter
-		@poem_voter = PoemVoter.new(poem_id: voters_params[:poem_id], voter_id: current_user.id)
+		@poem_voter = PoemVoter.new(poem_id: voters_params[:poem_id], value: voters_params[:value], voter_id: current_user.id)
 		if @poem_voter.save
 			redirect_to previous_path_or_root
 		else
@@ -21,7 +21,11 @@ class VotersController < ApplicationController
 private
 
 	def voters_params
-		params.permit(:poem_id, :voter_id)
+		params.permit(:poem_id, :voter_id, :value)
+	end
+
+	def voters_params_nested
+		params.require(:poem_voter).permit(:poem_id, :voter_id, :value)
 	end
 
 end
