@@ -7,15 +7,14 @@ Rails.application.routes.draw do
     root 'visitor#index'
     get '/aqm' => 'visitor#aqm'
 
-	resources :genres, only: [:new, :create, :edit, :update]
 	resources :commentaries, only: [:edit, :update, :destroy]
 	resources :poems, only: [:new, :create, :edit, :update, :destroy] do 
 		resources :voters, only: [:create, :destroy], param: :voter_id
 		resources :commentaries, only: [:index, :new, :create]
 	end
 
-	resources :users, only: [:edit, :update, :show, :index] do
-		resources :poems, only: [:show, :index]
+	resources :users, only: [:index, :show] do
+		resources :poems, only: [:index, :show]
 	end
 
 	resources :idols, only: [] do
@@ -24,6 +23,11 @@ Rails.application.routes.draw do
 
 	resources :victims, only: [] do
 		resources :rivals, only: [:create, :destroy], param: :rival_id
+	end
+
+	scope '/admin' do
+    	resources :users, only: [:edit, :update], as: :admin_users
+		resources :genres, only: [:new, :create, :edit, :update], as: :admin_genres
 	end
 
 end
