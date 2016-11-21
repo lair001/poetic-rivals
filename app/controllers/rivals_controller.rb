@@ -18,6 +18,8 @@ class RivalsController < ApplicationController
 		redirect_to previous_path_or_root
 	end
 
+private
+
 	def rivals_params
 		params.permit(:victim_id, :rival_id)
 	end
