@@ -38,7 +38,7 @@ RSpec.describe RivalsController, type: :controller do
 		end
 	end
 
-	describe "#create" do
+	describe "#destroy" do
 
 		it 'allows a user to destroy RivalVictims where it is the rival' do
 			save_models user
