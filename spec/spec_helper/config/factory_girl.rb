@@ -1,5 +1,21 @@
 include FactoryGirl::Syntax::Methods
 
+module FactoryGirlSpecHelper
+  module Generators
+
+    def random_poem_voter_value_trait
+      [:up, :down][rand(0..1)]
+    end
+
+    def random_poem_voter_value
+      [-1, 1][rand(0..1)]
+    end
+
+  end
+end
+
+include FactoryGirlSpecHelper::Generators
+
 module FactoryContext
   extend RSpec::SharedContext
   let(:user) { build(:user) }
