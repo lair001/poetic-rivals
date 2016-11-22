@@ -161,7 +161,7 @@ RSpec.describe User, type: :model do
 			expect(user1.poem_voters).to contain_exactly(poem_voter1, poem_voter2)
 		end
 
-		it 'knows its score and score per poem' do
+		it 'knows its score and score per poem and can properly refresh its score' do
 			user1 = create(:user)
 
 			build_fans_for(user1, 4)
@@ -172,11 +172,19 @@ RSpec.describe User, type: :model do
 			expect(user1.score).to eq(116)
 			expect(user1.score_per_poem).to eq(14.5)
 
+			user1.update(score: rand(-128..127))
+			user1.refresh_score
+			expect(user1.score).to eq(116)
+
 			build_rivals_for(user1, 2)
 			user1.save
 			user1 = User.find(user1.id)
 			expect(user1.score).to eq(-84)
 			expect(user1.score_per_poem).to eq(-10.5)
+
+			user1.update(score: rand(-128..127))
+			user1.refresh_score
+			expect(user1.score).to eq(-84)
 		end
 
 	end
@@ -184,22 +192,21 @@ RSpec.describe User, type: :model do
 	describe 'Class' do
 
 		it 'knows the users with the highest and lowest scores' do
-			save_models user, user_a, user_b
-			build_fans_for(user, 4)
-			build_rivals_for(user, 3)
-			build_poems_for(user, 8, 3, 1) 
-			user.save #score: 116
+			save_models user_a, user_b, user_c
 			build_fans_for(user_a, 4)
-			build_rivals_for(user_a, 5)
-			build_poems_for(user_a, 8, 3, 1)
-			user_a.save #score: -84
-			build_fans_for(user_b, 5)
-			build_rivals_for(user_b, 3)
+			build_rivals_for(user_a, 3)
+			build_poems_for(user_a, 8, 3, 1) 
+			user_a.save #score: 116
+			build_fans_for(user_b, 4)
+			build_rivals_for(user_b, 5)
 			build_poems_for(user_b, 8, 3, 1)
-			user_b.save #score: 216
-			expect(User.with_highest_score).to eq(user_b)
-			expect(User.with_lowest_score).to eq(user_a)
-			binding.pry
+			user_b.save #score: -84
+			build_fans_for(user_c, 5)
+			build_rivals_for(user_c, 3)
+			build_poems_for(user_c, 8, 3, 1)
+			user_c.save #score: 216
+			expect(User.with_highest_score).to eq(user_c)
+			expect(User.with_lowest_score).to eq(user_b)
 		end
 
 	end

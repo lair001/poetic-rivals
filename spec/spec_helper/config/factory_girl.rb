@@ -21,6 +21,7 @@ module FactoryContext
   let(:user) { build(:user) }
   let(:user_a) { build(:user) }
   let(:user_b) { build(:user) }
+  let(:user_c) { build(:user) }
   let(:banned) { build(:user, :banned) }
   let(:administrator) { build(:user, :administrator) }
   let(:moderator) { build(:user, :moderator) }
@@ -37,6 +38,7 @@ module FactoryContext
   let(:stubbed_user) { build_stubbed(:user) }
   let(:stubbed_user_a) { build_stubbed(:user) }
   let(:stubbed_user_b) { build_stubbed(:user) }
+  let(:stubbed_user_c) { build_stubbed(:user) }
   let(:stubbed_banned) { build_stubbed(:user, :banned) }
   let(:stubbed_administrator) { build_stubbed(:user, :administrator) }
   let(:stubbed_moderator) { build_stubbed(:user, :moderator) }
