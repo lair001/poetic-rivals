@@ -9,5 +9,8 @@ module ApplicationHelper
 	include EnvHelper
 	include UsersHelper
 
+	def format_time(time)
+		time.strftime("%Y/%m/%d<br>@ %H:%M:%S")
+	end
 
 end

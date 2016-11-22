@@ -1,5 +1,9 @@
 module UsersHelper
 
+	def display_role_for(user)
+		user.role.capitalize
+	end
+
 	def sort_users_by_score
 		@users ||= User.ordered_by_descending_score
 	end
