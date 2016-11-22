@@ -10,7 +10,11 @@
     <div class="<%= current_page?(aqm_path) ? "container-fluid" : "container" %> global-font-family text-center" id="top">
       <%= render 'layouts/flash_messages' %>
       <% if current_path_name != "aqm" && (self.respond_to?("#{current_path_name}_page_title") || self.respond_to?("#{current_path_name}_page_tagline")) %>
-        <%= render 'layouts/title' %>
+        <% if local_assigns.has_key?(:model) %>
+          <%= render partial: 'layouts/title', locals: { model: model } %>
+        <% else %>
+          <%= render 'layouts/title' %>
+        <% end %>
       <% end %>
       <%= yield %>
     </div>

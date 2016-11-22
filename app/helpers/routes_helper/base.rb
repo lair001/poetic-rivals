@@ -9,8 +9,17 @@ module RoutesHelper
 			@paths ||= routes_array.collect { |route| route[2] }
 		end
 
+		def current_path_with_parameter_names
+			if current_path.match(/\A\/users\/(\d)+\z/)
+				"/users/:id"
+			else
+				current_path
+			end
+
+		end
+
 		def current_path_name
-			@current_path_name ||= path_method_path_name_hash[current_path][current_request_method]
+			@current_path_name ||= path_method_path_name_hash[current_path_with_parameter_names][current_request_method]
 		end
 
 		def current_action

@@ -18,6 +18,10 @@ module PagesHelper
 			"Leaderboard"
 		end
 
+		def user_page_title(user)
+			user.username
+		end
+
 		def new_user_session_page_title
 			"Log in"
 		end

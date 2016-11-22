@@ -10,6 +10,10 @@ module PagesHelper
 			"Vae Victis"
 		end
 
+		def user_page_tagline(user)
+			display_role_for(user)
+		end
+
 		def new_user_session_page_tagline
 			"Face the admiration of your fans and the scorn of your rivals!"
 		end
