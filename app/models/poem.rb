@@ -17,7 +17,7 @@ class Poem < ApplicationRecord
 	end
 
 	def genre_attributes=(genre_params)
-		self.genres << Genre.find_or_create_by(name: Genre.format_genre_name(genre_params[:name]))
+		self.genres << Genre.find_or_create_by(name: Genre.format_name(genre_params[:name]))
 	end
 
 	def title=(title)

@@ -26,7 +26,7 @@ module FakerSpecHelper
 		end
 
 		def fake_genre
-			return unique_value(-> { Genre.format_genre_name(POETRY_GENRES[rand(0..POETRY_GENRES.length-1)]) }, Genre, :name)
+			return unique_value(-> { Genre.format_name(POETRY_GENRES[rand(0..POETRY_GENRES.length-1)]) }, Genre, :name)
 		end
 
 		def unique_value(value_generator_lambda, model_class, model_attribute)
