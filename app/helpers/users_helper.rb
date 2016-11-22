@@ -4,6 +4,10 @@ module UsersHelper
 		@users ||= User.ordered_by_descending_score
 	end
 
+	def sort_users_by_username
+		@users ||= User.ordered_by_ascending_username
+	end
+
 	def user_with_highest_score
 		@user_with_highest_score ||= User.with_highest_score
 	end

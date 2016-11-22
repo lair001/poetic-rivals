@@ -104,6 +104,10 @@ class User < ApplicationRecord
 		@@user_scores ||= self.all.select("id").collect{ |user| [user.id, user.score] }
 	end
 
+	def self.ordered_by_ascending_username
+		@@ordered_by_ascending_username ||= self.order(username: :asc)
+	end
+
 	def self.ordered_by_descending_score
 		@@ordered_by_descending_score ||= self.order(score: :desc)
 	end
