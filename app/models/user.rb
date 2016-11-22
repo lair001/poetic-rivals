@@ -121,19 +121,19 @@ class User < ApplicationRecord
 	end
 
 	def self.with_most_fans
-		@@with_most_fans ||= self.joins(:idolizations).group(:id).order("COUNT(fan_idols.id) DESC").first
+		@@with_most_fans ||= self.left_outer_joins(:idolizations).group(:id).order("COUNT(fan_idols.id) DESC").first
 	end
 
 	def self.with_most_idols
-		@@with_most_idols ||= self.joins(:fandom_declarations).group(:id).order("COUNT(fan_idols.id) DESC").first
+		@@with_most_idols ||= self.left_outer_joins(:fandom_declarations).group(:id).order("COUNT(fan_idols.id) DESC").first
 	end
 
 	def self.with_most_rivals
-		@@with_most_rivals ||= self.joins(:victimizations).group(:id).order("COUNT(rival_victims.id) DESC").first
+		@@with_most_rivals ||= self.left_outer_joins(:victimizations).group(:id).order("COUNT(rival_victims.id) DESC").first
 	end
 
 	def self.with_most_victims
-		@@with_most_victims ||= self.joins(:rivalry_declarations).group(:id).order("COUNT(rival_victims.id) DESC").first
+		@@with_most_victims ||= self.left_outer_joins(:rivalry_declarations).group(:id).order("COUNT(rival_victims.id) DESC").first
 	end
 
 end

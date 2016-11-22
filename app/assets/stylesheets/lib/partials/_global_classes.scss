@@ -48,4 +48,5 @@
 
 .global-divider-top {
   @include divider(top);
+  @include clearfix
 }

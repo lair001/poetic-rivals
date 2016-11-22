@@ -1,0 +1,28 @@
+<div class="global-jumbotron" id="leaderboard_dashboard">
+
+	<div class="row">
+		<div class="col-xs-6">
+			<h3>Highest Score:</h3>
+			<h4><%= link_to username_with_highest_score, user_path(user_with_highest_score) %></h4>
+			<h4><%= highest_score %></h4>
+			<h3>Most Fans:</h3>
+			<h4><%= link_to username_with_most_fans, user_path(user_with_most_fans) %></h4>
+			<h4><%= highest_fan_count %></h4>
+			<h3>Most Idols:</h3>
+			<h4><%= link_to username_with_most_idols, user_path(user_with_most_idols) %></h4>
+			<h4><%= highest_idol_count %></h4>
+		</div>
+		<div class="col-xs-6">
+			<h3>Lowest Score:</h3>
+			<h4><%= link_to username_with_lowest_score, user_path(user_with_lowest_score) %></h4>
+			<h4><%= lowest_score %></h4>
+			<h3>Most Rivals:</h3>
+			<h4><%= link_to username_with_most_rivals, user_path(username_with_lowest_score) %></h4>
+			<h4><%= highest_rival_count %></h4>
+			<h3>Most Victims:</h3>
+			<h4><%= link_to username_with_most_victims, user_path(username_with_most_victims) %></h4>
+			<h4><%= highest_victim_count %></h4>
+		</div>
+	</div>
+
+</div>

@@ -15,9 +15,9 @@
 		</div>
 	</div>
 <% else %>
-	<a href="/forum_threads">
+	<%= link_to leaderboard_users_path do %>
 		<div class="global-jumbotron">
-			<h2 class="text-center">View Threads</h2>
+			<h2 class="text-center">View Leaderboard</h2>
 		</div>
-	</a>
+	<% end %>
 <% end %>

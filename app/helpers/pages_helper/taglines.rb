@@ -6,6 +6,10 @@ module PagesHelper
 			"You never knew that poetry could be this brutal!"
 		end
 
+		def leaderboard_users_page_tagline
+			"Vae Victis"
+		end
+
 		def new_user_session_page_tagline
 			"Face the admiration of your fans and the scorn of your rivals!"
 		end

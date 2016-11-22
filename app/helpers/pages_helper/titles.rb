@@ -14,6 +14,10 @@ module PagesHelper
 			"The Amazing Quote Machine"
 		end
 
+		def leaderboard_users_page_title
+			"Leaderboard"
+		end
+
 		def new_user_session_page_title
 			"Log in"
 		end

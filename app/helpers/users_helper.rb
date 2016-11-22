@@ -12,7 +12,7 @@ module UsersHelper
 		@user_with_highest_score ||= User.with_highest_score
 	end
 
-	def username_with_higest_score
+	def username_with_highest_score
 		user_with_highest_score.username
 	end
 
