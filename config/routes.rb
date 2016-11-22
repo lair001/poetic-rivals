@@ -30,4 +30,8 @@ Rails.application.routes.draw do
 		resources :genres, only: [:new, :create, :edit, :update], as: :admin_genres, controller: :admin_genres
 	end
 
+	scope '/leaderboard' do
+		resources :users, only: [:index], as: :leaderboard_users, controller: :leaderboard_users
+	end
+
 end
