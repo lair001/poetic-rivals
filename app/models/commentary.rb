@@ -9,4 +9,12 @@ class Commentary < ApplicationRecord
 		absence_of_forbidden_characters_in :comment
 	end
 
+	def comment=(comment)
+		write_attribute(:comment, self.class.format_comment(comment))
+	end
+
+	def self.format_comment(comment)
+		trim_whitespace_in(comment)
+	end
+
 end

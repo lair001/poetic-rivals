@@ -4,4 +4,6 @@ class ApplicationRecord < ActiveRecord::Base
   include Forbiddable::InstanceMethods
   include Relatable::InstanceMethods
 
+  extend Whitespaceable::ClassMethods
+
 end
