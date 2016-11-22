@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :poem do
-    title { fake_title }
-    body { fake_n_paragraphs(rand(1..10)) }
+    title { fake_poem_title }
+    body { fake_poem_body }
     association :author, factory: :user
   end
 

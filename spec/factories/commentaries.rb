@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :commentary do
-    comment { fake_n_paragraphs(rand(1..10)) }
+    comment { fake_commentary_comment }
     poem
     association :commentator, factory: :user
   end

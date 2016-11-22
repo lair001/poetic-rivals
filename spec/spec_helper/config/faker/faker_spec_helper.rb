@@ -5,6 +5,10 @@ module FakerSpecHelper
 			Faker::Lorem.sentence.chomp(".").titleize
 		end
 
+		def fake_poem_title
+			Poem.format_title(fake_title)
+		end
+
 		def fake_username
 			return unique_value(-> { Faker::Internet.user_name }, User, :username )
 		end
@@ -15,6 +19,18 @@ module FakerSpecHelper
 
 		def fake_n_paragraphs(n)
 			Faker::Lorem.paragraphs(n).join("\n\n")
+		end
+
+		def fake_up_to_ten_paragraphs
+			fake_n_paragraphs(rand(1..10))
+		end
+
+		def fake_poem_body
+			Poem.format_body(fake_up_to_ten_paragraphs)
+		end
+
+		def fake_commentary_comment
+			Commentary.format_comment(fake_up_to_ten_paragraphs)
 		end
 
 		def fake_password
