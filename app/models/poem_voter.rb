@@ -11,6 +11,27 @@ class PoemVoter < ApplicationRecord
 		cannot_vote_for_your_own_poem
 	end
 
+	after_create :update_poem_author_score_after_create
+	after_destroy :update_poem_author_score_after_destroy
+
+	def poem_author
+		@poem_author ||= self.poem.author
+	end
+
+	def poem_author_score
+		@poem_author_score ||= self.poem_author.score
+	end
+
+private
+
+	def update_poem_author_score_after_create
+		self.poem_author.update(score: self.poem_author_score + self.value)
+	end
+
+	def update_poem_author_score_after_destroy
+		self.poem_author.update(score: self.poem_author_score - self.value)
+	end
+
 	def unique_vote
 		errors.add(:base, "Cannot vote for the same poem more than once") if self.class.all.where(poem_id: self.poem_id, voter_id: self.voter_id).first
 	end

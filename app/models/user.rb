@@ -35,7 +35,7 @@ class User < ApplicationRecord
 	devise :omniauthable, :omniauth_providers => [:amazon, :facebook, :github, :google_oauth2]
 	devise :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-	enum role: [:banned, :normal, :administrator, :moderator, :superuser]
+	enum role: [:banned, :poet, :administrator, :moderator, :superuser]
 
 	def self.from_omniauth(auth)
 		# where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -51,30 +51,69 @@ class User < ApplicationRecord
 		where(email: auth.info.email).first
 	end
 
-	def score
-		@score ||= 100 * (self.fans.count - self.rivals.count) + self.poem_voters.where(value: 1).count - self.poem_voters.where(value: -1).count
+	def poems_count
+		@poems_count = self.poems.count
+	end
+
+	def upvotes_count
+		@upvotes_count ||= self.poem_voters.where(value: 1)
+	end
+
+	def downvotes_count
+		@downvotes_count ||= self.poem_voters.where(value: -1)
+	end
+
+	def fans_count
+		@fans_count ||= self.fans.count
+	end
+
+	def idols_count
+		@idols_count ||= self.idols.count
+	end
+
+	def rivals_count
+		@rivals_count ||= self.rivals.count
+	end
+
+	def victims_count
+		@victims_count ||= self.victims.count
+	end
+
+	def poem_score
+		@poem_score ||= self.poem_voters.sum(:value)
+	end
+
+	def relationship_score
+		@relationship_score ||= 100 * (fans_count - rivals_count)
+	end
+
+	def refresh_score
+		# @score ||= 100 * (self.fans.count - self.rivals.count) + self.poem_voters.where(value: 1).count - self.poem_voters.where(value: -1).count
+		# fancount = self.class.all.select("COUNT(fan_idols.fan_id) AS fancount").joins(:victimizations, :idolizations, poems: :poem_voters).group("users.id").having("users.id = ?", self.id).first["fancount"]
+		# rivalcount = self.class.all.select("COUNT(rival_victims.rival_id) AS rivalcount").joins(:victimizations, :idolizations, poems: :poem_voters).group("users.id").having("users.id = ?", self.id).first["rivalcount"]
+		# poemscore = self.class.all.select("SUM(poem_voters.value) AS poemscore").joins(:victimizations, :idolizations, poems: :poem_voters).group("users.id").having("users.id = ?", self.id).first["poemscore"]
+		# @score ||= self.class.all.select("(100 * ( COUNT(fan_idols.fan_id) - COUNT(rival_victims.rival_id) ) + SUM(poem_voters.value)) AS score").joins(:rivals, :fans, :poem_voters).group("users.id").having("users.id = ?", self.id).first["score"]
+		self.update(score: relationship_score + poem_score)
 	end
 
 	def score_per_poem
-		@score_per_poem ||= score.to_f / [1, self.poems.count].max # avoid division by zero
+		@score_per_poem ||= score.to_f / [1, self.poems_count].max # avoid division by zero
 	end
 
-	def title
-		@title ||= self.grant_title
+	def self.user_scores
+		@@user_scores ||= self.all.select("id").collect{ |user| [user.id, user.score] }
 	end
 
-	def grant_title
-		if self.banned?
-			"Banned"
-		elsif self.superuser?
-			"Superuser"
-		elsif self.administrator?
-			"Administrator"
-		elsif self.moderator?
-			"Moderator"
-		else
-			"Poet"
-		end
+	def self.ordered_by_descending_score
+		@@ordered_by_descending_score ||= self.order(score: :desc)
+	end
+
+	def self.with_highest_score
+		@@with_highest_score ||= ordered_by_descending_score.first
+	end
+
+	def self.with_lowest_score
+		@@with_lowest_score ||= ordered_by_descending_score.last
 	end
 
 end
