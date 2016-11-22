@@ -116,4 +116,20 @@ class User < ApplicationRecord
 		@@with_lowest_score ||= ordered_by_descending_score.last
 	end
 
+	def self.with_most_fans
+		@@with_most_fans ||= self.joins(:idolizations).group(:id).order("COUNT(fan_idols.id) DESC").first
+	end
+
+	def self.with_most_idols
+		@@with_most_idols ||= self.joins(:fandom_declarations).group(:id).order("COUNT(fan_idols.id) DESC").first
+	end
+
+	def self.with_most_rivals
+		@@with_most_rivals ||= self.joins(:victimizations).group(:id).order("COUNT(rival_victims.id) DESC").first
+	end
+
+	def self.with_most_victims
+		@@with_most_victims ||= self.joins(:rivalry_declarations).group(:id).order("COUNT(rival_victims.id) DESC").first
+	end
+
 end

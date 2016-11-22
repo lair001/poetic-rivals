@@ -16,8 +16,20 @@ def build_fans_for(user, number_of_fans)
 	end
 end
 
+def build_idols_for(user, number_of_idols)
+	(1..number_of_idols).to_a.collect do
+		user.idols.build(attributes_for :user)
+	end
+end
+
 def build_rivals_for(user, number_of_rivals)
 	(1..number_of_rivals).to_a.collect do
 		user.rivals.build(attributes_for :user)
+	end
+end
+
+def build_victims_for(user, number_of_victims)
+	(1..number_of_victims).to_a.collect do
+		user.victims.build(attributes_for :user)
 	end
 end

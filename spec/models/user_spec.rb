@@ -191,22 +191,48 @@ RSpec.describe User, type: :model do
 
 	describe 'Class' do
 
-		it 'knows the users with the highest and lowest scores' do
+		it 'knows the users with the highest and lowest scores and the most fans and rivals' do
 			save_models user_a, user_b, user_c
-			build_fans_for(user_a, 4)
+
+			build_fans_for(user_a, 7)
 			build_rivals_for(user_a, 3)
-			build_poems_for(user_a, 8, 3, 1) 
-			user_a.save #score: 116
+			build_poems_for(user_a, 8, 3, 1)
+			user_a.save #score: 316
+
 			build_fans_for(user_b, 4)
 			build_rivals_for(user_b, 5)
 			build_poems_for(user_b, 8, 3, 1)
 			user_b.save #score: -84
+
 			build_fans_for(user_c, 5)
 			build_rivals_for(user_c, 3)
 			build_poems_for(user_c, 8, 3, 1)
 			user_c.save #score: 216
-			expect(User.with_highest_score).to eq(user_c)
+
+			expect(User.with_highest_score).to eq(user_a)
 			expect(User.with_lowest_score).to eq(user_b)
+			expect(User.with_most_fans).to eq(user_a)
+			expect(User.with_most_rivals).to eq(user_b)
+
+		end
+
+		it 'knows the users with the most idols and victims' do
+			save_models user_a, user_b, user_c
+
+			build_idols_for(user_a, 3)
+			build_victims_for(user_a, 2)
+			user_a.save
+
+			build_idols_for(user_b, 2)
+			build_victims_for(user_b, 1)
+			user_b.save
+
+			build_idols_for(user_c, 1)
+			build_victims_for(user_c, 3)
+			user_c.save
+
+			expect(User.with_most_idols).to eq(user_a)
+			expect(User.with_most_victims).to eq(user_c)
 		end
 
 	end
