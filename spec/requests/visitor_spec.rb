@@ -9,7 +9,7 @@ RSpec.describe "Visitor", type: :request do
 		end
 	end
 	describe "GET #{aqm_path}" do
-		it "renders the root page" do
+		it "renders the aqm page" do
 			get aqm_path
 			expect(response.status).to eq(200)
 			expect_path(:aqm)
