@@ -34,4 +34,8 @@ Rails.application.routes.draw do
 		resources :users, only: [:index], as: :leaderboard_users, controller: :'leaderboard/users'
 	end
 
+	scope '/mod' do
+		resources :users, only: [:update], as: :mod_users, controller: :'mod/users'
+	end
+
 end
