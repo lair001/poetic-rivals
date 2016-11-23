@@ -37,15 +37,19 @@ class User < ApplicationRecord
 
 	enum role: [:banned, :poet, :administrator, :moderator, :superuser]
 
-	def relationship?(user, relationships_symbol, relationship_query_lambda)
+	def relationship?(model, relationships_symbol, relationship_query_lambda)
 		@relationships = {} if !@relationships
 		if @relationships.has_key?(relationships_symbol)
-			@relationships[relationships_symbol].each { |relationship| return relationship[1] if relationship[0] == user.id }
+			@relationships[relationships_symbol].each { |relationship| return relationship[1] if relationship[0] == model.id }
 		else
 			@relationships[relationships_symbol] = []
 		end
-		@relationships[relationships_symbol] << [user.id, relationship_query_lambda.()]
+		@relationships[relationships_symbol] << [model.id, relationship_query_lambda.()]
 		@relationships[relationships_symbol].last[1]
+	end
+
+	def voting_on?(poem)
+		self.relationship?(poem, :voting_ons, -> { PoemVoter.where("voter_id = ? AND poem_id = ?", self.id, poem.id).exists? })
 	end
 
 	def idolizing?(user)
@@ -69,11 +73,11 @@ class User < ApplicationRecord
 	end
 
 	def upvotes_count
-		@upvotes_count ||= self.poem_voters.where(value: 1)
+		@upvotes_count ||= self.poem_voters.where(value: 1).count
 	end
 
 	def downvotes_count
-		@downvotes_count ||= self.poem_voters.where(value: -1)
+		@downvotes_count ||= self.poem_voters.where(value: -1).count
 	end
 
 	def fans_count
