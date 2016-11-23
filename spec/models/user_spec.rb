@@ -187,6 +187,20 @@ RSpec.describe User, type: :model do
 			expect(user1.score).to eq(-84)
 		end
 
+		it 'knows who it is idolizing and victimizing' do
+			save_models(user_a, user_b, user_c)
+			create(:fan_idol, fan: user_a, idol: user_b)
+			create(:rival_victim, rival: user_b, victim: user_c)
+			expect(user_a.idolizing?(user_b)).to eq(true)
+			expect(user_a.idolizing?(user_b)).to eq(true)
+			expect(user_a.victimizing?(user_c)).to eq(false)
+			expect(user_a.victimizing?(user_c)).to eq(false)
+			expect(user_b.victimizing?(user_c)).to eq(true)
+			expect(user_b.victimizing?(user_c)).to eq(true)
+			expect(user_b.idolizing?(user_a)).to eq(false)
+			expect(user_b.idolizing?(user_a)).to eq(false)
+		end
+
 	end
 
 	describe 'Class' do

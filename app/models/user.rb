@@ -37,32 +37,33 @@ class User < ApplicationRecord
 
 	enum role: [:banned, :poet, :administrator, :moderator, :superuser]
 
-	def self.from_omniauth(auth)
-		# where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-		# 	user.username = auth.info.email
-		# 	user.email = auth.info.email
-		# 	user.password = Devise.friendly_token[0,20]
-		# end
-		# where(email: auth.info.email).first_or_create do |user|
-		# 	user.username = auth.info.email
-		# 	user.email = auth.info.email
-		# 	user.password = Devise.friendly_token[0,20]
-		# end
-		where(email: auth.info.email).first
+
+
+	def relationship?(user, relationships_symbol, relationship_query_lambda)
+		@relationships = {} if !@relationships
+		if @relationships.has_key?(relationships_symbol)
+			@relationships[relationships_symbol].each { |relationship| return relationship[1] if relationship[0] == user.id }
+		else
+			@relationships[relationships_symbol] = []
+		end
+		@relationships[relationships_symbol] << [user.id, relationship_query_lambda.()]
+		@relationships[relationships_symbol].last[1]
 	end
 
 	def idolizing?(user)
-		@idolizings = [] if !@idolizings
-		@idolizings.each { |idolizing| return idolizing[1] if idolizing[0] == user.id }
-		@idolizings << [user.id, FanIdol.where("fan_id = ? AND idol_id = ?", self.id, user.id).exists?]
-		@idolizings[1]
+		self.relationship?(user, :idolizings, -> { FanIdol.where("fan_id = ? AND idol_id = ?", self.id, user.id).exists? })
+		# @idolizings = [] if !@idolizings
+		# @idolizings.each { |idolizing| return idolizing[1] if idolizing[0] == user.id }
+		# @idolizings << [user.id, FanIdol.where("fan_id = ? AND idol_id = ?", self.id, user.id).exists?]
+		# @idolizings[0][1]
 	end
 
 	def victimizing?(user)
-		@victimizings = [] if !@victimizings
-		@victimizings.each { |victimizing| return victimizing[1] if victimizing[0] == user.id }
-		@victimizings << [user.id, RivalVictim.where("rival_id = ? AND victim_id = ?", self.id, user.id).exists?]
-		@victimizings[1]
+		self.relationship?(user, :victimizings, -> { RivalVictim.where("rival_id = ? AND victim_id = ?", self.id, user.id).exists? })
+		# @victimizings = [] if !@victimizings
+		# @victimizings.each { |victimizing| return victimizing[1] if victimizing[0] == user.id }
+		# @victimizings << [user.id, RivalVictim.where("rival_id = ? AND victim_id = ?", self.id, user.id).exists?]
+		# @victimizings[0][1]
 	end
 
 	def poems_count
@@ -148,6 +149,20 @@ class User < ApplicationRecord
 
 	def self.with_most_victims
 		@@with_most_victims ||= self.left_outer_joins(:rivalry_declarations).group(:id).order("COUNT(rival_victims.id) DESC").first
+	end
+
+	def self.from_omniauth(auth)
+		# where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+		# 	user.username = auth.info.email
+		# 	user.email = auth.info.email
+		# 	user.password = Devise.friendly_token[0,20]
+		# end
+		# where(email: auth.info.email).first_or_create do |user|
+		# 	user.username = auth.info.email
+		# 	user.email = auth.info.email
+		# 	user.password = Devise.friendly_token[0,20]
+		# end
+		where(email: auth.info.email).first
 	end
 
 end
