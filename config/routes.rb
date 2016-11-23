@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 	end
 
 	scope '/leaderboard' do
-		resources :users, only: [:index], as: :leaderboard_users, controller: :leaderboard_users
+		resources :users, only: [:index], as: :leaderboard_users, controller: :'leaderboard/users'
 	end
 
 end
