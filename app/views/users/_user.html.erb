@@ -14,9 +14,9 @@
 				<%= form_tag mod_user_path(user), method: :patch do %>
 					<%= button_tag class: "btn global-form-btn" do %>
 						<% if user.banned? %>
-							<%= fa_icon("ban") %> Ban
-						<% else %>
 							<%= fa_icon("check-circle") %> Unban
+						<% else %>
+							<%= fa_icon("ban") %> Ban
 						<% end %>
 					<% end %>
 				<% end %>
@@ -62,4 +62,22 @@
 			<h4><%= user.victims_count %></h4>
 		</div>
 	</div>
+	<% if policy(user).relationship? %>
+		<div class="row">
+			<div class="col-xs-6">
+				<%= form_tag idol_fans_path(user), method: :post do %>
+					<%= button_tag class: "btn global-form-btn" do %>
+						<%= fa_icon("thumbs-up") %> Idolize
+					<% end %>
+				<% end %>
+			</div>
+			<div class="col-xs-6">
+				<%= form_tag victim_rivals_path(user), method: :post do %>
+					<%= button_tag class: "btn global-form-btn" do %>
+						<%= fa_icon("thumbs-down") %> Victimize
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
 </div>
