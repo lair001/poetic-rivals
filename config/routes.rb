@@ -26,8 +26,8 @@ Rails.application.routes.draw do
 	end
 
 	scope '/admin' do
-    	resources :users, only: [:edit, :update], as: :admin_users, controller: :admin_users
-		resources :genres, only: [:new, :create, :edit, :update], as: :admin_genres, controller: :admin_genres
+    	resources :users, only: [:edit, :update], as: :admin_users, controller: :'admin/users'
+		resources :genres, only: [:new, :create, :edit, :update], as: :admin_genres, controller: :'admin/genres'
 	end
 
 	scope '/leaderboard' do

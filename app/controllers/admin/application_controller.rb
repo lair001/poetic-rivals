@@ -1,4 +1,4 @@
-class AdminController < ApplicationController
+class Admin::ApplicationController < ApplicationController
 
 	before_action :only_administrators_and_superusers_allowed
 

@@ -1,4 +1,4 @@
-class Leaderboard::UsersController < ApplicationController
+class Leaderboard::UsersController < Leaderboard::ApplicationController
 
 	def index
 		sort_users_by_score
