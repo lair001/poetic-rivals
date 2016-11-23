@@ -1,3 +1,3 @@
 <div class="global-jumbotron" id="global_title">
-	<%= local_assigns.has_key?(:model) ? raw(render_title(model)) + raw(render_tagline(model)) : raw(render_title) + raw(render_tagline) %>
+	<%= local_assigns.has_key?(:model) ? raw(render_title(model) + render_tagline(model)) : raw(render_title + render_tagline) %>
 </div>
