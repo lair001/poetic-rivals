@@ -38,8 +38,12 @@ module PagesHelper
 			"Update Account"
 		end
 
-		def edit_admin_user_page_title(user)
-			"Editing #{user.username}"
+		def edit_admin_user_page_title(user = nil)
+			if user
+				"Editing #{user.username}"
+			else
+				"Editing User"
+			end
 		end
 
 	end

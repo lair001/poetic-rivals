@@ -1,17 +1,7 @@
 <div class="global-jumbotron" id="global_title">
 	<% if local_assigns.has_key?(:model) %>
-		<% if self.respond_to?("#{current_path_name}_page_title") %>
-			<h1><%= self.send("#{current_path_name}_page_title", model) %></h1>
-		<% end %>
-		<% if self.respond_to?("#{current_path_name}_page_tagline") %>
-			<h2><em><%= self.send("#{current_path_name}_page_tagline", model) %></em></h2>
-		<% end %>
+		<%= raw(render_title(model)) + raw(render_tagline(model)) %>
 	<% else %>
-		<% if self.respond_to?("#{current_path_name}_page_title") %>
-			<h1><%= self.send("#{current_path_name}_page_title") %></h1>
-		<% end %>
-		<% if self.respond_to?("#{current_path_name}_page_tagline") %>
-			<h2><em><%= self.send("#{current_path_name}_page_tagline") %></em></h2>
-		<% end %>
+		<%= raw(render_title) + raw(render_tagline) %>
 	<% end %>
 </div>
