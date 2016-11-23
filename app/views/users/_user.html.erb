@@ -1,6 +1,6 @@
 <div class="global-jumbotron" id="user_dashboard">
 	<div class ="row">
-		<div class="col-xs-4">
+		<div class="col-xs-6">
 			<% if policy(:access).admin? || current_user == user %>
 				<%= form_tag policy(:access).admin? ? edit_admin_user_path(user) : edit_user_registration_path, method: :get do %>
 					<%= button_tag class: "btn global-form-btn" do %>
@@ -9,9 +9,7 @@
 				<% end %>
 			<% end %>
 		</div>
-		<div class="col-xs-4">
-		</div>
-		<div class="col-xs-4">
+		<div class="col-xs-6">
 			<% if policy(user).ban? %>
 				<%= form_tag mod_user_path(user), method: :patch do %>
 					<%= button_tag class: "btn global-form-btn" do %>
@@ -23,6 +21,45 @@
 					<% end %>
 				<% end %>
 			<% end %>
+		</div>
+	</div>
+	<div class="row global-divider-top">
+		<div class="col-xs-3">
+		</div>
+		<div class="col-xs-6">
+			<h3>Email:</h3>
+			<h4><%= user.email %></h4>
+			<h3>Joined:</h3>
+			<h4><%= display_date(user.created_at) %></h4>
+			<h4><%= display_time(user.created_at) %></h4>
+		</div>
+		<div class="col-xs-3">
+		</div>
+	</div>
+	<div class="row global-divider-top">
+		<div class="col-xs-3">
+		</div>
+		<div class="col-xs-6">
+			<h3>Score:</h3>
+			<h4><%= user.score %></h4>
+			<h3>Per Poem:</h3>
+			<h4><%= user.score_per_poem %></h4>
+		</div>
+		<div class="col-xs-3">
+		</div>
+	</div>
+	<div class="row global-divider-bottom">
+		<div class="col-xs-6">
+			<h3>Fans:</h3>
+			<h4><%= user.fans_count %></h4>
+			<h3>Idols:</h3>
+			<h4><%= user.idols_count %></h4>
+		</div>
+		<div class="col-xs-6">
+			<h3>Rivals:</h3>
+			<h4><%= user.rivals_count %></h4>
+			<h3>Victims:</h3>
+			<h4><%= user.victims_count %></h4>
 		</div>
 	</div>
 </div>
