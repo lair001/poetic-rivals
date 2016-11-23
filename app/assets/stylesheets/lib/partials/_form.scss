@@ -41,6 +41,7 @@
   color: $global-text-color;
   width: 100%;
   margin-bottom: 5px;
+  padding-bottom: 0px;
   &:active {
   @extend .global-form-btn;
   }
