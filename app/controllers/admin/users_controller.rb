@@ -3,7 +3,6 @@ class Admin::UsersController < Admin::ApplicationController
 	def edit
 		@user = User.find(params[:id])
 		render 'devise/registrations/edit', layout: 'application', locals: { model: @user }
-		# render 'devise/registrations/edit'
 	end
 
 	def update
