@@ -7,9 +7,11 @@
 	display: block;
 	@if $position == bottom {
 		border-bottom: $divider-width $divider-style $divider-color;
+		margin-bottom: $divider-spacing;
 	  	padding-bottom: $divider-spacing;
 	} @else if $position == top {
 		border-top: $divider-width $divider-style $divider-color;
 		margin-top: $divider-spacing;
+		padding-top: $divider-spacing;
 	}
 }

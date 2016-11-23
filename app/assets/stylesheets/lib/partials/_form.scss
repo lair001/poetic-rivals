@@ -40,10 +40,11 @@
   background-color: $global-top-level-background-color;
   color: $global-text-color;
   width: 100%;
+  margin-top: 5px;
   margin-bottom: 5px;
   padding-bottom: 0px;
   &:active {
-  @extend .global-form-btn;
+    @extend .global-form-btn;
   }
   &:hover, &:focus {
     @extend .global-form-btn;

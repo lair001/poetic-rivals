@@ -2,6 +2,10 @@
   text-align: left;
 }
 
+.clearfix {
+  @include clearfix
+}
+
 .citation {
   color: $global-text-color;
 }
@@ -52,5 +56,4 @@
 
 .global-divider-top {
   @include divider(top);
-  @include clearfix
 }

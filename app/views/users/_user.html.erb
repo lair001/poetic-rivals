@@ -48,7 +48,7 @@
 		<div class="col-xs-3">
 		</div>
 	</div>
-	<div class="row">
+	<div class="row global-divider-bottom">
 		<div class="col-xs-6">
 			<h3>Fans:</h3>
 			<h4><%= user.fans_count %></h4>
@@ -62,7 +62,7 @@
 			<h4><%= user.victims_count %></h4>
 		</div>
 	</div>
-	<div class="row global-divider-top">
+	<div class="row">
 		<% if policy(user).relationship? %>
 			<div class="col-xs-6">
 				<%= form_tag idol_fans_path(user), method: :post do %>
@@ -78,18 +78,31 @@
 					<% end %>
 				<% end %>
 			</div>
-		<% else %>
+		<% elsif current_user != user %>
 			<div class="col-xs-3">
 			</div>
 			<div class="col-xs-6">
-				<%= form_tag idol_fan_path(user, current_user), method: :delete do %>
+				<%= form_tag current_user.idolizing?(user) ? idol_fan_path(user, current_user) : victim_rival_path(user, current_user), method: :delete do %>
 					<%= button_tag class: "btn global-form-btn" do %>
-						<%= fa_icon("bomb") %> Idolize
+						<%= raw("#{fa_icon("bomb")} #{ current_user.idolizing?(user) ? "Fandom" : "Rivalry" }") %>
 					<% end %>
 				<% end %>
 			</div>
 			<div class="col-xs-3">
 			</div>
 		<% end %>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">
+		</div>
+		<div class="col-xs-6">
+			<%= form_tag user_poems_path(user), method: :get do %>
+				<%= button_tag class: "btn global-form-btn" do %>
+					<%= fa_icon("file-text") %> Poems
+				<% end %>
+			<% end %>
+		</div>
+		<div class="col-xs-3">
+		</div>
 	</div>
 </div>
