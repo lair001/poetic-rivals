@@ -29,12 +29,15 @@ def expect_redirect_to_previous_path_or_root
 end
 
 def expect_unauthorized_action
-	expect_redirect_to_previous_path_or_root
-	expect(response.body).to include(unauthorized_action_message)
+	expect_unauthorized_access_or_action
 end
 
 def expect_unauthorized_access
+	expect_unauthorized_access_or_action
+end
+
+def expect_unauthorized_access_or_action
 	expect_redirect
 	expect_path(:root)
-	expect(response.body).to include(unauthorized_access_message)
+	expect(response.body).to include(unauthorized_access_or_action_message)
 end

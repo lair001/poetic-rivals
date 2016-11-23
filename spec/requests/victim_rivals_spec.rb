@@ -74,7 +74,7 @@ RSpec.describe "VictimRivals", type: :request do
 			expect_unauthorized_action
 		end
 
-		it 'redirects to the previous without destroying a RivalVictim if the user is attempting to destroy a RivalVictim where it is the victim and a previous path is set' do 
+		it 'redirects to root without destroying a RivalVictim if the user is attempting to destroy a RivalVictim where it is the victim and regardless of whether a previous path is set' do 
 			save_models user
 			rival_victim = create(:rival_victim, victim: user)
 			expect(RivalVictim.all.count).to eq(1)

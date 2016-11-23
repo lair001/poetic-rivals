@@ -11,7 +11,7 @@ module AuthorizationHelper
 
 		def user_not_authorized
 		  flash[:error] = unauthorized_access_or_action_message
-		  redirect_to(previous_path_or_root)
+		  redirect_to(root_path)
 		end
 
 	end

@@ -74,7 +74,7 @@ RSpec.describe "PoemVoters", type: :request do
 			expect_unauthorized_action
 		end
 
-		it 'redirects to the previous without destroying a PoemVoter if the user is attempting to destroy a PoemVoter where it is not the voter and a previous path is set' do 
+		it 'redirects to root without destroying a PoemVoter if the user is attempting to destroy a PoemVoter where it is not the voter and regardless of whether a previous path is set' do 
 			save_models user_a, user_b
 			poem_voter = create(:poem_voter, random_poem_voter_value_trait, voter: user_b)
 			expect(PoemVoter.all.count).to eq(1)

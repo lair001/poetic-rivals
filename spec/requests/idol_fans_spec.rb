@@ -74,7 +74,7 @@ RSpec.describe "IdolFans", type: :request do
 			expect_unauthorized_action
 		end
 
-		it 'redirects to the previous without destroying a FanIdol if the user is attempting to destroy a FanIdol where it is the idol and a previous path is set' do 
+		it 'redirects to root without destroying a FanIdol if the user is attempting to destroy a FanIdol where it is the idol and regardless of whether a previous path is set' do 
 			save_models user
 			fan_idol = create(:fan_idol, idol: user)
 			expect(FanIdol.all.count).to eq(1)
