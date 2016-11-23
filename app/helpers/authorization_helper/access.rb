@@ -8,7 +8,7 @@ module AuthorizationHelper
 		def authorize_access
 			if !['visitor', 'sessions', 'registrations', 'passwords', 'confirmations', 'unlocks', 'omniauth_callbacks'].include?(controller_name)
 				if !user_signed_in? || current_user.banned?
-					authorize :access, :app
+					authorize :access, :app?
 				end
 			end
 		end

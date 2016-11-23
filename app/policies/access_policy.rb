@@ -9,7 +9,7 @@ class AccessPolicy < Struct.new(:user, :access)
 	end
 
 	def app?
-		user_signed_in && !current_user.banned? ? true : false
+		user && !user.banned? ? true : false
 	end
 
 end
