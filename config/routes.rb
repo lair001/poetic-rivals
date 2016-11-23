@@ -8,13 +8,14 @@ Rails.application.routes.draw do
     get '/aqm' => 'visitor#aqm'
 
 	resources :commentaries, only: [:edit, :update, :destroy]
-	resources :poems, only: [:new, :create, :edit, :update, :destroy] do 
+	resources :poems, only: [] do 
 		resources :voters, only: [:create, :destroy], param: :voter_id
-		resources :commentaries, only: [:index, :new, :create]
 	end
 
 	resources :users, only: [:index, :show] do
-		resources :poems, only: [:index, :show]
+		resources :poems do
+			resources :commentaries, only: [:index, :new, :create, :edit, :update, :destroy]
+		end
 	end
 
 	resources :idols, only: [] do
