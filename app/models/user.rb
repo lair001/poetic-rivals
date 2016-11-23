@@ -37,8 +37,6 @@ class User < ApplicationRecord
 
 	enum role: [:banned, :poet, :administrator, :moderator, :superuser]
 
-
-
 	def relationship?(user, relationships_symbol, relationship_query_lambda)
 		@relationships = {} if !@relationships
 		if @relationships.has_key?(relationships_symbol)
@@ -67,7 +65,7 @@ class User < ApplicationRecord
 	end
 
 	def poems_count
-		@poems_count = self.poems.count
+		@poems_count ||= self.poems.count
 	end
 
 	def upvotes_count
