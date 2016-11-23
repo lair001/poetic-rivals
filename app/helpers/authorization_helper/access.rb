@@ -2,14 +2,13 @@ module AuthorizationHelper
 	module Access
 
 		def unauthorized_access_message
-			"You are not authorized to access this app."
+			unauthorized_access_or_action_message
 		end
 
 		def authorize_access
 			if !['visitor', 'sessions', 'registrations', 'passwords', 'confirmations', 'unlocks', 'omniauth_callbacks'].include?(controller_name)
 				if !user_signed_in? || current_user.banned?
-					flash[:error] = unauthorized_access_message
-					redirect_to root_path
+					authorize :access, :app
 				end
 			end
 		end

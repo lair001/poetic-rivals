@@ -1,6 +1,8 @@
 class Admin::ApplicationController < ApplicationController
 
-	before_action :only_administrators_and_superusers_allowed
+	before_action do 
+		authorize :access, :admin?
+	end
 
 protected
 
