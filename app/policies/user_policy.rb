@@ -11,7 +11,7 @@ class UserPolicy < ApplicationPolicy
 	end
 
 	def relationship?
-		@user.id != @record.id && !FanIdol.where("fan_id = ? AND idol_id = ?", @user.id, @record.id).exists? && !RivalVictim.where("rival_id = ? AND victim_id = ?", @user.id, @record.id).exists?
+		@user.id != @record.id && !@user.idolizing?(@record) && !@user.victimizing?(@record)
 	end
 
 end

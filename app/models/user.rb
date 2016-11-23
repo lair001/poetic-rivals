@@ -51,6 +51,20 @@ class User < ApplicationRecord
 		where(email: auth.info.email).first
 	end
 
+	def idolizing?(user)
+		@idolizings = [] if !@idolizings
+		@idolizings.each { |idolizing| return idolizing[1] if idolizing[0] == user.id }
+		@idolizings << [user.id, FanIdol.where("fan_id = ? AND idol_id = ?", self.id, user.id).exists?]
+		@idolizings[1]
+	end
+
+	def victimizing?(user)
+		@victimizings = [] if !@victimizings
+		@victimizings.each { |victimizing| return victimizing[1] if victimizing[0] == user.id }
+		@victimizings << [user.id, RivalVictim.where("rival_id = ? AND victim_id = ?", self.id, user.id).exists?]
+		@victimizings[1]
+	end
+
 	def poems_count
 		@poems_count = self.poems.count
 	end

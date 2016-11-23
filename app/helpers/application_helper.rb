@@ -6,7 +6,11 @@ module ApplicationHelper
 	include AuthorizationHelper::Access
 	include AuthorizationHelper::Pundit
 
+	include CommentariesHelper
 	include EnvHelper
+	include FlashHelper
+	include GenresHelper
+	include ModelsHelper
 	include UsersHelper
 
 	def display_date(time)
