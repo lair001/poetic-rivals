@@ -15,4 +15,10 @@ protected
 
 	include ApplicationHelper
 
+	def remove_empty_keys_from(hash)
+		if hash
+			hash.each { |key, value| hash.except!(key) if value == "" }
+		end
+	end
+
 end

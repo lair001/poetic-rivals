@@ -12,6 +12,8 @@ module RoutesHelper
 		def current_path_with_parameter_names
 			if current_path.match(/\A\/users\/(\d)+\z/)
 				"/users/:id"
+			elsif current_path.match(/\A\/admin\/users\/(\d)+\/edit\z/)
+				"/admin/users/:id/edit"
 			else
 				current_path
 			end

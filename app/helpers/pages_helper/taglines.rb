@@ -30,6 +30,10 @@ module PagesHelper
 			"It may be time to rework your image . . ."
 		end
 
+		def edit_admin_user_page_tagline(model = nil)
+			"Aren't admininstrators helpful?"
+		end
+
 	end
 
 end

@@ -38,6 +38,10 @@ module PagesHelper
 			"Update Account"
 		end
 
+		def edit_admin_user_page_title(user)
+			"Editing #{user.username}"
+		end
+
 	end
 
 end

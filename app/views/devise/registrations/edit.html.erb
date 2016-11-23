@@ -2,14 +2,22 @@
   <% if @user.errors.any? %>
     <%= render partial: 'layouts/model_errors', locals: { model: @user } %>
   <% end %>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "global-form-half-width" }) do |f| %>
+  <% url = current_path_name == "edit_admin_user" ? admin_user_path(@user) : registration_path(@user) %>
+  <%= form_for(@user, url: url, html: { method: :put, class: "global-form-half-width" }) do |f| %>
+
+    <% if current_path_name == "edit_admin_user" %>
+      <div class="form-group">
+        <%= f.label :username %><br />
+        <%= f.text_field :username, class: "form-control global-form-input" %>
+      </div>
+    <% end %>
 
     <div class="form-group">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, class: "form-control global-form-input" %>
     </div>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <% if self.respond_to?(:devise_mapping) && devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
 
@@ -27,10 +35,21 @@
       <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control global-form-input" %>
     </div>
 
-    <div class="form-group">
-      <%= f.label :current_password %><br />
-      <%= f.password_field :current_password, autocomplete: "off", class: "form-control global-form-input" %>
-    </div>
+    <% if current_path_name == "edit_admin_user" %>
+
+      <div class="form-group">
+        <%= f.label :admin_password %><br />
+        <%= f.password_field :admin_password, autocomplete: "off", class: "form-control global-form-input" %>
+      </div>
+
+    <% else %>
+
+      <div class="form-group">
+        <%= f.label :current_password %><br />
+        <%= f.password_field :current_password, autocomplete: "off", class: "form-control global-form-input" %>
+      </div>
+
+    <% end %>
 
     <div class="actions">
       <%= f.submit "Update", class: "btn global-form-btn" %>
