@@ -49,7 +49,7 @@ class User < ApplicationRecord
 	end
 
 	def voting_on?(poem)
-		self.relationship?(poem, :voting_ons, -> { PoemVoter.where("voter_id = ? AND poem_id = ?", self.id, poem.id).exists? })
+		self.relationship?(poem, :voting_ons, -> { PoemVoter.where("voter_id = ? AND poem_id = ?", self.id, poem.id).exists? } )
 	end
 
 	def can_view?(poem)
@@ -57,7 +57,7 @@ class User < ApplicationRecord
 	end
 
 	def idolizing?(user)
-		self.relationship?(user, :idolizings, -> { FanIdol.where("fan_id = ? AND idol_id = ?", self.id, user.id).exists? })
+		self.relationship?(user, :idolizings, -> { FanIdol.where("fan_id = ? AND idol_id = ?", self.id, user.id).exists? } )
 		# @idolizings = [] if !@idolizings
 		# @idolizings.each { |idolizing| return idolizing[1] if idolizing[0] == user.id }
 		# @idolizings << [user.id, FanIdol.where("fan_id = ? AND idol_id = ?", self.id, user.id).exists?]
@@ -65,7 +65,7 @@ class User < ApplicationRecord
 	end
 
 	def victimizing?(user)
-		self.relationship?(user, :victimizings, -> { RivalVictim.where("rival_id = ? AND victim_id = ?", self.id, user.id).exists? })
+		self.relationship?(user, :victimizings, -> { RivalVictim.where("rival_id = ? AND victim_id = ?", self.id, user.id).exists? } )
 		# @victimizings = [] if !@victimizings
 		# @victimizings.each { |victimizing| return victimizing[1] if victimizing[0] == user.id }
 		# @victimizings << [user.id, RivalVictim.where("rival_id = ? AND victim_id = ?", self.id, user.id).exists?]
