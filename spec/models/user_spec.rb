@@ -205,7 +205,7 @@ RSpec.describe User, type: :model do
 			expect(user.victims_count).to eq(number_of_victims)
 		end
 
-		it 'knows its score and score per poem and can properly refresh its score' do
+		it 'knows its poem score, relationship score, score, score per poem and can properly refresh its score' do
 			user1 = create(:user)
 
 			build_fans_for(user1, 4)
@@ -213,6 +213,9 @@ RSpec.describe User, type: :model do
 			build_poems_for(user1, 8, 3, 1)
 			user1.save
 			user1 = User.find(user1.id)
+
+			expect(user1.poem_score).to eq(16)
+			expect(user1.relationship_score).to eq(100)
 			expect(user1.score).to eq(116)
 			expect(user1.score_per_poem).to eq(14.5)
 
@@ -221,14 +224,18 @@ RSpec.describe User, type: :model do
 			expect(user1.score).to eq(116)
 
 			build_rivals_for(user1, 2)
+			build_poems_for(user1, 1, 2, 8)
 			user1.save
 			user1 = User.find(user1.id)
-			expect(user1.score).to eq(-84)
-			expect(user1.score_per_poem).to eq(-10.5)
+
+			expect(user1.poem_score).to eq(10)
+			expect(user1.relationship_score).to eq(-100)
+			expect(user1.score).to eq(-90)
+			expect(user1.score_per_poem).to eq(-10.0)
 
 			user1.update(score: rand(-128..127))
 			user1.refresh_score
-			expect(user1.score).to eq(-84)
+			expect(user1.score).to eq(-90)
 		end
 
 		it 'knows who it is idolizing and victimizing' do
