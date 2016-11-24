@@ -257,6 +257,39 @@ RSpec.describe User, type: :model do
 			expect(user.voting_on?(poem_c)).to eq(true)
 		end
 
+		it 'knows which poems it can view' do
+			save_models(user, banned, administrator, moderator, superuser)
+			poem_1 = create(:poem)
+			poem_2 = create(:poem, :private)
+			poem_3 = create(:poem, :private, author: user)
+			poem_4 = create(:poem, :private, author: administrator)
+
+			expect(banned.can_view?(poem_1)).to eq(false)
+			expect(banned.can_view?(poem_2)).to eq(false)
+			expect(banned.can_view?(poem_3)).to eq(false)
+			expect(banned.can_view?(poem_4)).to eq(false)
+
+			expect(user.can_view?(poem_1)).to eq(true)
+			expect(user.can_view?(poem_2)).to eq(false)
+			expect(user.can_view?(poem_3)).to eq(true)
+			expect(user.can_view?(poem_4)).to eq(false)
+
+			expect(administrator.can_view?(poem_1)).to eq(true)
+			expect(administrator.can_view?(poem_2)).to eq(false)
+			expect(administrator.can_view?(poem_3)).to eq(false)
+			expect(administrator.can_view?(poem_4)).to eq(true)
+
+			expect(moderator.can_view?(poem_1)).to eq(true)
+			expect(moderator.can_view?(poem_2)).to eq(true)
+			expect(moderator.can_view?(poem_3)).to eq(true)
+			expect(moderator.can_view?(poem_4)).to eq(true)
+
+			expect(superuser.can_view?(poem_1)).to eq(true)
+			expect(superuser.can_view?(poem_2)).to eq(true)
+			expect(superuser.can_view?(poem_3)).to eq(true)
+			expect(superuser.can_view?(poem_4)).to eq(true)
+		end
+
 	end
 
 	describe 'Class' do

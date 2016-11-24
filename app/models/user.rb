@@ -52,6 +52,10 @@ class User < ApplicationRecord
 		self.relationship?(poem, :voting_ons, -> { PoemVoter.where("voter_id = ? AND poem_id = ?", self.id, poem.id).exists? })
 	end
 
+	def can_view?(poem)
+		!banned? && (!poem.private? || poem.author == self || self.moderator? || self.superuser?)
+	end
+
 	def idolizing?(user)
 		self.relationship?(user, :idolizings, -> { FanIdol.where("fan_id = ? AND idol_id = ?", self.id, user.id).exists? })
 		# @idolizings = [] if !@idolizings
