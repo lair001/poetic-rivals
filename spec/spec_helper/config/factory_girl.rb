@@ -27,6 +27,9 @@ module FactoryContext
   let(:moderator) { build(:user, :moderator) }
   let(:superuser) { build(:user, :superuser) }
   let(:poem) { build(:poem) }
+  let(:poem_a) { build(:poem) }
+  let(:poem_b) { build(:poem) }
+  let(:poem_c) { build(:poem) }
   let(:genre) { build(:genre) }
   let(:commentary) { build(:commentary) }
   let(:poem_genre) { build(:poem_genre) }
@@ -44,6 +47,9 @@ module FactoryContext
   let(:stubbed_moderator) { build_stubbed(:user, :moderator) }
   let(:stubbed_superuser) { build_stubbed(:user, :superuser) }
   let(:stubbed_poem) { build_stubbed(:poem) }
+  let(:stubbed_poem_a) { build_stubbed(:poem) }
+  let(:stubbed_poem_b) { build_stubbed(:poem) }
+  let(:stubbed_poem_c) { build_stubbed(:poem) }
   let(:stubbed_genre) { build_stubbed(:genre) }
   let(:stubbed_commentary) { build_stubbed(:commentary) }
   let(:stubbed_poem_genre) { build_stubbed(:poem_genre) }

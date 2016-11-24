@@ -161,6 +161,50 @@ RSpec.describe User, type: :model do
 			expect(user1.poem_voters).to contain_exactly(poem_voter1, poem_voter2)
 		end
 
+		it 'knows its poem count, upvote count, and downvote count' do
+			save_models(user)
+			number_of_poems = rand(1..15)
+			upvotes_per_poem = rand(1..7)
+			downvotes_per_poem = rand(1..7)
+			build_poems_for(user, number_of_poems, upvotes_per_poem, downvotes_per_poem)
+			user.save
+			expect(user.poems_count).to eq(number_of_poems)
+			expect(user.upvotes_count).to eq(number_of_poems * upvotes_per_poem)
+			expect(user.downvotes_count).to eq(number_of_poems * downvotes_per_poem)
+		end
+
+		it 'knows its fan count' do
+			save_models(user)
+			number_of_fans = rand(1..15)
+			build_fans_for(user, number_of_fans)
+			user.save
+			expect(user.fans_count).to eq(number_of_fans)
+		end
+
+		it 'knows its idol count' do
+			save_models(user)
+			number_of_idols = rand(1..15)
+			build_idols_for(user, number_of_idols)
+			user.save
+			expect(user.idols_count).to eq(number_of_idols)
+		end
+
+		it 'knows its rival count' do
+			save_models(user)
+			number_of_rivals = rand(1..15)
+			build_rivals_for(user, number_of_rivals)
+			user.save
+			expect(user.rivals_count).to eq(number_of_rivals)
+		end
+
+		it 'knows its fan count' do
+			save_models(user)
+			number_of_victims = rand(1..15)
+			build_victims_for(user, number_of_victims)
+			user.save
+			expect(user.victims_count).to eq(number_of_victims)
+		end
+
 		it 'knows its score and score per poem and can properly refresh its score' do
 			user1 = create(:user)
 
@@ -201,6 +245,18 @@ RSpec.describe User, type: :model do
 			expect(user_b.idolizing?(user_a)).to eq(false)
 		end
 
+		it 'knows which poems it is voting on' do
+			save_models(user, poem_a, poem_b, poem_c)
+			create(:poem_voter, :up, poem: poem_a, voter: user)
+			create(:poem_voter, :down, poem: poem_c, voter: user)
+			expect(user.voting_on?(poem_a)).to eq(true)
+			expect(user.voting_on?(poem_a)).to eq(true)
+			expect(user.voting_on?(poem_b)).to eq(false)
+			expect(user.voting_on?(poem_b)).to eq(false)
+			expect(user.voting_on?(poem_c)).to eq(true)
+			expect(user.voting_on?(poem_c)).to eq(true)
+		end
+
 	end
 
 	describe 'Class' do
@@ -215,13 +271,13 @@ RSpec.describe User, type: :model do
 
 			build_fans_for(user_b, 4)
 			build_rivals_for(user_b, 5)
-			build_poems_for(user_b, 8, 3, 1)
-			user_b.save #score: -84
+			build_poems_for(user_b, 9, 3, 1)
+			user_b.save #score: -82
 
 			build_fans_for(user_c, 5)
 			build_rivals_for(user_c, 3)
-			build_poems_for(user_c, 8, 3, 1)
-			user_c.save #score: 216
+			build_poems_for(user_c, 10, 3, 1)
+			user_c.save #score: 220
 
 			expect(User.with_highest_score).to eq(user_a)
 			expect(User.with_lowest_score).to eq(user_b)
