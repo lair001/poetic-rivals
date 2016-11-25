@@ -7,8 +7,8 @@ class PoemVoter < ApplicationRecord
 	validates :value, inclusion: { in: [-1, 1] }
 
 	validate do
-		unique_vote
 		cannot_vote_for_your_own_poem
+		unique_vote
 	end
 
 	after_create :update_poem_author_score_after_create
