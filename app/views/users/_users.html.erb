@@ -1,6 +1,6 @@
 <div class="global-jumbotron" id="users">
 	<% users.each do |user| %>
-		<div class="global-divider-top <%= "global-divider-bottom" if user == @users.last %>">
+		<div class="global-divider-top <%= "global-divider-bottom" if user == users.last %>">
 			<div class="row" id="<%= "user_#{user.id}" %>">
 				<div class="col-xs-4">
 					<br>
