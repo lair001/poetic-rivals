@@ -28,6 +28,10 @@ class Poem < ApplicationRecord
 		write_attribute(:body, self.class.format_body(body))
 	end
 
+	def author_username
+		self.author.username
+	end
+
 	def self.format_title(title)
 		trim_whitespace_in(convert_whitespace_that_is_not_spaces_to_spaces_in(title))
 	end
