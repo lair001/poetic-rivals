@@ -16,6 +16,14 @@ class Poem < ApplicationRecord
 		absence_of_forbidden_characters_in :body
 	end
 
+	def upvotes_count
+		self.poem_voters.where(value: 1).count
+	end
+
+	def downvotes_count
+		self.poem_voters.where(value: -1).count
+	end
+
 	def genre_attributes=(genre_params)
 		self.genres << Genre.find_or_create_by(name: Genre.format_name(genre_params[:name]))
 	end

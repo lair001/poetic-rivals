@@ -1,4 +1,4 @@
-def create_poem_voters_for_poem(poem, number_of_upvotes = nil, number_of_downvotes = nil)
+def create_poem_voters_for(poem, number_of_upvotes = nil, number_of_downvotes = nil)
 	poem_voters = []
 	if number_of_upvotes
 		number_of_upvotes.times do
