@@ -1,0 +1,23 @@
+<div class="global-jumbotron" id="user_dashboard">
+	<% poems.each do |poem| %>
+		<div class="global-divider-top <%= "global-divider-bottom" if poem == poems.last %>">
+			<div class="col-xs-4">
+				<br>
+				<h4>Created:</h4>
+				<h6><%= raw(display_date(poem.created_at)) %></h6>
+				<h6><%= raw(display_time(poem.created_at)) %></h6>
+				<h4>Updated:</h4>
+				<h6><%= raw(display_date(poem.updated_at)) %></h6>
+				<h6><%= raw(display_time(poem.updated_at)) %></h6>
+				<br>
+			</div>
+			<div class="col-xs-8">
+				<br>
+				<h3><%= link_to poem.title, user_poem_path(poem.user, poem) %></h3>
+				<h4>Genres:</h4>
+				<h6><%= render_genres_for(poem) %></h6>
+				<br>
+			</div>
+		</div>
+	<% end %>
+</div>
