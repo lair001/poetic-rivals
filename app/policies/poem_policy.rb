@@ -1,5 +1,13 @@
 class PoemPolicy < ApplicationPolicy
 
+	def edit?
+		@user.moderator? || @user.superuser? || @user == @record.author
+	end
+
+	def update?
+		edit?
+	end
+
 	def vote?
 		@user != @record.author && !@user.voting_on(@record)
 	end
