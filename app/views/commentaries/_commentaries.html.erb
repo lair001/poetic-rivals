@@ -1,0 +1,29 @@
+<div class="global-jumbotron" id="commentaries_dashboard">
+<%= render 'new_user_poem_commentary_button' %>
+	<% commentaries.each do |commentary| 
+		commentator = commentary.commentator %>
+		<div class="row global-divider-top <%= "global-divider-bottom" if commentary == commentaries.last %>">
+			<div class="row" id="<%= "commentary_#{commentary.id}" %>">
+				<div class="col-xs-4">
+					<br>
+					<h3><%= link_to commentator.username, user_path(commentator) %></h3>
+					<h4><em><%= display_role_for(commentator) %></em></h4>
+					<h4>Created:</h4>
+					<h6><%= raw(display_date(commentary.created_at)) %></h6>
+					<h6><%= raw(display_time(commentary.created_at)) %></h6>
+					<h4>Updated:</h4>
+					<h6><%= raw(display_date(commentary.updated_at)) %></h6>
+					<h6><%= raw(display_time(commentary.updated_at)) %></h6>
+					<br>
+				</div>
+				<div class="col-xs-8">
+					<br>
+					<br>
+					<div class="align-left" id="<%="commentary_#{commentary.id}_comment"%>"><%= raw(convert_whitespace_to_html_in(commentary.comment)) %></div>
+					<br>
+				</div>
+			</div>
+		</div>
+	<% end %>
+<%= render 'new_user_poem_commentary_button' %>
+</div>

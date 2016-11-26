@@ -54,6 +54,10 @@ module PagesHelper
 			poem.title
 		end
 
+		def user_poem_commentaries_page_title
+			"Commentaries Regarding"
+		end
+
 	end
 
 end

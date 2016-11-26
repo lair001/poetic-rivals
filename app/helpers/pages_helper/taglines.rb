@@ -42,6 +42,10 @@ module PagesHelper
 			"By #{poem.author_username}"
 		end
 
+		def user_poem_commentaries_page_tagline(poem)
+			"#{poem.title}<br>by #{poem.author_username}"
+		end
+
 	end
 
 end
