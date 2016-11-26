@@ -20,7 +20,7 @@
 			</div>
 			<div class="col-xs-6">
 				<%= form_tag mod_user_path(user), method: :patch do %>
-					<%= button_tag class: "btn global-form-btn" do %>
+					<%= button_tag class: "btn global-form-btn", :'data-confirm' => "Are you sure?" do %>
 						<% if user.banned? %>
 							<%= fa_icon("check-circle") %> Unban
 						<% else %>
