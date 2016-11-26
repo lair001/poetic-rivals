@@ -12,6 +12,7 @@ class PoemsController < ApplicationController
 
 	def show
 		@poem = Poem.find(params[:id])
+		render layout: 'application', locals: { model: @poem }
 	end
 
 end
