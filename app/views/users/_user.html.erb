@@ -75,7 +75,8 @@
 		</div>
 	</div>
 	<div class="row">
-		<% if policy(user).relationship? %>
+	<% if policy(user).relationship? %>
+		<div class="row">
 			<div class="col-xs-6">
 				<%= form_tag idol_fans_path(user), method: :post do %>
 					<%= button_tag class: "btn global-form-btn" do %>
@@ -90,7 +91,7 @@
 					<% end %>
 				<% end %>
 			</div>
-		<% elsif current_user != user %>
+	<% elsif current_user != user %>
 			<div class="col-xs-3">
 			</div>
 			<div class="col-xs-6">
@@ -102,8 +103,8 @@
 			</div>
 			<div class="col-xs-3">
 			</div>
-		<% end %>
-	</div>
+		</div>
+	<% end %>
 	<div class="row">
 		<div class="col-xs-3">
 		</div>
