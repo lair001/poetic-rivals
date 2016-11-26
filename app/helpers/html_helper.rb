@@ -23,7 +23,7 @@ module HtmlHelper
 	end
 
 	def render_genres_for(model)
-		policy_scope(model.genres).join(", ")
+		policy_scope(model.genres).collect{ |genre| genre.name}.join(", ")
 	end
 
 end
