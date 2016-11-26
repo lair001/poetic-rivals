@@ -24,50 +24,50 @@ users << create(:user, :random, :moderator, username: 'lair003', email: 'lair003
 	users << create(:user, :random, :banned)
 end
 
-15.times do
+45.times do
 	users << create(:user, :random)
 end
 
 poems = []
-200.times do
+500.times do
 	poems << create(:poem, author: users[rand(0..users.length-1)])
 end
 
-500.times do
+1500.times do
 	begin
 		create(:poem_genre, poem: poems[rand(0..poems.length-1)], genre: genres[rand(0..genres.length-1)])
 	rescue ActiveRecord::RecordInvalid
 	end
 end
 
-1000.times do
+5000.times do
 	begin
-		create(:poem_voter, :up, poem: poems[rand(0..poems.length-1)])
+		create(:poem_voter, :up, poem: poems[rand(0..poems.length-1)], voter: users[rand(0..users.length-1)])
 	rescue ActiveRecord::RecordInvalid
 	end
 end
 
-1000.times do
+5000.times do
 	begin
 		create(:poem_voter, :down, poem: poems[rand(0..poems.length-1)], voter: users[rand(0..users.length-1)])
 	rescue ActiveRecord::RecordInvalid
 	end
 end
 
-1000.times do
+5000.times do
 	create(:commentary, poem: poems[rand(0..poems.length-1)], commentator: users[rand(0..users.length-1)])
 end
 
 1000.times do
 	begin
-		create(:fan_idol, fan_id: users[rand(0..users.length-1)], idol_id: users[rand(0..users.length-1)])
+		create(:fan_idol, fan: users[rand(0..users.length-1)], idol: users[rand(0..users.length-1)])
 	rescue ActiveRecord::RecordInvalid
 	end
 end
 
 1000.times do
 	begin
-		create(:rival_victim, rival_id: users[rand(0..users.length-1)], victim_id: users[rand(0..users.length-1)])
+		create(:rival_victim, rival: users[rand(0..users.length-1)], victim: users[rand(0..users.length-1)])
 	rescue ActiveRecord::RecordInvalid
 	end
 end
