@@ -12,6 +12,10 @@ class PoemPolicy < ApplicationPolicy
 		@user != @record.author && !@user.voting_on?(@record)
 	end
 
+	def show?
+		!@record.private? || @user == @record.author || @user.administrator? || @user.superuser?
+	end
+
 	class Scope < Scope
 
 		def resolve
