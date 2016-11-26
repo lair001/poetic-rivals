@@ -1,5 +1,9 @@
 class PoemPolicy < ApplicationPolicy
 
+	def vote?
+		@user != @record.author && !@user.voting_on(@record)
+	end
+
 	class Scope < Scope
 
 		def resolve
