@@ -11,7 +11,7 @@ require_all 'spec/spec_helper/config/faker'
 
 genres = []
 POETRY_GENRES.each do |poetry_genre|
-	create(:genre, name: poetry_genre)
+	genres << create(:genre, name: poetry_genre)
 end
 
 users = []
@@ -35,7 +35,7 @@ end
 
 500.times do
 	begin
-		create(:poem_genre, poem: poems[rand(0..poems.length-1)])
+		create(:poem_genre, poem: poems[rand(0..poems.length-1)], genre: genres[rand(0..genres.length-1)])
 	rescue ActiveRecord::RecordInvalid
 	end
 end
@@ -49,7 +49,7 @@ end
 
 1000.times do
 	begin
-		create(:poem_voter, :down, poem: poems[rand(0..poems.length-1)])
+		create(:poem_voter, :down, poem: poems[rand(0..poems.length-1)], voter: users[rand(0..users.length-1)])
 	rescue ActiveRecord::RecordInvalid
 	end
 end
