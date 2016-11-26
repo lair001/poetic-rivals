@@ -13,6 +13,10 @@ class Commentary < ApplicationRecord
 		write_attribute(:comment, self.class.format_comment(comment))
 	end
 
+	def commentator_username
+		self.commentator.username
+	end
+
 	def self.format_comment(comment)
 		trim_whitespace_in(comment)
 	end
