@@ -46,6 +46,10 @@ module PagesHelper
 			end
 		end
 
+		def user_poems_page_title
+			"Poems"
+		end
+
 	end
 
 end

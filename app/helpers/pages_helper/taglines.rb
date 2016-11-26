@@ -34,6 +34,10 @@ module PagesHelper
 			"Aren't admininstrators helpful?"
 		end
 
+		def user_poems_page_tagline(user)
+			"By #{user.username}"
+		end
+
 	end
 
 end
