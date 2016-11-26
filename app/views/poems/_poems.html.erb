@@ -1,4 +1,7 @@
 <div class="global-jumbotron" id="poems_dashboard">
+	<% if current_page?(user_poems_path(current_user)) %>
+		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: new_user_poem_path(params[:user_id]), method: :get, content: "#{fa_icon("pencil-square-o")} New Poem" } %>
+	<% end %>
 	<% poems.each do |poem| %>
 		<div class="row global-divider-top <%= "global-divider-bottom" if poem == poems.last %>">
 			<div class="col-xs-4">
@@ -19,5 +22,8 @@
 				<br>
 			</div>
 		</div>
+	<% end %>
+	<% if current_page?(user_poems_path(current_user)) %>
+		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: new_user_poem_path(params[:user_id]), method: :get, content: "#{fa_icon("pencil-square-o")} New Poem" } %>
 	<% end %>
 </div>
