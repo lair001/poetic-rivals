@@ -38,6 +38,10 @@ module PagesHelper
 			"By #{user.username}"
 		end
 
+		def user_poem_page_tagline(poem)
+			"By #{poem.author_username}"
+		end
+
 	end
 
 end

@@ -50,6 +50,10 @@ module PagesHelper
 			"Poems"
 		end
 
+		def user_poem_page_title(poem)
+			poem.title
+		end
+
 	end
 
 end

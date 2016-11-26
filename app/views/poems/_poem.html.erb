@@ -1,0 +1,26 @@
+<div class="global-jumbotron" id="poem_dashboard">
+	<div class="row global-divider-top">
+		<div class="col-xs-3">
+		</div>
+		<div class="col-xs-6">
+			<h4>Created:</h4>
+			<h6><%= raw(display_date(poem.created_at)) %></h6>
+			<h6><%= raw(display_time(poem.created_at)) %></h6>
+			<h4>Updated:</h4>
+			<h6><%= raw(display_date(poem.updated_at)) %></h6>
+			<h6><%= raw(display_time(poem.updated_at)) %></h6>
+		</div>
+		<div class="col-xs-3">
+		</div>
+	</div>
+	<div class="row global-divider-bottom">
+		<div class="col-xs-6">
+		</div>
+		<div class="col-xs-6">
+		</div>
+	</div>
+</div>
+<div class="global-jumbotron" id="poem_body">
+	<h3>Body</h3>
+	<div class="align-left" id="poem_body_text"><%= raw(convert_whitespace_to_html_in(poem.body)) %></div>
+</div>
