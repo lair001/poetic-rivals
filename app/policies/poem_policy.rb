@@ -9,7 +9,7 @@ class PoemPolicy < ApplicationPolicy
 	end
 
 	def vote?
-		@user != @record.author && !@user.voting_on(@record)
+		@user != @record.author && !@user.voting_on?(@record)
 	end
 
 	class Scope < Scope

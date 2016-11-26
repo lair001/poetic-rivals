@@ -1,3 +1,7 @@
+<div class="global-jumbotron" id="poem_body">
+	<h3>Body</h3>
+	<div class="align-left global-divider-top global-divider-bottom" id="poem_body_text"><%= raw(convert_whitespace_to_html_in(poem.body)) %></div>
+</div>
 <div class="global-jumbotron" id="poem_dashboard">
 	<% if policy(poem).edit? %>
 		<div class ="row">
@@ -39,10 +43,50 @@
 		</div>
 	</div>
 	<% if policy(poem).vote? %>
-	<% elsif current_user != poem.author %>
+		<div class="row">
+			<div class="col-xs-6">
+				<%= form_tag poem_voters_path(poem), method: :post do %>
+					<%= hidden_field_tag 'value', '1' %>
+					<%= button_tag class: "btn global-form-btn" do %>
+						<%= fa_icon("thumbs-up") %> Upvote
+					<% end %>
+				<% end %>
+			</div>
+			<div class="col-xs-6">
+				<%= form_tag poem_voters_path(poem), method: :post do %>
+					<%= hidden_field_tag 'value', '-1' %>
+					<%= button_tag class: "btn global-form-btn" do %>
+						<%= fa_icon("thumbs-down") %> Downvote
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	<% elsif current_user.upvoting?(poem) || current_user.downvoting?(poem) %>
+		<div class="row">
+			<div class="col-xs-3">
+			</div>
+			<div class="col-xs-6">
+					<%= form_tag poem_voter_path(poem, current_user), method: :delete do %>
+					<%= button_tag class: "btn global-form-btn" do %>
+						<%= raw("#{fa_icon("bomb")} #{ current_user.upvoting?(poem) ? "Upvote" : "Downvote" }") %>
+					<% end %>
+				<% end %>
+			</div>
+			<div class="col-xs-3">
+			</div>
+		</div>
 	<% end %>
-</div>
-<div class="global-jumbotron" id="poem_body">
-	<h3>Body</h3>
-	<div class="align-left" id="poem_body_text"><%= raw(convert_whitespace_to_html_in(poem.body)) %></div>
+	<div class="row">
+		<div class="col-xs-3">
+		</div>
+		<div class="col-xs-6">
+			<%= form_tag user_poem_commentaries_path(poem.author, poem), method: :get do %>
+				<%= button_tag class: "btn global-form-btn" do %>
+					<%= fa_icon("file-text") %> Comments
+				<% end %>
+			<% end %>
+		</div>
+		<div class="col-xs-3">
+		</div>
+	</div>
 </div>
