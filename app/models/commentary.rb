@@ -13,8 +13,16 @@ class Commentary < ApplicationRecord
 		write_attribute(:comment, self.class.format_comment(comment))
 	end
 
+	def poem_author
+		poem.author
+	end
+
+	def poem_author_username
+		poem_author.username
+	end
+
 	def commentator_username
-		self.commentator.username
+		commentator.username
 	end
 
 	def self.format_comment(comment)
