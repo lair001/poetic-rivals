@@ -22,4 +22,8 @@ module HtmlHelper
 		end
 	end
 
+	def render_genres_for(model)
+		model.genres.join(", ")
+	end
+
 end
