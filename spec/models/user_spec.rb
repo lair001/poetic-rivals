@@ -256,12 +256,18 @@ RSpec.describe User, type: :model do
 			save_models(user, poem_a, poem_b, poem_c)
 			create(:poem_voter, :up, poem: poem_a, voter: user)
 			create(:poem_voter, :down, poem: poem_c, voter: user)
+
 			expect(user.voting_on?(poem_a)).to eq(true)
-			expect(user.voting_on?(poem_a)).to eq(true)
+			expect(user.upvoting?(poem_a)).to eq(true)
+			expect(user.downvoting?(poem_a)).to eq(false)
+
 			expect(user.voting_on?(poem_b)).to eq(false)
-			expect(user.voting_on?(poem_b)).to eq(false)
+			expect(user.upvoting?(poem_b)).to eq(false)
+			expect(user.downvoting?(poem_b)).to eq(false)
+
 			expect(user.voting_on?(poem_c)).to eq(true)
-			expect(user.voting_on?(poem_c)).to eq(true)
+			expect(user.upvoting?(poem_c)).to eq(false)
+			expect(user.downvoting?(poem_c)).to eq(true)
 		end
 
 		it 'knows which poems it can view' do

@@ -1,4 +1,19 @@
 <div class="global-jumbotron" id="poem_dashboard">
+	<% if policy(poem).edit? %>
+		<div class ="row">
+			<div class="col-xs-3">
+			</div>
+			<div class="col-xs-6">
+				<%= form_tag edit_user_poem_path(poem.author, poem), method: :get do %>
+					<%= button_tag class: "btn global-form-btn" do %>
+						<%= fa_icon("pencil-square-o") %> Edit
+					<% end %>
+				<% end %>
+			</div>
+			<div class="col-xs-3">
+			</div>
+		</div>
+	<% end %>
 	<div class="row global-divider-top">
 		<div class="col-xs-3">
 		</div>
@@ -15,10 +30,17 @@
 	</div>
 	<div class="row global-divider-bottom">
 		<div class="col-xs-6">
+			<h3>Upvotes:</h3>
+			<h4><%= poem.upvotes_count %></h4>
 		</div>
 		<div class="col-xs-6">
+			<h3>Downvotes:</h3>
+			<h4><%= poem.downvotes_count %></h4>
 		</div>
 	</div>
+	<% if policy(poem).vote? %>
+	<% elsif current_user != poem.author %>
+	<% end %>
 </div>
 <div class="global-jumbotron" id="poem_body">
 	<h3>Body</h3>

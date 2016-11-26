@@ -49,7 +49,15 @@ class User < ApplicationRecord
 	end
 
 	def voting_on?(poem)
-		self.relationship?(poem, :voting_ons, -> { PoemVoter.where("voter_id = ? AND poem_id = ?", self.id, poem.id).exists? } )
+		upvoting?(poem) || downvoting?(poem)
+	end
+
+	def upvoting?(poem)
+		self.relationship?(poem, :upvotings, -> { PoemVoter.where("voter_id = ? AND poem_id = ? AND value = 1", self.id, poem.id).exists? })
+	end
+
+	def downvoting?(poem)
+		self.relationship?(poem, :downvotings, -> { PoemVoter.where("voter_id = ? AND poem_id = ? AND value = -1", self.id, poem.id).exists? })
 	end
 
 	def can_view?(poem)
