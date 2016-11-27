@@ -1,24 +1,9 @@
-<div class="global-jumbotron" id="poem_body">
-	<h3>Body</h3>
-	<div class="align-left global-divider-top global-divider-bottom" id="poem_body_text"><%= raw(convert_whitespace_to_html_in(poem.body)) %></div>
-</div>
-<div class="global-jumbotron" id="poem_dashboard">
+<div class="global-jumbotron" id="poem_details">
 	<% if policy(poem).edit? %>
-		<div class ="row">
-			<div class="col-xs-3">
-			</div>
-			<div class="col-xs-6">
-				<%= form_tag edit_user_poem_path(poem.author, poem), method: :get do %>
-					<%= button_tag class: "btn global-form-btn" do %>
-						<%= fa_icon("pencil-square-o") %> Edit
-					<% end %>
-				<% end %>
-			</div>
-			<div class="col-xs-3">
-			</div>
-		</div>
+		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: edit_user_poem_path(poem.author, poem), method: :get, content: "#{fa_icon("pencil-square-o")} Edit" } %>
 	<% end %>
-	<div class="row global-divider-top">
+	<div class="align-left global-divider-top" id="poem_body"><%= raw(convert_whitespace_to_html_in(poem.body)) %></div>
+	<div class="row global-divider-top" id="poem_dashboard">
 		<div class="col-xs-3">
 		</div>
 		<div class="col-xs-6">
@@ -64,17 +49,5 @@
 	<% elsif current_user.upvoting?(poem) || current_user.downvoting?(poem) %>
 		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: poem_voter_path(poem, current_user), method: :delete, content: "#{fa_icon("bomb")} #{ current_user.upvoting?(poem) ? "Upvote" : "Downvote" }", data: { confirm: data_confirm_message } } %>
 	<% end %>
-	<div class="row">
-		<div class="col-xs-3">
-		</div>
-		<div class="col-xs-6">
-			<%= form_tag user_poem_commentaries_path(poem.author, poem), method: :get do %>
-				<%= button_tag class: "btn global-form-btn" do %>
-					<%= fa_icon("file-text") %> Comments
-				<% end %>
-			<% end %>
-		</div>
-		<div class="col-xs-3">
-		</div>
-	</div>
+	<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: user_poem_commentaries_path(poem.author, poem), method: :get, content: "#{fa_icon("file-text")} Comments" } %>
 </div>
