@@ -8,10 +8,12 @@ class CommentariesController < ApplicationController
 
 	def new
 		@commentary = Commentary.new(poem_id: params[:poem_id])
+		authorize(@commentary)
 	end
 
 	def create
 		@commentary = Commentary.new(commentary_params)
+		authorize(@commentary)
 		if @commentary.save
 			redirect_to user_poem_commentaries_path(@commentary.poem_author, @commentary.poem)
 		else
@@ -21,10 +23,12 @@ class CommentariesController < ApplicationController
 
 	def edit
 		@commentary = Commentary.find(params[:id])
+		authorize(@commentary)
 	end
 
 	def update
 		@commentary = Commentary.find(params[:id])
+		authorize(@commentary)
 		if @commentary.update(commentary_params)
 			redirect_to user_poem_commentaries_path(@commentary.poem_author, @commentary.poem)
 		else
