@@ -59,22 +59,7 @@
 		</div>
 	</div>
 	<% if policy(user).relationship? %>
-		<div class="row">
-			<div class="col-xs-6">
-				<%= form_tag idol_fans_path(user), method: :post do %>
-					<%= button_tag class: "btn global-form-btn" do %>
-						<%= fa_icon("thumbs-up") %> Idolize
-					<% end %>
-				<% end %>
-			</div>
-			<div class="col-xs-6">
-				<%= form_tag victim_rivals_path(user), method: :post do %>
-					<%= button_tag class: "btn global-form-btn" do %>
-						<%= fa_icon("thumbs-down") %> Victimize
-					<% end %>
-				<% end %>
-			</div>
-		</div>
+		<%= render partial: 'layouts/forms/global_row_with_two_half_width_button_only_forms', locals: { action_left: idol_fans_path(user), method_left: :post, content_left: "#{fa_icon("thumbs-up")} Idolize", action_right: victim_rivals_path(user), method_right: :post, content_right: "#{fa_icon("thumbs-down")} Victimize" } %>
 	<% elsif current_user != user %>
 		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: current_user.idolizing?(user) ? idol_fan_path(user, current_user) : victim_rival_path(user, current_user), method: :delete, content: "#{fa_icon("bomb")} #{ current_user.idolizing?(user) ? "Fandom" : "Rivalry" }", data: { confirm: data_confirm_message } } %>
 	<% end %>

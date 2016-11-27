@@ -28,24 +28,7 @@
 		</div>
 	</div>
 	<% if policy(poem).vote? %>
-		<div class="row">
-			<div class="col-xs-6">
-				<%= form_tag poem_voters_path(poem), method: :post do %>
-					<%= hidden_field_tag 'value', '1' %>
-					<%= button_tag class: "btn global-form-btn" do %>
-						<%= fa_icon("thumbs-up") %> Upvote
-					<% end %>
-				<% end %>
-			</div>
-			<div class="col-xs-6">
-				<%= form_tag poem_voters_path(poem), method: :post do %>
-					<%= hidden_field_tag 'value', '-1' %>
-					<%= button_tag class: "btn global-form-btn" do %>
-						<%= fa_icon("thumbs-down") %> Downvote
-					<% end %>
-				<% end %>
-			</div>
-		</div>
+		<%= render partial: 'layouts/forms/global_row_with_two_half_width_button_only_forms', locals: { action_left: poem_voters_path(poem), method_left: :post, content_left: "#{fa_icon("thumbs-up")} Upvote", value_left: "1", action_right: poem_voters_path(poem), method_right: :post, content_right: "#{fa_icon("thumbs-down")} Downvote", value_right: "-1" } %>
 	<% elsif current_user.upvoting?(poem) || current_user.downvoting?(poem) %>
 		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: poem_voter_path(poem, current_user), method: :delete, content: "#{fa_icon("bomb")} #{ current_user.upvoting?(poem) ? "Upvote" : "Downvote" }", data: { confirm: data_confirm_message } } %>
 	<% end %>
