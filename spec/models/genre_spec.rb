@@ -21,13 +21,25 @@ RSpec.describe Genre, type: :model do
 		expect(build(:genre, banned?: true).banned?).to eq(true)
 	end
 
-	it 'has many poems' do
-		genre1 = create(:genre)
-		poem1 = create(:poem)
-		poem2 = create(:poem)
-		genre1.poems.push(poem1, poem2)
-		genre1.save
-		expect(genre1.poems).to include(poem1, poem2)
+	it 'has many poems and knows its poems count' do
+		save_models genre
+		poem_1 = create(:poem)
+		poem_2 = create(:poem)
+		genre.poems.push(poem_1, poem_2)
+		genre.save
+		expect(genre.poems).to contain_exactly(poem_1, poem_2)
+		expect(genre.poems_count).to eq(2)
+	end
+
+	it 'has many authors and knows its authors count' do
+		save_models genre, user_a, user_b
+		poem_1 = create(:poem, author: user_a)
+		poem_2 = create(:poem, author: user_b)
+		poem_3 = create(:poem, author: user_b)
+		genre.poems.push(poem_1, poem_2, poem_3)
+		genre.save
+		expect(genre.authors).to contain_exactly(user_a, user_b)
+		expect(genre.authors_count).to eq(2)
 	end
 
 end

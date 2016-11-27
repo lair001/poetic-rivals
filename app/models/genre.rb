@@ -2,11 +2,20 @@ class Genre < ApplicationRecord
 
 	has_many :poem_genres
 	has_many :poems, -> { distinct } , through: :poem_genres
+	has_many :authors, -> { distinct } , through: :poems
 
 	validates :name, { uniqueness: true, length: { in: 2..30 } }
 
 	validate do
 		absence_of_forbidden_characters_in :name
+	end
+
+	def poems_count
+		self.poems.count
+	end
+
+	def authors_count
+		self.authors.count
 	end
 
 
