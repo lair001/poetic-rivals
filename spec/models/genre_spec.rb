@@ -4,21 +4,21 @@ RSpec.describe Genre, type: :model do
 
 	it 'knows its name' do
 		genre = fake_genre
-		expect(build(:genre, name: genre).name).to eq(genre)
+		expect(build_stubbed(:genre, name: genre).name).to eq(genre)
 	end
 
 	it 'it validates its name for uniqueness regardless of letter case' do
-		genre1 = create(:genre)
-		expect(build(:genre, name: genre1.name.upcase).save).to eq(false)
-		expect(build(:genre, name: genre1.name.downcase).save).to eq(false)
+		save_models genre
+		expect(build(:genre, name: genre.name.upcase).save).to eq(false)
+		expect(build(:genre, name: genre.name.downcase).save).to eq(false)
 	end
 
 	it "isn't banned by default" do
-		expect(build(:genre).banned?).to eq(false)
+		expect(build_stubbed(:genre).banned?).to eq(false)
 	end
 
 	it "knows if it has been banned" do
-		expect(build(:genre, banned?: true).banned?).to eq(true)
+		expect(build_stubbed(:genre, banned?: true).banned?).to eq(true)
 	end
 
 	it 'has many poems and knows its poems count' do
