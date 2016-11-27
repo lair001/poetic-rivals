@@ -43,7 +43,7 @@ module PagesHelper
 		end
 
 		def user_poem_commentaries_page_tagline(poem)
-			"#{link_to poem.title, user_poem_path(poem.author, poem)}<br> #{link_to "By #{poem.author_username}", user_path(poem.author)}"
+			"#{link_to poem.title, user_poem_path(poem.author, poem)}<br>#{link_to "By #{poem.author_username}", user_path(poem.author)}"
 		end
 
 	end
