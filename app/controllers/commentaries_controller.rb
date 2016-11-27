@@ -7,7 +7,7 @@ class CommentariesController < ApplicationController
 	end
 
 	def new
-		@commentary = Commentary.new
+		@commentary = Commentary.new(poem_id: params[:poem_id])
 	end
 
 	def create

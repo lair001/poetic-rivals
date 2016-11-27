@@ -4,6 +4,14 @@ class CommentaryPolicy < ApplicationPolicy
 		authorize(@record.poem, :show?)
 	end
 
+	def new?
+		create?
+	end
+
+	def create?
+		authorize(@record.poem, :show?)
+	end
+
 	def edit?
 		update?
 	end
