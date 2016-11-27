@@ -2,7 +2,8 @@ class VotersController < ApplicationController
 
 	def create
 		authorize :poem_voter
-		@poem_voter = PoemVoter.new(poem_id: voters_params[:poem_id], value: voters_params[:value], voter_id: current_user.id)
+		params[:voter_id] = current_user.id
+		@poem_voter = PoemVoter.new(voter_params)
 		if @poem_voter.save
 			redirect_to previous_path_or_root
 		else
@@ -12,7 +13,7 @@ class VotersController < ApplicationController
 	end
 
 	def destroy
-		@poem_voter = PoemVoter.find_by(voters_params)
+		@poem_voter = PoemVoter.find_by(voter_params)
 		authorize @poem_voter
 		@poem_voter.destroy
 		redirect_to previous_path_or_root
@@ -20,11 +21,11 @@ class VotersController < ApplicationController
 
 private
 
-	def voters_params
+	def voter_params
 		params.permit(:poem_id, :voter_id, :value)
 	end
 
-	def voters_params_nested
+	def nested_voter_params
 		params.require(:poem_voter).permit(:poem_id, :voter_id, :value)
 	end
 

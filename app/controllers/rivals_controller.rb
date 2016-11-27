@@ -2,7 +2,8 @@ class RivalsController < ApplicationController
 
 	def create
 		authorize :rival_victim
-		@rival_victim = RivalVictim.new(victim_id: rivals_params[:victim_id], rival_id: current_user.id)
+		params[:rival_id] = current_user.id
+		@rival_victim = RivalVictim.new(rival_params)
 		if @rival_victim.save
 			redirect_to previous_path_or_root
 		else
@@ -12,7 +13,7 @@ class RivalsController < ApplicationController
 	end
 
 	def destroy
-		@rival_victim = RivalVictim.find_by(rivals_params)
+		@rival_victim = RivalVictim.find_by(rival_params)
 		authorize @rival_victim
 		@rival_victim.destroy
 		redirect_to previous_path_or_root
@@ -20,7 +21,7 @@ class RivalsController < ApplicationController
 
 private
 
-	def rivals_params
+	def rival_params
 		params.permit(:victim_id, :rival_id)
 	end
 
