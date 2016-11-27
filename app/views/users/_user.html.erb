@@ -15,23 +15,7 @@
 		</div>
 	<% end %>
 	<% if policy(user).ban? %>
-		<div class ="row">
-			<div class="col-xs-3">
-			</div>
-			<div class="col-xs-6">
-				<%= form_tag mod_user_path(user), method: :patch do %>
-					<%= button_tag class: "btn global-form-btn", :'data-confirm' => "Are you sure?" do %>
-						<% if user.banned? %>
-							<%= fa_icon("check-circle") %> Unban
-						<% else %>
-							<%= fa_icon("ban") %> Ban
-						<% end %>
-					<% end %>
-				<% end %>
-			</div>
-			<div class="col-xs-3">
-			</div>
-		</div>
+		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: mod_user_path(user), method: :patch, content: user.banned? ? "#{fa_icon("check-circle")} Unban" : "#{ fa_icon("ban") } Ban", data: { confirm: data_confirm_message } } %>
 	<% end %>
 	<div class="row global-divider-top">
 		<div class="col-xs-3">
@@ -92,19 +76,7 @@
 			</div>
 		</div>
 	<% elsif current_user != user %>
-		<div class="row">
-			<div class="col-xs-3">
-			</div>
-			<div class="col-xs-6">
-				<%= form_tag current_user.idolizing?(user) ? idol_fan_path(user, current_user) : victim_rival_path(user, current_user), method: :delete do %>
-					<%= button_tag class: "btn global-form-btn" do %>
-						<%= raw("#{fa_icon("bomb")} #{ current_user.idolizing?(user) ? "Fandom" : "Rivalry" }") %>
-					<% end %>
-				<% end %>
-			</div>
-			<div class="col-xs-3">
-			</div>
-		</div>
+		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: current_user.idolizing?(user) ? idol_fan_path(user, current_user) : victim_rival_path(user, current_user), method: :delete, content: "#{fa_icon("bomb")} #{ current_user.idolizing?(user) ? "Fandom" : "Rivalry" }", data: { confirm: data_confirm_message } } %>
 	<% end %>
 	<div class="row">
 		<div class="col-xs-3">

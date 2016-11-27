@@ -1,8 +1,9 @@
+<% data = {} if !local_assigns.has_key?(:data) %>
 <div class="row">
 	<div class="col-xs-3">
 	</div>
 	<div class="col-xs-6">
-	<%= render partial: 'layouts/forms/form_tag/global_button_only_form', locals: { action: action, method: method, content: content } %>
+		<%= render partial: 'layouts/forms/form_tag/global_button_only_form', locals: { action: action, method: method, content: content, data: data } %>
 	</div>
 	<div class="col-xs-3">
 	</div>

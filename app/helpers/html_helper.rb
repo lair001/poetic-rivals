@@ -26,4 +26,8 @@ module HtmlHelper
 		policy_scope(model.genres).collect{ |genre| genre.name}.join(", ")
 	end
 
+	def data_confirm_message
+		"Are you sure?"
+	end
+
 end

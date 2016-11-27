@@ -62,19 +62,7 @@
 			</div>
 		</div>
 	<% elsif current_user.upvoting?(poem) || current_user.downvoting?(poem) %>
-		<div class="row">
-			<div class="col-xs-3">
-			</div>
-			<div class="col-xs-6">
-					<%= form_tag poem_voter_path(poem, current_user), method: :delete do %>
-					<%= button_tag class: "btn global-form-btn" do %>
-						<%= raw("#{fa_icon("bomb")} #{ current_user.upvoting?(poem) ? "Upvote" : "Downvote" }") %>
-					<% end %>
-				<% end %>
-			</div>
-			<div class="col-xs-3">
-			</div>
-		</div>
+		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: poem_voter_path(poem, current_user), method: :delete, content: "#{fa_icon("bomb")} #{ current_user.upvoting?(poem) ? "Upvote" : "Downvote" }", data: { confirm: data_confirm_message } } %>
 	<% end %>
 	<div class="row">
 		<div class="col-xs-3">
