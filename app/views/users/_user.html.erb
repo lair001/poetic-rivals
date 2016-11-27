@@ -1,18 +1,6 @@
 <div class="global-jumbotron" id="user_dashboard">
 	<% if policy(:access).admin? || current_user == user %>
-		<div class ="row">
-			<div class="col-xs-3">
-			</div>
-			<div class="col-xs-6">
-				<%= form_tag policy(:access).admin? ? edit_admin_user_path(user) : edit_user_registration_path, method: :get do %>
-					<%= button_tag class: "btn global-form-btn" do %>
-						<%= fa_icon("pencil-square-o") %> Edit
-					<% end %>
-				<% end %>
-			</div>
-			<div class="col-xs-3">
-			</div>
-		</div>
+		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: policy(:access).admin? ? edit_admin_user_path(user) : edit_user_registration_path, method: :get, content: "#{fa_icon("pencil-square-o")} Edit" } %>
 	<% end %>
 	<% if policy(user).ban? %>
 		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: mod_user_path(user), method: :patch, content: user.banned? ? "#{fa_icon("check-circle")} Unban" : "#{ fa_icon("ban") } Ban", data: { confirm: data_confirm_message } } %>
@@ -63,17 +51,5 @@
 	<% elsif current_user != user %>
 		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: current_user.idolizing?(user) ? idol_fan_path(user, current_user) : victim_rival_path(user, current_user), method: :delete, content: "#{fa_icon("bomb")} #{ current_user.idolizing?(user) ? "Fandom" : "Rivalry" }", data: { confirm: data_confirm_message } } %>
 	<% end %>
-	<div class="row">
-		<div class="col-xs-3">
-		</div>
-		<div class="col-xs-6">
-			<%= form_tag user_poems_path(user), method: :get do %>
-				<%= button_tag class: "btn global-form-btn" do %>
-					<%= fa_icon("file-text") %> Poems
-				<% end %>
-			<% end %>
-		</div>
-		<div class="col-xs-3">
-		</div>
-	</div>
+	<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: user_poems_path(user), method: :get, content: "#{fa_icon("file-text")} Poems" } %>
 </div>
