@@ -26,10 +26,9 @@
             <button type="submit" class="btn btn-default submit-btn"><i class="fa fa-search"></i></button>
           </form>
           <ul class="nav navbar-nav navbar-right">
-          <% if user_signed_in? && !current_page?(aqm_path) %>
+          <% if user_signed_in? %>
+            <li><%= link_to 'Create', current_path.match(/\A\/users\/(\d)+\/poems\/(\d)+\/commentaries\z/) ? new_user_poem_commentary_path(params[:user_id], params[:poem_id]) : new_user_poem_path(current_user) %></li>
             <li><a data-method="delete" href="<%= destroy_user_session_path %>">Logout</a></li>
-          <% end %>
-          <% if user_signed_in? && !current_page?(aqm_path) %>
             <li><%= link_to "Account", edit_user_registration_path %><li>
           <% end %>
           </ul>
