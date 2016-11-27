@@ -36,6 +36,13 @@ class CommentariesController < ApplicationController
 		end
 	end
 
+	def destroy
+		@commentary = Commentary.find(params[:id])
+		authorize(@commentary)
+		@commentary.destroy
+		redirect_to previous_path_or_root
+	end
+
 private
 
 	def commentary_params
