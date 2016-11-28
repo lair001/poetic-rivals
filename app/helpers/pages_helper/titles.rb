@@ -70,6 +70,10 @@ module PagesHelper
 			"Authors Who Write Poems Classifed As"
 		end
 
+		def genres_page_title
+			"Genres"
+		end
+
 	end
 
 end

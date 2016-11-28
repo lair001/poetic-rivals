@@ -4,11 +4,11 @@
 	<% end %>
 	<%
 		content_left = <<-CONTENT_LEFT
-			<h3>#{link_to "Poems", genre_poems_path(genre) }:</h3>
+			<h3>#{link_to "Poems:", genre_poems_path(genre) }</h3>
 			<h4>#{genre.poems_count}</h4>
 		CONTENT_LEFT
 		content_right = <<-CONTENT_RIGHT
-			<h3>#{link_to "Authors", genre_authors_path(genre) }:</h3>
+			<h3>#{link_to "Authors:", genre_authors_path(genre) }</h3>
 			<h4>#{genre.authors_count}</h4>
 		CONTENT_RIGHT
 	%>

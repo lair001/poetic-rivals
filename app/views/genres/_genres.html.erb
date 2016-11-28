@@ -1,0 +1,20 @@
+<div class="global-jumbotron" id="genres_dashboard">
+	<% genres.each do |genre| %>
+		<div class="row global-divider-top <%= "global-divider-bottom" if genre == genres.last %>">
+			<div class="col-xs-4">
+				<br>
+				<h4><%= link_to "Poems:", genre_poems_path(genre) %></h4>
+				<h6><%= genre.poems_count %></h6>
+				<h4><%= link_to "Authors:", genre_authors_path(genre) %></h4>
+				<h6><%= genre.authors_count %></h6>
+				<br>
+			</div>
+			<div class="col-xs-8">
+				<br>
+				<br>
+				<h3><%= link_to genre.name, genre_path(genre) %></h3>
+				<br>
+			</div>
+		</div>
+	<% end %>
+</div>

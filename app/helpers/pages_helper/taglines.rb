@@ -58,6 +58,10 @@ module PagesHelper
 			link_to genre.name, genre_path(genre)
 		end
 
+		def genres_page_tagline
+			"At least it isn't Klingon"
+		end
+
 	end
 
 end
