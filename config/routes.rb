@@ -13,9 +13,11 @@ Rails.application.routes.draw do
 
 	resources :users, only: [:index, :show] do
 		resources :poems do
-			resources :commentaries, only: [:index, :new, :create, :edit, :update, :destroy]
+			resources :commentaries, only: [:index, :new, :edit, :destroy]
 		end
 	end
+
+	resources :commentaries, only: [:create, :update]
 
 	resources :idols, only: [] do
 		resources :fans, only: [:create, :destroy], param: :fan_id

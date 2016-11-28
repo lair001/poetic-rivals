@@ -7,12 +7,13 @@ class CommentariesController < ApplicationController
 	end
 
 	def new
-		@commentary = Commentary.new(poem_id: params[:poem_id])
+		@commentary = Commentary.new(commentator_id: current_user.id, poem_id: params[:poem_id])
 		authorize(@commentary)
+		render layout: 'application', locals: { model: @commentary }
 	end
 
 	def create
-		@commentary = Commentary.new(commentary_params)
+		@commentary = Commentary.new(commentary_params(:comment, :commentator_id, :poem_id))
 		authorize(@commentary)
 		if @commentary.save
 			redirect_to user_poem_commentaries_path(@commentary.poem_author, @commentary.poem)
@@ -24,12 +25,13 @@ class CommentariesController < ApplicationController
 	def edit
 		@commentary = Commentary.find(params[:id])
 		authorize(@commentary)
+		render layout: 'application', locals: { model: @commentary }
 	end
 
 	def update
 		@commentary = Commentary.find(params[:id])
 		authorize(@commentary)
-		if @commentary.update(commentary_params)
+		if @commentary.update(commentary_params(:comment))
 			redirect_to user_poem_commentaries_path(@commentary.poem_author, @commentary.poem)
 		else
 			render :edit
@@ -45,8 +47,9 @@ class CommentariesController < ApplicationController
 
 private
 
-	def commentary_params
-		params.require(:commentary).permit(:comment, :commentator_id, :poem_id)
+	def commentary_params(*args)
+		params.require(:commentary).permit(*args)
+		# params.require(:commentary).permit(:comment, :commentator_id, :poem_id)
 	end
 
 end

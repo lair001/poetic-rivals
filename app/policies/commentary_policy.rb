@@ -1,7 +1,7 @@
 class CommentaryPolicy < ApplicationPolicy
 
 	def show?
-		authorize(@record.poem, :show?)
+		PoemPolicy.new(@user, @record.poem).show?
 	end
 
 	def new?
@@ -9,7 +9,7 @@ class CommentaryPolicy < ApplicationPolicy
 	end
 
 	def create?
-		authorize(@record.poem, :show?)
+		PoemPolicy.new(@user, @record.poem).show? && @user == @record.commentator
 	end
 
 	def edit?

@@ -1,0 +1,24 @@
+<div class="global-jumbotron" id="commentary_form">
+
+	<% if commentary.errors.any? %>
+		<%= render partial: 'layouts/model_errors', locals: { model: commentary } %>
+	<% end %>
+
+	<%= form_for commentary, html: { class: "global-form" } do |f| %>
+
+		<%= f.hidden_field :commentator_id %>
+		<%= f.hidden_field :poem_id %>
+
+	    <div class="form-group">
+	      <%= f.label :comment %><br />
+	      <%= f.text_area :comment, class: "form-control global-form-input", rows: 20 %>
+	    </div>
+
+	    <div class="actions">
+	      <%= f.submit current_path.match(/\/new/) ? "Create" : "Update", class: "btn global-form-btn" %>
+	    </div>
+
+
+	<% end %>
+
+</div>

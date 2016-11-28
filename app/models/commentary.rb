@@ -17,6 +17,10 @@ class Commentary < ApplicationRecord
 		poem.author
 	end
 
+	def poem_title
+		poem.title
+	end
+
 	def poem_author_username
 		poem_author.username
 	end

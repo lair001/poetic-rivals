@@ -62,6 +62,14 @@ module PagesHelper
 			"At least it isn't Klingon"
 		end
 
+		def new_user_poem_commentary_page_tagline(commentary)
+			"#{commentary.poem_title} by #{commentary.poem_author_username}"
+		end
+
+		def edit_user_poem_commentary_page_tagline(commentary)
+			"#{commentary.poem_title} by #{commentary.poem_author_username}"
+		end
+
 	end
 
 end

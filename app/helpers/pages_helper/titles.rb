@@ -74,6 +74,14 @@ module PagesHelper
 			"Genres"
 		end
 
+		def new_user_poem_commentary_page_title
+			"Commenting On"
+		end
+
+		def edit_user_poem_commentary_page_title
+			"Editing Commentary Regarding"
+		end
+
 	end
 
 end
