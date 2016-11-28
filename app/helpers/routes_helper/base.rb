@@ -23,9 +23,9 @@ module RoutesHelper
 			elsif current_path.match(/\A\/genres\/(\d)+\z/)
 				"/genres/:id"
 			elsif current_path.match(/\A\/genres\/(\d)+\/authors\z/)
-				"/genres/:id/authors"
+				"/genres/:genre_id/authors"
 			elsif current_path.match(/\A\/genres\/(\d)+\/poems\z/)
-				"/genres/:id/poems"
+				"/genres/:genre_id/poems"
 			else
 				current_path
 			end

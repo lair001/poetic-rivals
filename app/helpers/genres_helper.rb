@@ -5,7 +5,7 @@ module GenresHelper
 	end
 
 	def sort_genre_poems_by_updated_at
-		@poems = @genre.poems_ordered_by_descending_updated_at
+		@poems = policy_scope(@genre.poems_ordered_by_descending_updated_at)
 	end
 
 	def sort_genre_authors_by_score

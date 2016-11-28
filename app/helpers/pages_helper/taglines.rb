@@ -50,6 +50,10 @@ module PagesHelper
 			genre.banned? ? "Banned" : "Mostly Harmless"
 		end
 
+		def genre_poems_page_tagline(genre)
+			link_to genre.name, genre_path(genre)
+		end
+
 	end
 
 end

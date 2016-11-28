@@ -62,6 +62,10 @@ module PagesHelper
 			genre.name
 		end
 
+		def genre_poems_page_title
+			"Poems Classified As"
+		end
+
 	end
 
 end
