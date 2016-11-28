@@ -16,8 +16,6 @@ class Poem < ApplicationRecord
 		absence_of_forbidden_characters_in :body
 	end
 
-	# accepts_nested_attributes_for :genres
-
 	def private=(boolean)
 		self.send("private?=", boolean)
 	end

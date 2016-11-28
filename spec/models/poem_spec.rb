@@ -89,16 +89,25 @@ RSpec.describe Poem, type: :model do
 	end
 
 	it 'accepts attributes for many genres' do
-		save_models poem, genre_a, genre_b, genre_c
+		save_models poem, genre_a, genre_b, genre_c, genre_d, genre_e
 		params = {
 			genres_attributes: {
 				0 => { name: genre_a.name },
 				1 => { name: genre_b.name },
 				2 => { name: genre_c.name }
-			}
+			},
+			genre_ids: [genre_d.id, genre_e.id]
 		}
 		poem.update(params)
-		expect(poem.genres).to contain_exactly(genre_a, genre_b, genre_c)
+		expect(poem.genres).to contain_exactly(genre_a, genre_b, genre_c, genre_d, genre_e)
+		params = {
+			genres_attributes: {
+				0 => { name: genre_e.name }
+			},
+			genre_ids: [genre_a.id]
+		}
+		poem.update(params)
+		expect(poem.genres).to contain_exactly(genre_a, genre_e)
 	end
 
 end
