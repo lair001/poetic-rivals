@@ -1,5 +1,9 @@
 class GenrePolicy < ApplicationPolicy
 
+	def show?
+		!@record.banned? || @user.administrator? || @user.superuser?
+	end
+
 	class Scope < Scope
 
 		def resolve
