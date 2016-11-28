@@ -58,6 +58,10 @@ module PagesHelper
 			"Commentaries Regarding"
 		end
 
+		def genre_page_title(genre)
+			genre.name
+		end
+
 	end
 
 end

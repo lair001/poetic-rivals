@@ -46,6 +46,10 @@ module PagesHelper
 			"#{link_to poem.title, user_poem_path(poem.author, poem)}<br>#{link_to "By #{poem.author_username}", user_path(poem.author)}"
 		end
 
+		def genre_page_tagline(genre)
+			genre.banned? ? "Banned" : "Mostly Harmless"
+		end
+
 	end
 
 end

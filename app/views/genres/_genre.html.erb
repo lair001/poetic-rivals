@@ -1,0 +1,16 @@
+<div class="global-jumbotron" id="genre_dashboard">
+	<% if policy(:access).admin? %>
+		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: edit_admin_genre_path(genre), method: :get, content: "#{fa_icon("pencil-square-o")} Edit" } %>
+	<% end %>
+	<%
+		content_left = <<-CONTENT_LEFT
+			<h3>#{link_to "Poems", genre_poems_path(genre) }:</h3>
+			<h4>#{genre.poems_count}</h4>
+		CONTENT_LEFT
+		content_right = <<-CONTENT_RIGHT
+			<h3>#{link_to "Authors", genre_authors_path(genre) }:</h3>
+			<h4>#{genre.authors_count}</h4>
+		CONTENT_RIGHT
+	%>
+	<%= render partial: 'layouts/row_with_two_half_width_fields', locals: { content_left: content_left, content_right: content_right } %>
+</div>
