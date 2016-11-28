@@ -23,7 +23,7 @@ module HtmlHelper
 	end
 
 	def render_genres_for(model)
-		policy_scope(model.genres).collect{ |genre| genre.name}.join(", ")
+		raw(policy_scope(model.genres).collect{ |genre| link_to genre.name, genre_path(genre)}.join(", "))
 	end
 
 	def data_confirm_message
