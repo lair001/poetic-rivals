@@ -4,6 +4,14 @@ module GenresHelper
 		@genre = Genre.find(params[:id])
 	end
 
+	def sort_genre_poems_by_updated_at
+		@poems = @genre.poems_ordered_by_descending_updated_at
+	end
+
+	def sort_genre_authors_by_score
+		@users = @genre.authors_ordered_by_descending_score
+	end
+
 	def sort_genres_by_name
 		@genres = Genre.ordered_by_ascending_name
 	end
