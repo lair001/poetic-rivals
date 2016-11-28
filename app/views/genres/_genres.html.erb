@@ -1,4 +1,7 @@
 <div class="global-jumbotron" id="genres_dashboard">
+	<% if policy(:access).admin? %>
+		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: new_admin_genre_path, method: :get, content: "#{fa_icon("pencil-square-o")} New Genre" } %>
+	<% end %>
 	<% genres.each do |genre| %>
 		<div class="row global-divider-top <%= "global-divider-bottom" if genre == genres.last %>">
 			<div class="col-xs-4">
@@ -16,5 +19,8 @@
 				<br>
 			</div>
 		</div>
+	<% end %>
+	<% if policy(:access).admin? %>
+		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: new_admin_genre_path, method: :get, content: "#{fa_icon("pencil-square-o")} New Genre" } %>
 	<% end %>
 </div>
