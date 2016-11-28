@@ -10,6 +10,14 @@ class Genre < ApplicationRecord
 		absence_of_forbidden_characters_in :name
 	end
 
+	def poems_ordered_by_descending_updated_at
+		self.poems.order(updated_at: :desc)
+	end
+
+	def authors_ordered_by_descending_score
+		self.authors.order(score: :desc)
+	end
+
 	def poems_count
 		self.poems.count
 	end
@@ -25,6 +33,10 @@ class Genre < ApplicationRecord
 
 	def self.format_name(name)
 		name.strip.gsub(/[\t\f\v\n\r\u00A0…\u2003]/, " ").gsub(/( ){2,}/, " ").gsub(/\s*\/\s*/, "/").split("/").collect{ |section| section.capitalize }.join("/")
+	end
+
+	def self.ordered_by_ascending_name
+		@@ordered_by_ascending_name ||= self.all.order(name: :asc)
 	end
 
 end
