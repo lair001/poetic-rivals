@@ -18,7 +18,8 @@ class CommentariesController < ApplicationController
 		if @commentary.save
 			redirect_to user_poem_commentaries_path(@commentary.poem_author, @commentary.poem)
 		else
-			render :new
+			@current_path_name = "new_user_poem_commentary" # need to manually set this for the title block to display
+			render :new, layout: 'application', locals: { model: @commentary }
 		end
 	end
 
@@ -34,7 +35,8 @@ class CommentariesController < ApplicationController
 		if @commentary.update(commentary_params(:comment))
 			redirect_to user_poem_commentaries_path(@commentary.poem_author, @commentary.poem)
 		else
-			render :edit
+			@current_path_name = "edit_user_poem_commentary" # need to manually set this for the title block to display
+			render :edit, layout: 'application', locals: { model: @commentary }
 		end
 	end
 

@@ -47,7 +47,7 @@ module PagesHelper
 		end
 
 		def genre_page_tagline(genre)
-			genre.banned? ? "Banned" : "Mostly Harmless"
+			genre.status
 		end
 
 		def genre_poems_page_tagline(genre)
@@ -68,6 +68,14 @@ module PagesHelper
 
 		def edit_user_poem_commentary_page_tagline(commentary)
 			"#{commentary.poem_title} by #{commentary.poem_author_username}"
+		end
+
+		def new_admin_genre_page_tagline
+			"By popular demand"
+		end
+
+		def edit_admin_genre_page_tagline(genre)
+			genre.status
 		end
 
 	end

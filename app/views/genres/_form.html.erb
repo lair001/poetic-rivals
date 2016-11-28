@@ -1,0 +1,23 @@
+<div class="global-jumbotron" id="genre_form">
+
+	<% if genre.errors.any? %>
+		<%= render partial: 'layouts/model_errors', locals: { model: genre } %>
+	<% end %>
+
+	<%= form_for genre, url: current_path.match(/\/new/) ? admin_genres_path : admin_genre_path, html: { class: "global-form" } do |f| %>
+
+	    <div class="form-group">
+	      <%= f.label :name %><br />
+	      <%= f.text_field :name, class: "form-control global-form-input" %>
+	    </div>
+
+	    <%= render partial: 'layouts/forms/form_for/checkbox', locals: {form_builder: f, method_symbol: :banned?, label: "Banned?"} %>
+
+	    <div class="actions">
+	      <%= f.submit current_path.match(/\/new/) ? "Create" : "Update", class: "btn global-form-btn" %>
+	    </div>
+
+
+	<% end %>
+
+</div>

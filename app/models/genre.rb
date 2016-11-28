@@ -10,6 +10,14 @@ class Genre < ApplicationRecord
 		absence_of_forbidden_characters_in :name
 	end
 
+	def banned=(boolean)
+		self.send("banned?=", boolean)
+	end
+
+	def status
+		banned? ? "Banned" : "Mostly Harmless"
+	end
+
 	def poems_ordered_by_descending_updated_at
 		self.poems.order(updated_at: :desc)
 	end

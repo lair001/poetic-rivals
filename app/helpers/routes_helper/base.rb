@@ -14,6 +14,8 @@ module RoutesHelper
 				"/users/:id"
 			elsif current_path.match(/\A\/admin\/users\/(\d)+\/edit\z/)
 				"/admin/users/:id/edit"
+			elsif current_path.match(/\A\/admin\/genres\/(\d)+\/edit\z/)
+				"/admin/genres/:id/edit"
 			elsif current_path.match(/\A\/users\/(\d)+\/poems\z/)
 				"/users/:user_id/poems"
 			elsif current_path.match(/\A\/users\/(\d)+\/poems\/(\d)+\z/)

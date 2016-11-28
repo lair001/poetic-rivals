@@ -82,6 +82,14 @@ module PagesHelper
 			"Editing Commentary Regarding"
 		end
 
+		def new_admin_genre_page_title
+			"Creating a New Genre"
+		end
+
+		def edit_admin_genre_page_title(genre)
+			"Editing #{genre.name}"
+		end
+
 	end
 
 end
