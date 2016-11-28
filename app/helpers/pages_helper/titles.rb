@@ -66,6 +66,10 @@ module PagesHelper
 			"Poems Classified As"
 		end
 
+		def genre_authors_page_title
+			"Authors Who Write Poems Classifed As"
+		end
+
 	end
 
 end

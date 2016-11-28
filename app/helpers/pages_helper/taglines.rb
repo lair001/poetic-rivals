@@ -54,6 +54,10 @@ module PagesHelper
 			link_to genre.name, genre_path(genre)
 		end
 
+		def genre_authors_page_tagline(genre)
+			link_to genre.name, genre_path(genre)
+		end
+
 	end
 
 end
