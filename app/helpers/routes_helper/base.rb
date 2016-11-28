@@ -20,6 +20,12 @@ module RoutesHelper
 				"/users/:user_id/poems/:id"
 			elsif current_path.match(/\A\/users\/(\d)+\/poems\/(\d)+\/commentaries\z/)
 				"/users/:user_id/poems/:poem_id/commentaries"
+			elsif current_path.match(/\A\/genres\/(\d)+\z/)
+				"/genres/:id"
+			elsif current_path.match(/\A\/genres\/(\d)+\/authors\z/)
+				"/genres/:id/authors"
+			elsif current_path.match(/\A\/genres\/(\d)+\/poems\z/)
+				"/genres/:id/poems"
 			else
 				current_path
 			end
