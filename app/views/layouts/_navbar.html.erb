@@ -10,17 +10,17 @@
         </div>
         <div class="collapse navbar-collapse" id="my_navbar">
           <ul class="nav navbar-nav">
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  Navigate <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a href="#top">Top</a></li>
-                  <li><a href="#credit_box">Bottom</a></li>
-                  <li><%= link_to "Genres", genres_path %></li>
-                </ul>
-              </li>
-              <li><%= link_to "Leaderboard", leaderboard_users_path %></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Navigate <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#top">Top</a></li>
+                <li><a href="#credit_box">Bottom</a></li>
+                <li><%= link_to "Genres", genres_path %></li>
+              </ul>
+            </li>
+            <li><%= link_to "Leaderboard", leaderboard_users_path %></li>
           </ul>
           <form class="navbar-form navbar-right" method="get" action="https://www.google.com/search" role="search" target="_blank">
             <div class="form-group">
@@ -32,15 +32,15 @@
           <% if user_signed_in? %>
             <li><%= link_to 'Create', current_path.match(/\A\/users\/(\d)+\/poems\/(\d)+\/commentaries\z/) ? new_user_poem_commentary_path(params[:user_id], params[:poem_id]) : new_user_poem_path(current_user) %></li>
             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  Account <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "Profile", user_path(current_user) %></li>
-                  <li><%= link_to "Edit", edit_user_registration_path %></li>
-                  <li><a data-method="delete" href="<%= destroy_user_session_path %>">Logout</a></li>
-                </ul>
-              </li>
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Account <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Profile", user_path(current_user) %></li>
+                <li><%= link_to "Edit", edit_user_registration_path %></li>
+                <li><a data-method="delete" href="<%= destroy_user_session_path %>">Logout</a></li>
+              </ul>
+            </li>
           <% end %>
           </ul>
         </div>
