@@ -1,5 +1,9 @@
 class PoemPolicy < ApplicationPolicy
 
+	def create?
+		@user = @record.author
+	end
+
 	def edit?
 		@user.moderator? || @user.superuser? || @user == @record.author
 	end

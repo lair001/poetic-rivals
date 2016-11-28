@@ -16,6 +16,12 @@ class Poem < ApplicationRecord
 		absence_of_forbidden_characters_in :body
 	end
 
+	# accepts_nested_attributes_for :genres
+
+	def private=(boolean)
+		self.send("private?=", boolean)
+	end
+
 	def upvotes_count
 		self.poem_voters.where(value: 1).count
 	end
@@ -24,8 +30,14 @@ class Poem < ApplicationRecord
 		self.poem_voters.where(value: -1).count
 	end
 
+	def genres_attributes=(genre_params_hash_array)
+		genre_params_hash_array.values.each do |genre_params|
+			self.genre_attributes = genre_params
+		end
+	end
+
 	def genre_attributes=(genre_params)
-		self.genres << Genre.find_or_create_by(name: Genre.format_name(genre_params[:name]))
+		self.genres << Genre.find_or_create_by(genre_params)
 	end
 
 	def title=(title)

@@ -31,6 +31,9 @@ module FactoryContext
   let(:poem_b) { build(:poem) }
   let(:poem_c) { build(:poem) }
   let(:genre) { build(:genre) }
+  let(:genre_a) { build(:genre) }
+  let(:genre_b) { build(:genre) }
+  let(:genre_c) { build(:genre) }
   let(:commentary) { build(:commentary) }
   let(:poem_genre) { build(:poem_genre) }
   let(:rival_victim) { build(:rival_victim) }
@@ -51,6 +54,9 @@ module FactoryContext
   let(:stubbed_poem_b) { build_stubbed(:poem) }
   let(:stubbed_poem_c) { build_stubbed(:poem) }
   let(:stubbed_genre) { build_stubbed(:genre) }
+  let(:stubbed_genre_a) { build_stubbed(:genre) }
+  let(:stubbed_genre_b) { build_stubbed(:genre) }
+  let(:stubbed_genre_c) { build_stubbed(:genre) }
   let(:stubbed_commentary) { build_stubbed(:commentary) }
   let(:stubbed_poem_genre) { build_stubbed(:poem_genre) }
   let(:stubbed_rival_victim) { build_stubbed(:rival_victim) }
