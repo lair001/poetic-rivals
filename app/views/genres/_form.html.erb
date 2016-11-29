@@ -14,7 +14,7 @@
 	    <%= render partial: 'layouts/forms/form_for/checkbox', locals: {form_builder: f, method_symbol: :banned?, label: "Banned?"} %>
 
 	    <div class="actions">
-	      <%= f.submit current_path.match(/\/new/) ? "Create" : "Update", class: "btn global-form-btn" %>
+	      <%= f.submit current_path_name.match(/new_/) ? "Create" : "Update", class: "btn global-form-btn" %>
 	    </div>
 
 

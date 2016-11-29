@@ -1,7 +1,7 @@
 .field_with_errors {
 	display: inline;
 	color: $global-error-text-color;
-	input, input:focus {
+	input, input:focus, textarea, textarea:focus {
 		@include input-placeholder-styling($global-error-text-color);
 		color: $global-error-text-color;
 		border-color: $global-error-border-color;

@@ -16,6 +16,8 @@ class Poem < ApplicationRecord
 		absence_of_forbidden_characters_in :body
 	end
 
+
+
 	def private=(boolean)
 		self.send("private?=", boolean)
 	end
@@ -35,7 +37,9 @@ class Poem < ApplicationRecord
 	end
 
 	def genre_attributes=(genre_params)
-		self.genres << Genre.find_or_create_by(genre_params)
+		return nil if genre_params["name"].blank?
+		genre = Genre.find_by(genre_params)
+		genre ? self.genres << genre : self.genres.build(genre_params)
 	end
 
 	def title=(title)

@@ -1,4 +1,4 @@
-<div class=".form-check">
+<div class="checkbox">
 	<% if local_assigns.has_key?(:checked_value) %>
 		<% if local_assigns.has_key?(:unchecked_value) %>
 			<%= form_builder.check_box method_symbol, { class: "form-check-input global-form-checkbox" } , checked_value, unchecked_value %>
