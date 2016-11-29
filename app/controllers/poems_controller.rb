@@ -24,6 +24,17 @@ class PoemsController < ApplicationController
 		@poem = Poem.new(author_id: current_user.id)
 	end
 
+	def create
+		@poem = Poem.new(poem_params(:author_id))
+		authorize(@poem)
+		if @poem.save
+			redirect_to user_poem_path(@poem)
+		else
+			@current_path_name = "new_user_poem"
+			render :new
+		end
+	end
+
 	def edit
 		@poem = Poem.find(params[:id])
 		authorize(@poem)
