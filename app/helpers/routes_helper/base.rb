@@ -18,8 +18,12 @@ module RoutesHelper
 				"/admin/genres/:id/edit"
 			elsif current_path.match(/\A\/users\/(\d)+\/poems\z/)
 				"/users/:user_id/poems"
+			elsif current_path.match(/\A\/users\/(\d)+\/poems\/new\z/)
+				"/users/:user_id/poems/new"
 			elsif current_path.match(/\A\/users\/(\d)+\/poems\/(\d)+\z/)
 				"/users/:user_id/poems/:id"
+			elsif current_path.match(/\A\/users\/(\d)+\/poems\/(\d)+\/edit\z/)
+				"/users/:user_id/poems/:id/edit"
 			elsif current_path.match(/\A\/users\/(\d)+\/poems\/(\d)+\/commentaries\z/)
 				"/users/:user_id/poems/:poem_id/commentaries"
 			elsif current_path.match(/\A\/users\/(\d)+\/poems\/(\d)+\/commentaries\/new\z/)
