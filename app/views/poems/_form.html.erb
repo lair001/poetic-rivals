@@ -19,7 +19,7 @@
 	    </div>
 
 	    <div class="align-left" id="poem_genre_checkboxes">
-			<%= f.collection_check_boxes :genre_ids, policy_scope(poem.genres).limit(policy_scope(poem.genres).count), :id, :name do |b|
+			<%= f.collection_check_boxes :genre_ids, policy_scope(poem.genres), :id, :name do |b|
 					raw("<div class='checkbox'>#{b.check_box(class: "global-form-checkbox")}#{b.label(class: "") {raw("<span></span>#{b.text}")}}</div>")
 			end %>
 		</div>
