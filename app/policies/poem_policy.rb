@@ -26,7 +26,7 @@ class PoemPolicy < ApplicationPolicy
 			if user.moderator? || user.superuser?
 				scope
 			else
-				scope.where("private = false OR author_id = ?", user.id)
+				scope.where(private?: false).or(scope.where(author_id: user.id))
 			end
 		end
 
