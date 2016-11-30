@@ -19,14 +19,13 @@
 	    </div>
 
 	    <div class="align-left" id="poem_genre_checkboxes">
-			<%= f.collection_check_boxes :genre_ids, poem.genres.limit(poem.genres.count), :id, :name do |b|
+			<%= f.collection_check_boxes :genre_ids, policy_scope(poem.genres).limit(policy_scope(poem.genres).count), :id, :name do |b|
 					raw("<div class='checkbox'>#{b.check_box(class: "global-form-checkbox")}#{b.label(class: "") {raw("<span></span>#{b.text}")}}</div>")
 			end %>
 		</div>
 
 		<% for i in -2..-1 do %>
-
-		    <%= f.fields_for :genres, poem.genres[i] && !poem.genres[i].name.blank? ? poem.genres.build : poem.genres[i] do |genres_fields| %>
+		    <%= f.fields_for :genres, poem.genres[i] && !poem.genres[i].persisted? ? poem.genres[i] : Genre.new  do |genres_fields| %>
 			    <div class="form-group">
 					<%= genres_fields.label :name, "Genre Name" %><br />
 					<%= genres_fields.text_field :name, class: "form-control global-form-input" %>

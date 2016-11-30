@@ -1,7 +1,7 @@
 class UserPolicy < ApplicationPolicy
 
 	def ban?
-		if @user.moderator? && (@record.normal? || @record.banned?)
+		if @user.moderator? && (@record.poet? || @record.banned?)
 			true
 		elsif @user.superuser? && !@record.superuser?
 			true

@@ -22,8 +22,6 @@ class PoemsController < ApplicationController
 
 	def new
 		@poem = Poem.new(author_id: current_user.id)
-		@poem.genres.build
-		@poem.genres.build
 	end
 
 	def create
@@ -40,8 +38,6 @@ class PoemsController < ApplicationController
 	def edit
 		@poem = Poem.find(params[:id])
 		authorize(@poem)
-		@poem.genres.build
-		@poem.genres.build
 		render layout: 'application', locals: { model: @poem }
 	end
 
