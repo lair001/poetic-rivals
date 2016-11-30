@@ -63,11 +63,11 @@ module PagesHelper
 		end
 
 		def new_user_poem_commentary_page_tagline(commentary)
-			"#{link_to commentary.poem_title, user_poem_path(commentary.poem_author, commentary.poem)}<br>By #{link_to commentary.poem_author_username, user_path(commentary.poem_author)}"
+			"#{link_to commentary.poem_title, user_poem_path(commentary.poem_author, commentary.poem)}<br> #{link_to "By #{commentary.poem_author_username}", user_path(commentary.poem_author)}"
 		end
 
 		def edit_user_poem_commentary_page_tagline(commentary)
-			"#{link_to commentary.poem_title, user_poem_path(commentary.poem_author, commentary.poem)}<br>By #{link_to commentary.poem_author_username, user_path(commentary.poem_author)}"
+			"#{link_to commentary.poem_title, user_poem_path(commentary.poem_author, commentary.poem)}<br> #{link_to "By #{commentary.poem_author_username}", user_path(commentary.poem_author)}"
 		end
 
 		def new_admin_genre_page_tagline
@@ -83,7 +83,7 @@ module PagesHelper
 		end
 
 		def edit_user_poem_page_tagline(poem)
-			"By #{link_to(poem.author_username, user_path(poem.author))}"
+			"#{link_to("By #{poem.author_username}", user_path(poem.author))}"
 		end
 
 	end
