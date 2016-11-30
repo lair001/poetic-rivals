@@ -17,7 +17,7 @@ class CommentaryPolicy < ApplicationPolicy
 	end
 
 	def update?
-		@user.moderator? || @user.superuser? || @user = @record.commentator
+		@user.moderator? || @user.superuser? || @user == @record.commentator
 	end
 
 	def destroy?
