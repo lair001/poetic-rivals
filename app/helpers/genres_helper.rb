@@ -13,7 +13,7 @@ module GenresHelper
 	end
 
 	def sort_genres_by_name
-		@genres = Genre.ordered_by_ascending_name
+		@genres = policy_scope(Genre.ordered_by_ascending_name)
 	end
 
 end

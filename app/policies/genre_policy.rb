@@ -10,7 +10,7 @@ class GenrePolicy < ApplicationPolicy
 			if user.administrator? || user.superuser?
 				scope
 			else
-				scope.where("banned = false")
+				scope.where(banned?: false)
 			end
 		end
 
