@@ -90,6 +90,14 @@ module PagesHelper
 			"Editing #{genre.name}"
 		end
 
+		def new_user_poem_page_title
+			"New Poem"
+		end
+
+		def edit_user_poem_page_title(poem)
+			"Editing #{poem.title}"
+		end
+
 	end
 
 end
