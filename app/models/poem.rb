@@ -37,7 +37,7 @@ class Poem < ApplicationRecord
 	end
 
 	def genre_attributes=(genre_params)
-		return nil if genre_params["name"].blank?
+		return nil if genre_params["name"].blank? && genre_params[:name].blank?
 		genre = Genre.find_by(genre_params)
 		genre ? self.genres << genre : self.genres.build(genre_params)
 	end
