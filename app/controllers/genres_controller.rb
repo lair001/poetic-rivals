@@ -7,7 +7,7 @@ class GenresController < ApplicationController
 	end
 
 	def index
-		sort_genres_by_name
+		sort_genres_by_name_and_paginate
 	end
 
 end

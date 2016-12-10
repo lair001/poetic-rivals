@@ -16,4 +16,8 @@ module GenresHelper
 		@genres = policy_scope(Genre.ordered_by_ascending_name)
 	end
 
+	def sort_genres_by_name_and_paginate
+		@genres = policy_scope(Genre.ordered_by_ascending_name).page(params[:page])
+	end
+
 end

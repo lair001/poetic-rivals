@@ -2,8 +2,12 @@
 	<% if policy(:access).admin? %>
 		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: new_admin_genre_path, method: :get, content: "#{fa_icon("pencil-square-o")} New Genre" } %>
 	<% end %>
-	<% genres.each do |genre| %>
-		<div class="row global-divider-top <%= "global-divider-bottom" if genre == genres.last %>">
+	<div class="row global-divider-top">
+		<%= paginate @genres %>
+	</div>
+	<% i = params[:page] ? 1 + (params[:page].to_i - 1) * 10 : 1
+	genres.each do |genre| %>
+		<div class="row global-divider-top">
 			<div class="col-xs-4">
 				<br>
 				<h4><%= link_to "Poems:", genre_poems_path(genre) %></h4>
@@ -11,15 +15,20 @@
 				<h4><%= link_to "Authors:", genre_authors_path(genre) %></h4>
 				<h6><%= genre.authors_count %></h6>
 				<br>
+
 			</div>
 			<div class="col-xs-8">
 				<br>
 				<br>
-				<h3><%= link_to genre.name, genre_path(genre) %></h3>
+				<h3><%= link_to genre.name, genre_path(genre) + "?sort_position=#{i}" %></h3>
 				<br>
 			</div>
 		</div>
-	<% end %>
+	<% i += 1
+	end %>
+	<div class="row global-divider-top global-divider-bottom">
+		<%= paginate @genres %>
+	</div>
 	<% if policy(:access).admin? %>
 		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: new_admin_genre_path, method: :get, content: "#{fa_icon("pencil-square-o")} New Genre" } %>
 	<% end %>
