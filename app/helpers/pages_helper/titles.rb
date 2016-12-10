@@ -22,6 +22,10 @@ module PagesHelper
 			user.username
 		end
 
+		def users_page_title
+			"Directory"
+		end
+
 		def new_user_session_page_title
 			"Log in"
 		end

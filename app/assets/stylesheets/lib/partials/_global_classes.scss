@@ -20,6 +20,12 @@
   @include jumbotron($global-middle-level-background-color);
 }
 
+.row-margin {
+  margin-right: -15px;
+  margin-left: -15px;
+  width: 100%;
+}
+
 .half-width {
 	width: 50%;
 }

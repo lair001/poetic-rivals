@@ -14,6 +14,10 @@ module PagesHelper
 			display_role_for(user)
 		end
 
+		def users_page_tagline
+			"Discover new idols and victims!"
+		end
+
 		def new_user_session_page_tagline
 			"Face the admiration of your fans and the scorn of your rivals!"
 		end

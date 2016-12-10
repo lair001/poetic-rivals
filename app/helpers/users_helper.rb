@@ -12,6 +12,10 @@ module UsersHelper
 		@users ||= User.ordered_by_ascending_username
 	end
 
+	def sort_users_by_username_and_paginate
+		@users ||= User.ordered_by_ascending_username.page(params[:page])
+	end
+
 	def user_with_highest_score
 		@user_with_highest_score ||= User.with_highest_score
 	end

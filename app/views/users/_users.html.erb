@@ -1,24 +1,26 @@
 <div class="global-jumbotron" id="users_jumbotron">
-	<div class="global-divider-bottom">
-		<% users.each do |user| %>
-			<div class="row user global-divider-top" id="<%= "user_#{user.id}" %>">
-				<div class="col-xs-4">
-					<br>
-					<h3 class="user-username"><%= link_to user.username, user_path(user) %></h3>
-					<h4><em class="user-role"><%= display_role_for(user) %></em></h4>
-					<h4>Joined:</h4>
-					<h6 class="user-created-at-date"><%= raw(display_date(user.created_at)) %></h6>
-					<h6 class="user-created-at-time"><%= raw(display_time(user.created_at)) %></h6>
-					<br>
-				</div>
-				<div class="col-xs-8">
-					<br>
-					<br>
-					<br>
-					<h3><%= raw("<span class='user-score'>#{user.score}</span><br>(<span class='user-score-per-poem'>#{user.score_per_poem}</span>)")  %></h3>
-					<br>
-				</div>
+	<%= render partial: 'users/users_nav' %>
+	<% users.each do |user| %>
+		<div class="row user global-divider-top" id="<%= "user_#{user.id}" %>">
+			<div class="col-xs-4">
+				<br>
+				<h3 class="user-username"><%= link_to user.username, user_path(user) %></h3>
+				<h4><em class="user-role"><%= display_role_for(user) %></em></h4>
+				<h4>Joined:</h4>
+				<h6 class="user-created-at-date"><%= raw(display_date(user.created_at)) %></h6>
+				<h6 class="user-created-at-time"><%= raw(display_time(user.created_at)) %></h6>
+				<br>
 			</div>
-		<% end %>
+			<div class="col-xs-8">
+				<br>
+				<br>
+				<br>
+				<h3><%= raw("<span class='user-score'>#{user.score}</span><br>(<span class='user-score-per-poem'>#{user.score_per_poem}</span>)")  %></h3>
+				<br>
+			</div>
+		</div>
+	<% end %>
+	<%= render partial: 'users/users_nav' %>
+	<div class="row global-divider-bottom">
 	</div>
 </div>

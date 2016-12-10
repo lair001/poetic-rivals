@@ -5,4 +5,8 @@ class UsersController < ApplicationController
 		render layout: 'application', locals: { model: @user }
 	end
 
+	def index
+		sort_users_by_username_and_paginate
+	end
+
 end
