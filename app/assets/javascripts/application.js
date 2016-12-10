@@ -19,4 +19,4 @@
 
 //= require config/environment
 
-//= require lib/amazingQuoteMachine
+//= require lib/aqm
