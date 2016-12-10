@@ -16,5 +16,7 @@
 //= require bootstrap-sprockets
 //= require modernizr-2.8.3.min
 //= require taboverride-4.0.3.min
-//= require enable-taboverride
-//= require bootstrap-dropdown-fix
+
+//= require config/environment
+
+//= require lib/amazingQuoteMachine

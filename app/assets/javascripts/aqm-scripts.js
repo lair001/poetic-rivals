@@ -49,14 +49,17 @@ function getQuote() {
   $.ajax({
     url: "https://andruxnet-random-famous-quotes.p.mashape.com/",
     headers: {
-      "X-Mashape-Key" : "Qw2g12B4REmshcboj3CXywJddWW3p1Ghch3jsnkOe5kOLosA2s",
+      "X-Mashape-Key": "Qw2g12B4REmshcboj3CXywJddWW3p1Ghch3jsnkOe5kOLosA2s",
+      "Content-Type": "application/x-www-form-urlencoded",
       "Accept": "application/json"
     },
     method: "POST",
     dataType: "json",
-    contentType: "application/x-www-form-urlencoded",
     success: function(result,status,xhr) {
       processQuote(result);
+    },
+    error: function(error) {
+      console.log(error);
     }
   });
 };

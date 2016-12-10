@@ -1,12 +1,12 @@
-@media(min-width:90em){.machine-btn{width: 150px; font-size: 200%} #title{font-size: 400%;} #quote_edit{font-size: 320%;} #quote_footer{font-size: 220%;}}
+@media(min-width:90em){.aqm-btn{width: 150px; font-size: 200%} #aqm_title{font-size: 400%;} #aqm_quote_edit{font-size: 320%;} #aqm_quote_footer{font-size: 220%;}}
 
-@media(max-width:89.999em) and (min-width:60em){.machine-btn{width: 150px; font-size: 200%} #title{font-size: 350%;} #quote_edit{font-size: 250%;} #quote_footer{font-size: 180%;}}
+@media(max-width:89.999em) and (min-width:60em){.aqm-btn{width: 150px; font-size: 200%} #aqm_title{font-size: 350%;} #aqm_quote_edit{font-size: 250%;} #aqm_quote_footer{font-size: 180%;}}
 
-@media(max-width:59.999em) and (min-width:30em){.machine-btn{width: 150px; font-size: 200%} #title{font-size: 250%;} #quote_edit{font-size: 200%;} #quote_footer{font-size: 160%;}}
+@media(max-width:59.999em) and (min-width:30em){.aqm-btn{width: 150px; font-size: 200%} #aqm_title{font-size: 250%;} #aqm_quote_edit{font-size: 200%;} #aqm_quote_footer{font-size: 160%;}}
 
-@media(max-width:29.999em) and (min-width:20em){.machine-btn{width: 80px; font-size: 100%} #title{font-size: 160%;} #quote_edit{font-size: 100%;} #quote_footer{font-size: 80%;}}
+@media(max-width:29.999em) and (min-width:20em){.aqm-btn{width: 80px; font-size: 100%} #aqm_title{font-size: 160%;} #aqm_quote_edit{font-size: 100%;} #aqm_quote_footer{font-size: 80%;}}
 
-#title {
+#aqm_title {
   display: inline-block;
   text-align: center;
   color: #000000;
@@ -16,7 +16,7 @@
   transition: all 0.5s ease-in-out;
 }
 
-#quote_jumbotron {
+#aqm_quote_jumbotron {
   @include global-shadow;
   text-align: center;
   width: 90vw;
@@ -28,14 +28,14 @@
   padding: 5vh;
 }
 
-#quote_block{
+#aqm_quote_block{
   @include center-block;
   text-align: left;
   border-color: $aqm-default-text-color;
   margin-top: 5vh;
 }
 
-#tweet_quote {
+#aqm_tweet_quote {
   @extend %aqm-quote-btn;
   margin-right:auto;
   a {
@@ -44,12 +44,12 @@
   }
 }
 
-#get_quote {
+#aqm_get_quote {
   @extend %aqm-quote-btn;
   margin-left:auto;
 }
 
-#quote_footer {
+#aqm_quote_footer {
   text-align: right;
   color: $aqm-default-text-color;
 }
