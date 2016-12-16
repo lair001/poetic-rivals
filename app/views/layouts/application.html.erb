@@ -2,12 +2,11 @@
 <html>
   <head>
     <title><%= project_title %></title>
-    <div data-current-path-name="<%= current_path_name %>" id="current_path_name"></div>
     <%= csrf_meta_tags %>
     <%= render 'layouts/stylesheet_links' %>
-    <%= render 'layouts/scripts' %>
   </head>
   <body>
+    <div data-current-path-name="<%= current_path_name %>" id="current_path_name"></div>
   	<%= render 'layouts/navbar' %>
     <div class="<%= current_page?(aqm_path) ? "container-fluid" : "container" %> global-font-family text-center" id="top">
       <%= render 'layouts/flash_messages' %>
@@ -25,5 +24,6 @@
           <footer class="text-center">Coded by <a href="http://samlair.com" target="_blank">Samuel Lair</a>.</footer>
       </div>
     </div>
+    <%= render 'layouts/scripts' %>
   </body>
 </html>

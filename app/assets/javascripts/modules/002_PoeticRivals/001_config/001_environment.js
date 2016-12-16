@@ -2,8 +2,7 @@
 
 (function() {
 
-	if (modules.PoeticRivals === undefined) {
-
+	if (typeof(modules.PoeticRivals) === 'undefined') {
 		modules.PoeticRivals = {
 			factories: {},
 			base: {}

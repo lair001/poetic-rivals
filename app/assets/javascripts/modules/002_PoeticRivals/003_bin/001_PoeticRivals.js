@@ -1,5 +1,9 @@
 (function() {
 
-	modules.PoeticRivals.base.START();
+	$(document).ready(function() {
+
+		modules.PoeticRivals.base.START();
+
+	});
 
 })();

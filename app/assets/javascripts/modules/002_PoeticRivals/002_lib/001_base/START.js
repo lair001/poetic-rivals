@@ -9,7 +9,7 @@
 		if (currentPathName === 'aqm') {
 
 			var aqmPage = new pageFactory.Aqm();
-			aqmPage.setEventListeners();
+			aqmPage.onGetQuoteClick();
 
 		}
 

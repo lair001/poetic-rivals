@@ -4,12 +4,6 @@
 
 	tabOverride.set(document.getElementsByTagName('textarea'));
 
-	//attempting to fix a bug with Bootstrap dropdowns where they stop working after the user follows a link in the dropdowns
-
-	$(document).ready(function() {
-	    $(".dropdown-toggle").dropdown();
-	});
-
 	// establishing modules namespace for application scripts
 
 	if ( typeof(modules) === 'undefined' || (typeof(modules) === 'object' && !(modules instanceof Array) && !(modules === null)) ) {
