@@ -4,9 +4,14 @@
 
 		var pageFactory = modules.PoeticRivals.factories.page;
 
-		var aqmPage = new pageFactory.Aqm();
+		var currentPathName = document.getElementById('current_path_name').dataset.currentPathName;
 
-		aqmPage.setListeners();
+		if (currentPathName === 'aqm') {
+
+			var aqmPage = new pageFactory.Aqm();
+			aqmPage.setEventListeners();
+
+		}
 
 	}
 

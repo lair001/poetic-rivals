@@ -81,7 +81,7 @@
 			});
 		}
 
-		var setListeners = function() {
+		var setEventListeners = function() {
 			$(document).ready(function() {
 				onGetQuoteClick();
 			});
@@ -91,7 +91,7 @@
 		page.processQuote = processQuote;
 		page.getQuote = getQuote;
 		page.onGetQuoteClick = onGetQuoteClick;
-		page.setListeners = setListeners;
+		page.setEventListeners = setEventListeners;
 
 	}
 
