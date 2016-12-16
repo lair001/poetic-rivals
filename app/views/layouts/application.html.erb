@@ -7,6 +7,7 @@
   </head>
   <body>
   	<%= render 'layouts/navbar' %>
+    <div data-current-path-name="<%= current_path_name %>" id="current_path_name"></div>
     <div class="<%= current_page?(aqm_path) ? "container-fluid" : "container" %> global-font-family text-center" id="top">
       <%= render 'layouts/flash_messages' %>
       <% if current_path_name != "aqm" && (self.respond_to?("#{current_path_name}_page_title") || self.respond_to?("#{current_path_name}_page_tagline")) %>
