@@ -1,6 +1,27 @@
 
 describe('sinon', function() {
 
+	function getTodos(listId, callback) {
+	    jQuery.ajax({
+	        url: "/todo/" + listId + "/items",
+	        success: function (data) {
+	            // Node-style CPS: callback(err, data)
+	            callback(null, data);
+	        }
+	    });
+	}
+
+	function throttle(callback) {
+	    var timer;
+	    return function () {
+	        clearTimeout(timer);
+	        var args = [].slice.call(arguments);
+	        timer = setTimeout(function () {
+	            callback.apply(this, args);
+	        }, 100);
+	    };
+	}
+
 	describe('spies', function() {
 
 		var once = modules.Utils.once;
@@ -97,16 +118,6 @@ describe('sinon', function() {
 
 			it('can be used to test ajax', function () {
 
-				function getTodos(listId, callback) {
-				    jQuery.ajax({
-				        url: "/todo/" + listId + "/items",
-				        success: function (data) {
-				            // Node-style CPS: callback(err, data)
-				            callback(null, data);
-				        }
-				    });
-				}
-
 			    sinon.stub(jQuery, "ajax"); // replacing jQuery with a stub that has a stubbed ajax method
 			    getTodos(42, sinon.spy());
 
@@ -117,6 +128,58 @@ describe('sinon', function() {
 
 		});
 
+	});
+
+	it('fake XMLHttpRequest is the preferred way of testing ajax since stubs are too closely tied to implementation', function() {
+
+		var xhr = sinon.useFakeXMLHttpRequest();
+	    var requests = [];
+	    xhr.onCreate = function (req) { requests.push(req); };
+
+	    getTodos(42, sinon.spy());
+
+	    expect(requests).to.have.lengthOf(1);
+	    expect(requests[0].url).to.match(/^\/todo\/42\/items$/);
+
+	    xhr.restore();
+	});
+
+	it('Fake Server can simplify some tests compared to Fake XMLHttpRequest', function() {
+
+		var server = sinon.fakeServer.create();
+	    var callback = sinon.spy();
+	    getTodos(42, callback);
+
+	    server.requests[0].respond(
+	        200,
+	        { "Content-Type": "application/json" },
+	        JSON.stringify([{ id: 1, text: "Provide examples", done: true }])
+	    );
+
+	    expect(callback.calledOnce).to.be.true;
+
+		server.restore();
+
+	});
+
+	it('can fake time (ie fake wait/sleep/timeout without actually stopping)', function() {
+
+		var clock = sinon.useFakeTimers();
+
+	    var callback = sinon.spy();
+	    var throttled = throttle(callback);
+
+	    throttled();
+
+	    clock.tick(99);
+
+	    expect(callback.notCalled).to.be.true;
+
+	    clock.tick(1);
+
+	    expect(callback.calledOnce).to.be.true;
+
+		clock.restore();
 	});
 
 });
