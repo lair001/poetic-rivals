@@ -3,18 +3,20 @@ describe('sinon', function() {
 
 	describe('spies', function() {
 
-		function once(fn, context) { 
-			var result;
+		// function once(fn, context) { 
+		// 	var result;
 
-			return function() { 
-				if(!fn.called) {
-					result = fn.apply(context || this, arguments);
-					fn.called = true;
-				}
+		// 	return function() { 
+		// 		if(!fn.called) {
+		// 			result = fn.apply(context || this, arguments);
+		// 			fn.called = true;
+		// 		}
 
-				return result;
-			};
-		}
+		// 		return result;
+		// 	};
+		// }
+
+		var once = modules.Utils.once;
 
 		it('calls the original function', function() {
 
