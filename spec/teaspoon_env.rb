@@ -127,16 +127,16 @@ Teaspoon.configure do |config|
 
   # Force Teaspoon to fail immediately after a failing suite. Can be useful to make Teaspoon fail early if you have
   # several suites, but in environments like CI this may not be desirable.
-  #config.fail_fast = true
+  config.fail_fast = true
 
   # Specify the formatters to use when outputting the results.
   # Note: Output files can be specified by using `"junit>/path/to/output.xml"`.
   #
   # Available: :dot, :clean, :documentation, :json, :junit, :pride, :rspec_html, :snowday, :swayze_or_oprah, :tap, :tap_y, :teamcity
-  #config.formatters = [:dot]
+  config.formatters = [:documentation]
 
   # Specify if you want color output from the formatters.
-  #config.color = true
+  config.color = true
 
   # Teaspoon pipes all console[log/debug/error] to $stdout. This is useful to catch places where you've forgotten to
   # remove them, but in verbose applications this may not be desirable.
