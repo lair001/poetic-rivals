@@ -10,6 +10,10 @@
 //= require support/chai-3.5.0
 //= require support/chai-jq-0.0.9
 //
+// Additional testing libraries
+//
+//= require support/sinon-chai-2.7.0
+//
 // PhantomJS (Teaspoons default driver) doesn't have support for Function.prototype.bind, which has caused confusion.
 // Use this polyfill to avoid the confusion.
 //= require support/phantomjs-shims
@@ -43,3 +47,6 @@
 // window.assert = chai.assert;
 window.expect = chai.expect;
 // window.should = chai.should();
+
+// configure sinon-chai
+chai.use(require("sinonChai"));
