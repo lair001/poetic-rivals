@@ -3,19 +3,6 @@ describe('sinon', function() {
 
 	describe('spies', function() {
 
-		// function once(fn, context) { 
-		// 	var result;
-
-		// 	return function() { 
-		// 		if(!fn.called) {
-		// 			result = fn.apply(context || this, arguments);
-		// 			fn.called = true;
-		// 		}
-
-		// 		return result;
-		// 	};
-		// }
-
 		var once = modules.Utils.once;
 
 		it('calls the original function', function() {
@@ -75,6 +62,59 @@ describe('sinon', function() {
 		    proxy.call(obj);
 
 		    expect(callback.calledOn(obj)).to.equal(true);
+		});
+
+		describe("stubs", function() {
+
+			it('can be used to confirm that once returns the same value as the original function', function() {
+
+				var callback = sinon.stub().returns(42);
+    			var proxy = once(callback);
+
+    			expect(proxy()).to.equal(42);
+
+			});
+
+			it('can do anything that a regular spy can', function() {
+				var callback = sinon.stub();
+				var proxy = function(a, b, c) { callback.call(this, a, b, c); };
+				var obj = {};
+
+		    	proxy();
+
+		    	expect(callback.calledOnce).to.be.true;
+
+		    	proxy();
+
+		    	expect(callback.callCount).to.equal(2);
+
+		    	proxy.call(obj, 1, 2 ,3);
+
+		    	expect(callback.calledOn(obj)).to.equal(true);
+		    	expect(callback.calledWith(1, 2, 3)).to.equal(true);
+		    	expect(callback.callCount).to.equal(3);
+			});
+
+			it('can be used to test ajax', function () {
+
+				function getTodos(listId, callback) {
+				    jQuery.ajax({
+				        url: "/todo/" + listId + "/items",
+				        success: function (data) {
+				            // Node-style CPS: callback(err, data)
+				            callback(null, data);
+				        }
+				    });
+				}
+
+			    sinon.stub(jQuery, "ajax"); // replacing jQuery with a stub that has a stubbed ajax method
+			    getTodos(42, sinon.spy());
+
+			    expect(jQuery.ajax.calledWithMatch({ url: "/todo/42/items" })).to.be.true; // another method from the spy/stub api is introduced
+
+			    jQuery.ajax.restore(); // restore jquery
+			});
+
 		});
 
 	});
