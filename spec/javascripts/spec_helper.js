@@ -47,6 +47,3 @@
 // window.assert = chai.assert;
 window.expect = chai.expect;
 // window.should = chai.should();
-
-// configure sinon-chai
-chai.use(require("sinonChai"));
