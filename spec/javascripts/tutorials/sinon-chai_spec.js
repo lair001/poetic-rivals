@@ -137,6 +137,8 @@ describe('sinon-chai', function() {
 
 	describe('Call count', function() {
 
+		var spy;
+
 		beforeEach(function() {
 			spy = sinon.spy();
 		});
@@ -208,6 +210,44 @@ describe('sinon-chai', function() {
 				spy();
 				expect(spy).to.not.have.been.calledThrice;
 			})
+		});
+
+	});
+
+	describe('Calling with new', function() {
+
+		var spy;
+
+		beforeEach(function() {
+			spy = sinon.spy();
+		});
+
+		describe('calledWithNew', function() {
+
+			it('is satisfied if the spy is called with the new keyword at least once', function() {
+				expect(spy).to.not.have.been.calledWithNew;
+				spy();
+				expect(spy).to.not.have.been.calledWithNew;
+				new spy();
+				expect(spy).to.have.been.calledWithNew;
+				spy();
+				expect(spy).to.have.been.calledWithNew;
+			});
+
+		});
+
+		describe('always calledWithNew', function() {
+
+			it('is satisfied only if the spy has been called at least once and all calls of the spy have been with the new keyword', function() {
+				expect(spy).to.not.have.been.always.calledWithNew;
+				new spy();
+				expect(spy).to.have.been.always.calledWithNew;
+				new spy();
+				expect(spy).to.have.been.always.calledWithNew;
+				spy();
+				expect(spy).to.not.have.been.always.calledWithNew;
+			});
+
 		});
 
 	});
