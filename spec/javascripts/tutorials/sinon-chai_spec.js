@@ -135,5 +135,82 @@ describe('sinon-chai', function() {
 
 	});
 
+	describe('Call count', function() {
+
+		beforeEach(function() {
+			spy = sinon.spy();
+		});
+
+		describe('called', function() {
+
+			it('is satisfied if spy is called at least once', function () {
+				expect(spy).to.not.have.been.called;
+				spy();
+				expect(spy).to.have.been.called;
+				spy();
+				expect(spy).to.have.been.called;
+			});
+
+		});
+
+		describe('callCount', function() {
+			it('cannot be satisfied if no call count is specified', function() {
+				expect(spy).to.not.have.callCount();
+				spy();
+				expect(spy).to.not.have.callCount();
+			});
+			it('is satisfied if the spy has been called the specified number of times', function() {
+				expect(spy).to.have.callCount(0);
+				expect(spy).to.not.have.callCount(1);
+				expect(spy).to.not.have.callCount(2);
+				spy();
+				expect(spy).to.not.have.callCount(0);
+				expect(spy).to.have.callCount(1);
+				expect(spy).to.not.have.callCount(2);
+				spy();
+				expect(spy).to.not.have.callCount(0);
+				expect(spy).to.not.have.callCount(1);
+				expect(spy).to.have.callCount(2);
+			});
+		});
+
+		describe('calledOnce', function() {
+			it('is satisfied only when the spy is called exactly once', function() {
+				expect(spy).to.not.have.been.calledOnce;
+				spy();
+				expect(spy).to.have.been.calledOnce;
+				spy();
+				expect(spy).to.not.have.been.calledOnce;
+			});
+		});
+
+		describe('calledTwice', function() {
+			it('is satisfied only if the spy is called exactly twice', function() {
+				expect(spy).to.not.have.been.calledTwice;
+				spy();
+				expect(spy).to.not.have.been.calledTwice;
+				spy();
+				expect(spy).to.have.been.calledTwice;
+				spy();
+				expect(spy).to.not.have.been.calledTwice;
+			});
+		});
+
+		describe('calledThrice', function() {
+			it('is satisfied only if the spy is called exactly thrice', function() {
+				expect(spy).to.not.have.been.calledThrice;
+				spy();
+				expect(spy).to.not.have.been.calledThrice;
+				spy();
+				expect(spy).to.not.have.been.calledThrice;
+				spy();
+				expect(spy).to.have.been.calledThrice;
+				spy();
+				expect(spy).to.not.have.been.calledThrice;
+			})
+		});
+
+	});
+
 
 });
