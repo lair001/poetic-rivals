@@ -4,9 +4,9 @@
 			var result;
 
 			return function() { 
-				if(!fn.called) {
+				if(fn) {
 					result = fn.apply(context || this, arguments);
-					fn.called = true;
+					fn = null;
 				}
 
 				return result;
