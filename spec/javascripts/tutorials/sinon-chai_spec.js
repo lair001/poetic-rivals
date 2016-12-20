@@ -298,5 +298,57 @@ describe('sinon-chai', function() {
 
 	});
 
+	describe('Returning', function() {
+
+			var i, spy1, spy2;
+
+			var testFn1 = function() {
+					return ++i;
+				}
+
+			var testFn2 = function() {
+				return 2;
+			}
+
+			beforeEach(function() {
+				i = 0;
+				spy1 = sinon.spy(testFn1);
+				spy2 = sinon.spy(testFn2);
+			});
+
+		describe('returned', function() {
+
+			it('is satisfied if the spy returns the specified value', function() {
+				spy1();
+				expect(spy1).to.have.returned(1);
+				spy1();
+				expect(spy1).to.have.returned(2);
+				expect(spy1).to.have.returned(1);
+				expect(spy1.getCall(0)).to.have.returned(1);
+				expect(spy1.getCall(1)).to.have.returned(2);
+				expect(spy1.getCall(1)).to.not.have.returned(1);
+			});
+
+		});
+
+		describe('always returned', function() {
+
+			it('is satisfied if the target spy has been called at least once and all calls of the spy have returned the specified value', function() {
+				expect(spy1).to.not.have.always.returned(1);
+				expect(spy2).to.not.have.always.returned(2);
+				spy1();
+				expect(spy1).to.have.always.returned(1);
+				spy2();
+				expect(spy2).to.have.always.returned(2);
+				spy1();
+				expect(spy1).to.not.have.always.returned(1);
+				spy2();
+				expect(spy2).to.have.always.returned(2);
+			});
+
+		});
+
+	});
+
 
 });
