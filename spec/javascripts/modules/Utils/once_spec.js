@@ -1,4 +1,4 @@
-describe('once', function() {
+describe('Utils#once', function() {
 
 	var once = modules.Utils.once;
 
