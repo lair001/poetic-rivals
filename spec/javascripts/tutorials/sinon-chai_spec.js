@@ -1,5 +1,7 @@
 describe('sinon-chai', function() {
 
+	var swallow = modules.Utils.swallow;
+
 	var hello = function(name, cb) {
     	cb("hello " + name);
 	};
@@ -346,6 +348,118 @@ describe('sinon-chai', function() {
 				expect(spy2).to.have.always.returned(2);
 			});
 
+		});
+
+		describe('Throwing', function() {
+
+			var error1, spy1, error2, spy2, error3, spy3, spy4, i, spy5;
+
+			beforeEach(function() {
+				error1 = new Error("boo!");
+				spy1 = sinon.spy(function() { throw error1; } );
+				error2 = new Error("wah!");
+				spy2 = sinon.spy(function() { throw error2; } );
+				error3 = new TypeError("eek!")
+				spy3 = sinon.spy(function() { throw error3; } );
+				spy4 = sinon.spy();
+				i = -1;
+				spy5 = sinon.spy(function() {
+					i++;
+					if (i % 4 === 0) {
+						throw error1;
+					} else if (i % 4 === 1) {
+						throw error2;
+					} else if (i % 4 === 2) {
+						throw error3;
+					} else if (i % 4 === 3) {
+
+					}
+				});
+			});
+
+			describe('thrown', function() {
+
+				it('is satisfied when no error is specified if the spy throws any error', function() {
+					expect(spy1).to.not.have.thrown;
+					swallow(spy1);
+					expect(spy1).to.have.thrown;
+					expect(spy2).to.not.have.thrown;
+					swallow(spy2);
+					expect(spy2).to.have.thrown;
+					spy4();
+					expect(spy4).to.not.have.thrown;
+				});
+
+				it('is satisfied when an error object is specified if the spy throws the specified error object', function() {
+					swallow(spy1);
+					swallow(spy2);
+					expect(spy1).to.have.thrown(error1);
+					expect(spy1).to.not.have.thrown(error2);
+					expect(spy2).to.have.thrown(error2);
+					expect(spy2).to.not.have.thrown(error1);
+				});
+
+				it('is satisfed when an error type is specified if the spy throws an error of the specified type', function() {
+					swallow(spy1);
+					swallow(spy2);
+					expect(spy1).to.not.have.thrown("TypeError");
+					expect(spy2).to.not.have.thrown("TypeError");
+					swallow(spy3);
+					expect(spy3).to.have.thrown("TypeError");
+				});
+
+			});
+
+			describe("always thrown", function() {
+				it('is satisfied when no error is specified if the spy has been called at least once and has thrown an error on every call', function() {
+					expect(spy1).to.not.have.always.thrown;
+					expect(spy2).to.not.have.always.thrown;
+					swallow(spy1);
+					swallow(spy2);
+					expect(spy1).to.have.always.thrown;
+					expect(spy2).to.have.always.thrown;
+					swallow(spy1);
+					swallow(spy2);
+					expect(spy1).to.have.always.thrown;
+					expect(spy2).to.have.always.thrown;
+					swallow(spy5);
+					swallow(spy5);
+					swallow(spy5);
+					expect(spy5).to.have.always.thrown;
+					spy5();
+					expect(spy5).to.not.have.always.thrown;
+				});
+
+				it('is satisfied when an error object is specified if the spy has been called at least once and has thrown the specified error object on every call', function() {
+					expect(spy1).to.not.have.always.thrown(error1);
+					expect(spy5).to.not.have.always.thrown(error1);
+					swallow(spy1);
+					swallow(spy5);
+					expect(spy1).to.have.always.thrown(error1);
+					expect(spy5).to.have.always.thrown(error1);
+					swallow(spy1);
+					swallow(spy5);
+					expect(spy1).to.have.always.thrown(error1);
+					expect(spy5).to.not.have.always.thrown(error1);
+				});
+
+				it('is satisfied when an error type is specified if the spy has been called at least once and has thrown the specified error type on every call', function() {
+					expect(spy1).to.not.have.always.thrown('Error');
+					expect(spy5).to.not.have.always.thrown('Error');
+					swallow(spy1);
+					swallow(spy5);
+					expect(spy1).to.have.always.thrown('Error');
+					expect(spy5).to.have.always.thrown('Error');
+					swallow(spy1);
+					swallow(spy5);
+					expect(spy1).to.have.always.thrown('Error');
+					expect(spy5).to.have.always.thrown('Error');
+					swallow(spy1);
+					swallow(spy5);
+					expect(spy1).to.have.always.thrown('Error');
+					expect(spy5).to.not.have.always.thrown('Error');
+				});
+			});
 		});
 
 	});
