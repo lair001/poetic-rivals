@@ -252,5 +252,51 @@ describe('sinon-chai', function() {
 
 	});
 
+	describe('Call order', function() {
+
+		var spy1, spy2;
+
+		beforeEach(function() {
+			spy1 = sinon.spy();
+			spy2 = sinon.spy();
+		});
+
+		describe('calledBefore', function() {
+
+			it('is satisfied if the target spy is called at least once and the first call of the target spy is before the first call of the value spy', function() {
+				expect(spy1).to.not.have.been.calledBefore(spy2);
+				spy1();
+				expect(spy1).to.have.been.calledBefore(spy2);
+				spy2();
+				expect(spy1).to.have.been.calledBefore(spy2);
+				spy1();
+				expect(spy1).to.have.been.calledBefore(spy2);
+			});
+
+			it('is not satisfied if the value spy is called before the target spy', function() {
+				spy2();
+				expect(spy1).to.not.have.been.calledBefore(spy2);
+				spy1();
+				expect(spy1).to.not.have.been.calledBefore(spy2);
+			});
+
+		});
+
+		describe('calledAfter', function() {
+			it('is satisfied if the target spy has been called at least once after a call of the value spy, calls of the target spy are separated by at least one call of the value spy, and at least one call of the value spy follows a call of the target spy', function() {
+				expect(spy1).to.not.have.been.calledAfter(spy2);
+				spy2();
+				expect(spy1).to.not.have.been.calledAfter(spy2);
+				spy1();
+				expect(spy1).to.have.been.calledAfter(spy2);
+				spy2();
+				expect(spy1).to.not.have.been.calledAfter(spy2);
+				spy1();
+				expect(spy1).to.have.been.calledAfter(spy2);
+			});
+		});
+
+	});
+
 
 });
