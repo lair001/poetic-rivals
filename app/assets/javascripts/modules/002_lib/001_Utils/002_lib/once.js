@@ -14,3 +14,11 @@
 		}
 
 })();
+
+// // Usage
+// var canOnlyFireOnce = once(function() {
+// 	console.log('Fired!');
+// });
+
+// canOnlyFireOnce(); // "Fired!"
+// canOnlyFireOnce(); // nada
