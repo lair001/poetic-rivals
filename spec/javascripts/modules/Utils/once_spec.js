@@ -2,10 +2,13 @@ describe('Utils#once', function() {
 
 	var once = modules.Utils.once;
 
-	var spy, fn;
+	var i, spy, fn;
 
 	beforeEach(function() {
-		spy = sinon.spy(function() { return 42; } );
+		i = 41;
+		spy = sinon.spy(function() {
+			return ++i;
+		});
 		fn = once(function() {
 			return spy();
 		});
