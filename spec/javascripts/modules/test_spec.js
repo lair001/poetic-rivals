@@ -26,7 +26,7 @@ describe("Testing some more", function() {
     expect('hello').to.match(/hello/);
   });
 
-  it("hello does not match goobye", function() {
+  it("hello does not match goodbye", function() {
     expect('hello').to.not.match(/goodbye/);
   });
 
