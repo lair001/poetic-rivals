@@ -1,5 +1,7 @@
 describe('sinon-chai', function() {
 
+	"use strict";
+
 	var swallow = modules.Utils.swallow;
 
 	var hello = function(name, cb) {

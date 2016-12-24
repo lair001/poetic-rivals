@@ -1,5 +1,7 @@
 describe('chai expect assertions', function() {
 
+  "use strict";
+
   it('.not negates any of the assertions following in the chain', function() {
     var foo = 'foo';
     function goodFn() {}

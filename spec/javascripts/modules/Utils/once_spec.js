@@ -1,5 +1,7 @@
 describe('Utils#once', function() {
 
+	"use strict";
+
 	var once = modules.Utils.once;
 
 	var i, spy, fn;

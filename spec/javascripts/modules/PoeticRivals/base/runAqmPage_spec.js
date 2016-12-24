@@ -1,6 +1,8 @@
 describe('PoeticRivals.base#runAqmPage', function() {
 
-	var aqmGetQuoteButton, jQueryAqmGetQuoteButton;
+	"use strict";
+
+	var aqmGetQuoteButton, jQueryAqmGetQuoteButton, spy1;
 
 	var base = modules.PoeticRivals.base;
 	var pageFactory = modules.PoeticRivals.factories.page;

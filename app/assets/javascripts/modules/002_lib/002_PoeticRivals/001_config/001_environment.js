@@ -2,6 +2,8 @@
 
 (function() {
 
+	"use strict";
+
 	if (typeof(modules.PoeticRivals) === 'undefined') {
 		modules.PoeticRivals = {
 			factories: {},

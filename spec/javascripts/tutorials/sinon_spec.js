@@ -1,5 +1,6 @@
-
 describe('sinon', function() {
+
+	"use strict";
 
 	function getTodos(listId, callback) {
 	    jQuery.ajax({

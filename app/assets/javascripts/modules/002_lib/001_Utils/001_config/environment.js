@@ -2,6 +2,8 @@
 
 (function() {
 
+	"use strict";
+
 	if (typeof(modules.Utils) === 'undefined') {
 		modules.Utils = {};
 

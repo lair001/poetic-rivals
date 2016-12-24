@@ -1,4 +1,7 @@
 describe("Testing", function() {
+
+  "use strict";
+
   it("is going so smoothly", function() {
     expect(true).to.equal(true);
   });
@@ -11,6 +14,8 @@ describe("Testing", function() {
 });
 
 describe("Testing some more", function() {
+
+    "use strict";
 
   it("jQuery is not undefined", function() {
     // expect(true).to.be(true);

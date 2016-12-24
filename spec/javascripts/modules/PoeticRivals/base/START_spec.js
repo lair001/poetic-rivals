@@ -1,5 +1,7 @@
 describe('PoeticRivals.base#START', function() {
 
+	"use strict";
+
 	var jQCurrentPathName;
 	var base = modules.PoeticRivals.base;
 

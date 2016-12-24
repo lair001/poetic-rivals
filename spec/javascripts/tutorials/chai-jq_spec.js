@@ -2,6 +2,8 @@ fixture.preload("tutorials/chai-jq.html")
 
 describe("chai-jq (jQuery tests)", function() {
 
+  "use strict";
+
   beforeEach(function() {
     this.fixtures = fixture.load("tutorials/chai-jq.html")
   });

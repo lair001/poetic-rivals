@@ -1,5 +1,7 @@
 describe('Utils#debounce', function() {
 
+	"use strict";
+
 	var debounce = modules.Utils.debounce;
 	var clock, spy, fn;
 

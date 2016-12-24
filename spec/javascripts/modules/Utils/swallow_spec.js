@@ -1,5 +1,7 @@
 describe('Utils#swallow', function() {
 
+	"use strict";
+
 	it('rescues from a thrown error', function() {
 
 		var swallow = modules.Utils.swallow;

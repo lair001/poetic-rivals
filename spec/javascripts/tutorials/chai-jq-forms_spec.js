@@ -2,6 +2,8 @@ fixture.preload("tutorials/chai-jq-forms.html")
 
 describe("chai-jq examples with forms in the fixture", function() {
 
+  "use strict";
+
   beforeEach(function() {
     this.fixtures = fixture.load("tutorials/chai-jq-forms.html")
   });

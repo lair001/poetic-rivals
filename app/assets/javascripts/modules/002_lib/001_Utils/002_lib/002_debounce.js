@@ -5,6 +5,8 @@
 
 (function() {
 
+	"use strict";
+
 	modules.Utils.debounce = function(func, wait, immediate) {
 		var timeout;
 		return function() {

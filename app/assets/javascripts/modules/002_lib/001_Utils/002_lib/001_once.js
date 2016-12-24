@@ -1,5 +1,7 @@
 (function() {
 
+	"use strict";
+
 	modules.Utils.once = function (fn, context) { 
 			var result;
 
