@@ -2,7 +2,9 @@
 
 	"use strict";
 
-	modules.PoeticRivals.factories.page.Aqm = function() {
+	var pageFactory = modules.PoeticRivals.factories.page;
+
+	pageFactory.Aqm = function() {
 
 		var page = this;
 
@@ -80,13 +82,13 @@
 		var onGetQuoteClick = function() {
 			$("#aqm_get_quote").on('click', function() {
 				page.setColors(page.generateColors());
-				getQuote();
+				page.getQuote();
 			});
 		}
 
 		var setEventListeners = function() {
 			$(document).ready(function() {
-				onGetQuoteClick();
+				page.onGetQuoteClick();
 			});
 		}
 

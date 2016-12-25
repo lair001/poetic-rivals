@@ -10,6 +10,27 @@ describe('PoeticRivals.factories.page#Aqm', function() {
 		aqmPage = new Aqm();
 	});
 
+	describe("generateColors", function() {
+		it("returns a color pair", function() {
+			var colors = aqmPage.generateColors();
+			expect(colors.bkgrndclr).to.match(/^(#[a-fA-F\d]{6}|#[a-fA-F\d]{3}|rgb\((\d){1,3}, (\d){1,3}, (\d){1,3}\))$/);
+			expect(colors.txtclr).to.match(/^(#[a-fA-F\d]{6}|#[a-fA-F\d]{3}|rgb\((\d){1,3}, (\d){1,3}, (\d){1,3}\))$/);
+		});
+	});
+
+	describe('setColors', function() {
+		it("changes the page's color scheme given a pair of colors", function() {
+			var colors = {"bkgrndclr":"rgb(89, 130, 52)", "txtclr":"rgb(5, 81, 96)"};
+			aqmPage.setColors(colors);
+			expect($("#aqm_quote_jumbotron")).to.have.$css("background-color", colors.bkgrndclr).and.to.have.$css("color", colors.txtclr);
+			expect($("#aqm_quote_block")).to.have.$css("border-color", colors.txtclr);
+			expect($("#aqm_quote_footer")).to.have.$css("color", colors.txtclr);
+			expect($("#aqm_get_quote")).to.have.$css("background-color", colors.txtclr).and.to.have.$css("border-color", colors.txtclr).and.to.have.$css("color", colors.bkgrndclr);
+			expect($("#aqm_tweet_quote")).to.have.$css("background-color", colors.txtclr).and.to.have.$css("border-color", colors.txtclr).and.to.have.$css("color", colors.bkgrndclr);
+			expect($("#aqm_tweet_link")).to.have.$css("color", colors.bkgrndclr);
+		});
+	});
+
 	describe('processQuote', function() {
 		it('loads data from a quote JSON into the DOM', function() {
 			var quoteJSON = {
