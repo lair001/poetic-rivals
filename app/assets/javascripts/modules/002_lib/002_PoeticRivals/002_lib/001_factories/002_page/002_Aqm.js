@@ -49,7 +49,7 @@
 			console.log(colors[rndmNum].bkgrndclr + " " + colors[rndmNum].txtclr);
 		};
 
-		var processQuote = function(quoteJSON) {
+		var processQuote = function(quoteJSON, status, xhr) {
 			$("#aqm_quote_edit").html('<i class="fa fa-quote-left"></i> ' + quoteJSON.quote + ' <i class="fa fa-quote-right"></i><br><br>');
 			$("#aqm_quote_footer").html(quoteJSON.author);
 			$("#aqm_tweet_link").attr("href", "https://twitter.com/intent/tweet?&text=" + quoteJSON.quote + " — " + quoteJSON.author);
@@ -61,19 +61,18 @@
 					url: "https://andruxnet-random-famous-quotes.p.mashape.com/",
 					headers: {
 					"X-Mashape-Key": "Qw2g12B4REmshcboj3CXywJddWW3p1Ghch3jsnkOe5kOLosA2s",
-					"Content-Type": "application/x-www-form-urlencoded",
-					"Accept": "application/json"
+					"Content-Type": "application/x-www-form-urlencoded"
 					},
 					method: "POST",
 					dataType: "json",
-					success: function(result,status,xhr) {
-						processQuote(result);
-					},
-					error: function(error) {
-						console.log(error);
-					}
+					success: page.processQuote,
+					error: page.handleAjaxError
 				}
 			);
+		};
+
+		var handleAjaxError = function(error) {
+			console.log(error);
 		};
 
 		var onGetQuoteClick = function() {
@@ -92,6 +91,7 @@
 		page.randomColors = randomColors;
 		page.processQuote = processQuote;
 		page.getQuote = getQuote;
+		page.handleAjaxError = handleAjaxError;
 		page.onGetQuoteClick = onGetQuoteClick;
 		page.setEventListeners = setEventListeners;
 
