@@ -84,7 +84,7 @@
 				page.setColors(page.generateColors());
 				page.getQuote();
 			});
-		}
+		};
 
 		var setEventListeners = function() {
 			$(document).ready(function() {

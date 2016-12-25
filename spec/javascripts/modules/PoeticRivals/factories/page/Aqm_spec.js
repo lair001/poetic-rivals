@@ -85,4 +85,29 @@ describe('PoeticRivals.factories.page#Aqm', function() {
 
 	});
 
+	describe('onGetQuoteClick', function() {
+		it('sets a click event on #aqm_get_quote', function() {
+			var aqmGetQuoteButton = document.getElementById("aqm_get_quote");
+			aqmPage.onGetQuoteClick();
+			expect(!!$._data(aqmGetQuoteButton, "events").click).to.be.true;
+		});
+
+		it('when the click event is triggered, #setColors, #generateColors, and #getQuote are called', sinon.test(function() {
+			var spy1 = this.spy(aqmPage, "setColors");
+			var spy2 = this.spy(aqmPage, "generateColors");
+			var spy3 = this.spy(aqmPage, "getQuote");
+			var colorPairMatcher = sinon.match(function(value) {
+				return typeof(value.bkgrndclr) === 'string'
+					&& typeof(value.txtclr) === 'string'
+					&& value.bkgrndclr.match(/^(#[a-fA-F\d]{6}|#[a-fA-F\d]{3}|rgb\((\d){1,3}, (\d){1,3}, (\d){1,3}\))$/)
+					&& value.txtclr.match(/^(#[a-fA-F\d]{6}|#[a-fA-F\d]{3}|rgb\((\d){1,3}, (\d){1,3}, (\d){1,3}\))$/);
+			}, "Must be called with a color pair.")
+			aqmPage.onGetQuoteClick();
+			$("#aqm_get_quote").trigger("click");
+			expect(spy1).to.have.been.calledWith(colorPairMatcher);
+			expect(spy2).to.have.been.called;
+			expect(spy3).to.have.been.called;
+		}));
+	});
+
 });
