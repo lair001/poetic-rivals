@@ -6,9 +6,8 @@
 
 		var page = this;
 
-		var randomColors = function() {
-
-			var colors = [
+		var generateColors = function() {
+			var colorSets = [
 				{"bkgrndclr":"#4169E1", "txtclr":"#FFFFFF"},
 				{"bkgrndclr":"#436B95", "txtclr":"#FFFFFF"},
 				{"bkgrndclr":"#66023C", "txtclr":"#B8860B"},
@@ -39,14 +38,17 @@
 				{"bkgrndclr":"#AFAFAF", "txtclr":"#333333"}
 			];
 
-			var rndmNum = Math.floor(Math.random() * colors.length);
-			$("#aqm_quote_jumbotron").css({"background-color": colors[rndmNum].bkgrndclr, "color": colors[rndmNum].txtclr, transition: "all 0.5s ease-in-out"});
-			$("#aqm_quote_block").css({"border-color": colors[rndmNum].txtclr, transition: "all 0.5s ease-in-out"});
-			$("#aqm_quote_footer").css({"color": colors[rndmNum].txtclr, transition: "all 0.5s ease-in-out 0.5s"});
-			$("#aqm_get_quote").css({"background-color": colors[rndmNum].txtclr, "border-color": colors[rndmNum].txtclr, "color": colors[rndmNum].bkgrndclr, transition: "all 0.5s ease-in-out"});
-			$("#aqm_tweet_quote").css({"background-color": colors[rndmNum].txtclr, "border-color": colors[rndmNum].txtclr,"color": colors[rndmNum].bkgrndclr, transition: "all 0.5s ease-in-out"});
-			$("#aqm_tweet_quote a").css({"color": colors[rndmNum].bkgrndclr, transition: "all 0.5s ease-in-out"});
-			console.log(colors[rndmNum].bkgrndclr + " " + colors[rndmNum].txtclr);
+			return colorSets[Math.floor(Math.random() * colorSets.length)];
+		};
+
+		var setColors = function(colors) {
+			$("#aqm_quote_jumbotron").css({"background-color": colors.bkgrndclr, "color": colors.txtclr, transition: "all 0.5s ease-in-out"});
+			$("#aqm_quote_block").css({"border-color": colors.txtclr, transition: "all 0.5s ease-in-out"});
+			$("#aqm_quote_footer").css({"color": colors.txtclr, transition: "all 0.5s ease-in-out 0.5s"});
+			$("#aqm_get_quote").css({"background-color": colors.txtclr, "border-color": colors.txtclr, "color": colors.bkgrndclr, transition: "all 0.5s ease-in-out"});
+			$("#aqm_tweet_quote").css({"background-color": colors.txtclr, "border-color": colors.txtclr,"color": colors.bkgrndclr, transition: "all 0.5s ease-in-out"});
+			$("#aqm_tweet_quote a").css({"color": colors.bkgrndclr, transition: "all 0.5s ease-in-out"});
+			console.log(colors.bkgrndclr + " " + colors.txtclr);
 		};
 
 		var processQuote = function(quoteJSON, status, xhr) {
@@ -77,7 +79,7 @@
 
 		var onGetQuoteClick = function() {
 			$("#aqm_get_quote").on('click', function() {
-				randomColors();
+				page.setColors(page.generateColors());
 				getQuote();
 			});
 		}
@@ -88,7 +90,8 @@
 			});
 		}
 
-		page.randomColors = randomColors;
+		page.generateColors = generateColors;
+		page.setColors = setColors;
 		page.processQuote = processQuote;
 		page.getQuote = getQuote;
 		page.handleAjaxError = handleAjaxError;
