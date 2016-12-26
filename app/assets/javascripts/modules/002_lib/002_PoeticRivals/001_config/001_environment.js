@@ -6,7 +6,7 @@
 
 	if (typeof(modules.PoeticRivals) === 'undefined') {
 		modules.PoeticRivals = {
-			factories: {},
+			factories: { viewModel: {}, page: {} },
 			base: {}
 		};
 
