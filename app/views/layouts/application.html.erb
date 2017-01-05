@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script data-current-path-name="<%= current_path_name %>" id="current_path_name"></script>
     <title><%= project_title %></title>
     <%= csrf_meta_tags %>
     <%= render 'layouts/stylesheet_links' %>
   </head>
   <body>
-    <div data-current-path-name="<%= current_path_name %>" id="current_path_name"></div>
   	<%= render 'layouts/navbar' %>
     <div class="<%= current_page?(aqm_path) ? "container-fluid" : "container" %> global-font-family text-center" id="top">
       <%= render 'layouts/flash_messages' %>
