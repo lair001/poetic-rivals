@@ -1,6 +1,8 @@
 describe('PoeticRivals.factories.viewModel#ShowableGenre', function() {
 
-	var ShowableGenre = modules.PoeticRivals.factories.viewModel.ShowableGenre;
+	"use strict";
+
+	var ShowableGenre = modules.PoeticRivals.factories.viewModel.ShowableGenre, key;
 
 	it('creates a showable genre with all of the properties of the JSON source', function() {
 		var JSON = { "foo": "alpha", "bar": "beta", "baz": "gamma" };

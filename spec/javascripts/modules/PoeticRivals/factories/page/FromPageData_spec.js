@@ -1,7 +1,8 @@
 describe('PoeticRivals.factories.page#FromPageData', function() {
 
-	var FromPageData = modules.PoeticRivals.factories.page.FromPageData;
-	var page, dataset, key;
+	"use strict";
+
+	var FromPageData = modules.PoeticRivals.factories.page.FromPageData, page, pageData, dataset, key;
 
 	beforeEach(function() {
 		fixture.load("modules/PoeticRivals/factories/page/FromPageData.html")

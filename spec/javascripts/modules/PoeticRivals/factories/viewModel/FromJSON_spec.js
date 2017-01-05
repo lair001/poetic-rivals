@@ -1,6 +1,8 @@
 describe('PoeticRivals.factories.viewModel#FromJSON', function() {
 
-	var FromJSON = modules.PoeticRivals.factories.viewModel.FromJSON;
+	"use strict";
+
+	var FromJSON = modules.PoeticRivals.factories.viewModel.FromJSON, key;
 
 	it('creates a view model with all of the properties of the JSON source', function() {
 		var JSON = { "foo": "alpha", "bar": "beta", "baz": "gamma" };
