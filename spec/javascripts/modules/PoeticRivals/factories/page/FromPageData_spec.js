@@ -5,7 +5,7 @@ describe('PoeticRivals.factories.page#FromPageData', function() {
 	var FromPageData = modules.PoeticRivals.factories.page.FromPageData, page, pageData, dataset, key;
 
 	beforeEach(function() {
-		fixture.load("modules/PoeticRivals/factories/page/FromPageData.html")
+		fixture.load("modules/PoeticRivals/factories/page/FromPageData.html");
 		page = new FromPageData();
 		pageData = document.getElementById('page_data');
 		dataset = pageData.dataset;
