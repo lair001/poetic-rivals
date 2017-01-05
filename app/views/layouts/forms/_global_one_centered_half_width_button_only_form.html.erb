@@ -1,3 +1,6 @@
-<% value = nil if !local_assigns.has_key?(:value) %>
-<% data = {} if !local_assigns.has_key?(:data) %>
-<%= render partial: 'layouts/one_half_width_field_centered', locals: { content: (render partial: 'layouts/forms/form_tag/global_button_only_form', locals: { action: action, method: method, content: content, value: value, data: data }) } %>
+<%
+value = nil if !local_assigns.has_key?(:value)
+data = {} if !local_assigns.has_key?(:data)
+form_id = nil if !local_assigns.has_key?(:form_id)
+%>
+<%= render partial: 'layouts/one_half_width_field_centered', locals: { content: (render partial: 'layouts/forms/form_tag/global_button_only_form', locals: { action: action, method: method, content: content, value: value, data: data, form_id: form_id }) } %>
