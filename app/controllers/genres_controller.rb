@@ -3,7 +3,10 @@ class GenresController < ApplicationController
 	def show
 		find_genre_by_params_id
 		authorize @genre
-		render layout: 'application', locals: { model: @genre }
+		respond_to do |f|
+			f.html { render layout: 'application', locals: { model: @genre } }
+			f.json { render json: @genre }
+		end
 	end
 
 	def index
