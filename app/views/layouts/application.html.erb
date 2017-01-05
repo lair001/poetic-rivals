@@ -2,6 +2,14 @@
 <html>
   <head>
     <script data-current-path-name="<%= current_path_name %>" id="current_path_name"></script>
+    <% if local_assigns.has_key?(:page_data) %>
+        <%=
+        page_data_script_tag = "<script"
+        page_data.each { |key, value| page_data_script_tag += " data-#{key.to_s.gsub('_', '-')}='#{value}'" }
+        page_data_script_tag += " id='page_data'></script>"
+        raw(page_data_script_tag)
+        %>
+    <% end %>
     <title><%= project_title %></title>
     <%= csrf_meta_tags %>
     <%= render 'layouts/stylesheet_links' %>

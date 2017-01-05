@@ -4,7 +4,7 @@ class GenresController < ApplicationController
 		find_genre_by_params_id
 		authorize @genre
 		respond_to do |f|
-			f.html { render layout: 'application', locals: { model: @genre } }
+			f.html { render layout: 'application', locals: { model: @genre, page_data: { genre_count: Genre.count, sort_position: params[:sort_position] } } }
 			f.json { render json: @genre }
 		end
 	end
