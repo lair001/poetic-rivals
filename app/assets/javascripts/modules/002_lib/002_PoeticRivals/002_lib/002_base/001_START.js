@@ -12,6 +12,8 @@
 
 		if (currentPathName === 'aqm') {
 			base.runAqmPage(new pageFactory.Aqm());
+		} else if (currentPathName === 'genre') {
+			base.runGenrePage(new pageFactory.Genre());
 		}
 
 	};

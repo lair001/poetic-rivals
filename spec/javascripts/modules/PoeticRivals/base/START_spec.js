@@ -12,12 +12,21 @@ describe('PoeticRivals.base#START', function() {
 	});
 
 	it('creates and runs a Aqm page if the current path name is aqm', sinon.test(function() {
-		jQCurrentPathName.attr("data-current-path-name", "aqm")
+		jQCurrentPathName.attr("data-current-path-name", "aqm");
 		var spy1 = this.spy(base, "runAqmPage");
 		var spy2 = this.spy(pageFactory, "Aqm");
 		base.START();
 		expect(spy2).to.have.been.calledWithNew;
 		expect(spy1).to.have.been.calledWithMatch(sinon.match.instanceOf(pageFactory.Aqm));
+	}));
+
+	it('creates and runs a Genre page if the current path name is genre', sinon.test(function() {
+		jQCurrentPathName.attr("data-current-path-name", "genre");
+		var spy1 = this.spy(base, "runGenrePage");
+		var spy2 = this.spy(pageFactory, "Genre");
+		base.START();
+		expect(spy2).to.have.been.calledWithNew;
+		expect(spy1).to.have.been.calledWithMatch(sinon.match.instanceOf(pageFactory.Genre));
 	}));
 
 });
