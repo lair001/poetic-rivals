@@ -1,0 +1,7 @@
+<% 
+	data = {} if !local_assigns.has_key?(:data)
+	btn_class = "btn global-form-btn" if !local_assigns.has_key?(:btn_class)
+	btn_id = nil if !local_assigns.has_key?(:btn_id) %>
+<%= button_tag class: btn_class, id: btn_id, data: data do %>
+	<%= raw(content) %>
+<% end %>

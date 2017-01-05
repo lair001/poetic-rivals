@@ -2,7 +2,5 @@
 <% data = {} if !local_assigns.has_key?(:data) %>
 <%= form_tag action, method: method do %>
 	<%= value ? hidden_field_tag('value', value) : "" %>
-	<%= button_tag class: "btn global-form-btn", data: data do %>
-		<%= raw(content) %>
-	<% end %>
+	<%= render partial: 'layouts/global_button', locals: { content: content, data: data } %>
 <% end %>

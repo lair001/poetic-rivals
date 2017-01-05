@@ -1,0 +1,5 @@
+<%
+	content_left = render partial: 'layouts/global_button', locals: { content: "#{fa_icon("caret-left")} Previous", btn_id: "previous_model" }
+	content_right = render partial: 'layouts/global_button', locals: { content: "Next #{fa_icon("caret-right")}", btn_id: "next_model" }
+%>
+<%= render partial: 'layouts/row_with_two_half_width_fields', locals: { content_left: content_left, content_right: content_right } %>
