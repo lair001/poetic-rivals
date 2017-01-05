@@ -4,13 +4,13 @@
 	<% end %>
 	<%
 		content_left = <<-CONTENT_LEFT
-			<h3>#{link_to "Poems:", genre_poems_path(genre) }</h3>
-			<h4>#{genre.poems_count}</h4>
+			<h3>#{link_to "Poems:", genre_poems_path(genre), id: "poems_link" }</h3>
+			<h4 id="poems_count">#{genre.poems_count}</h4>
 		CONTENT_LEFT
 
 		content_right = <<-CONTENT_RIGHT
-			<h3>#{link_to "Authors:", genre_authors_path(genre) }</h3>
-			<h4>#{genre.authors_count}</h4>
+			<h3>#{link_to "Authors:", genre_authors_path(genre), id: "authors_link" }</h3>
+			<h4 id="authors_count">#{genre.authors_count}</h4>
 		CONTENT_RIGHT
 	%>
 	<%= render partial: 'layouts/row_with_two_half_width_fields', locals: { content_left: content_left, content_right: content_right } %>
