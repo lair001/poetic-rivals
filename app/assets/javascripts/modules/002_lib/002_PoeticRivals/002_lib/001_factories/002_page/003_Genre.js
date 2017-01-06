@@ -71,6 +71,7 @@
 
 			if (recordNotFound && page.sortPosition >= 2) {
 				page.sortPosition--;
+				page.genresCount = page.sortPosition;
 				page.getGenreJSON(page.onPreviousModelClickError);
 			}
 
