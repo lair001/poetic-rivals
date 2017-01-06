@@ -10,7 +10,7 @@ class GenresController < ApplicationController
 			f.json do
 				# when requesting JSON, params[:id] corresponds to sort_position
 				@genre = policy_scope(Genre.ordered_by_ascending_name).page(params[:id]).per(1).first
-				render json: @genre
+				render json: @genre, fields: [:id, :poems_count, :authors_count, :show_page_title, :show_page_tagline]
 			end
 		end
 	end
