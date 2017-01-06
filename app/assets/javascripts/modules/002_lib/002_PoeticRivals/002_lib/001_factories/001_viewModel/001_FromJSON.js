@@ -6,8 +6,7 @@
 
 	viewModelFactory.FromJSON = function(JSON) {
 
-			var key
-			var vm = this;
+			var vm = this, key;
 
 			for (key in JSON) {
 				vm[key] = JSON[key];

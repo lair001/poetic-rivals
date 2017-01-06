@@ -16,7 +16,7 @@ module HtmlHelper
 	def render_page_tagline(model = nil)
 		if self.respond_to?("#{current_path_name}_page_tagline")
 			tagline = model && self.method("#{current_path_name}_page_tagline").arity != 0 ? self.send("#{current_path_name}_page_tagline", model) : self.send("#{current_path_name}_page_tagline")
-			"<h2 id='page_tagline'><em>#{tagline}</em></h2>"
+			"<h2><em id='page_tagline'>#{tagline}</em></h2>"
 		else
 			""
 		end
