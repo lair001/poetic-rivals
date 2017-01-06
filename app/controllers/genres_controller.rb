@@ -5,6 +5,7 @@ class GenresController < ApplicationController
 			f.html do
 				find_genre_by_params_id
 				authorize @genre
+				params["sort_position"] = policy_scope(Genre.ordered_by_ascending_name).pluck(:id).index(params[:id].to_i) + 1 if !params[:sort_position]
 				render layout: 'application', locals: { model: @genre, page_data: { genres_count: policy_scope(Genre).count, sort_position: params[:sort_position] } }
 			end
 			f.json do
