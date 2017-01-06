@@ -32,6 +32,7 @@
 		var onGetGenreJSON = function(genreJSON) {
 			page.showableGenre = new viewModelFactory.ShowableGenre(genreJSON);
 			page.showableGenre.render();
+			window.history.pushState({}, "", window.location.pathname.replace(/\/genres\/(\d)+/, "/genres/" + page.showableGenre.id))
 			if (page.sortPosition > page.genresCount) {
 				page.genresCount = page.sortPosition;
 			}
