@@ -6,7 +6,7 @@
 
 	base.runGenrePage = function(genrePage) {
 
-
+		genrePage.setEventListeners();
 
 	};
 

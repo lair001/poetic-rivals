@@ -125,4 +125,17 @@ describe('PoeticRivals.factories.page#Genre', function() {
 
 	});
 
+	describe('#setEventListeners', function() {
+		it('sets event listeners that call #onPreviousModelClick and #onNextModelClick on #previous_model and #next_model, respectively', sinon.test(function() {
+			var spy1 = this.spy(genrePage, "onPreviousModelClick"), spy2 = this.spy(genrePage, "onNextModelClick");
+			genrePage.setEventListeners();
+			expect(spy1).to.not.have.been.called;
+			expect(spy2).to.not.have.been.called;
+			$("#previous_model").trigger("click");
+			expect(spy1).to.have.been.calledOnce;
+			$("#next_model").trigger("click");
+			expect(spy2).to.have.been.calledOnce;
+		}));
+	});
+
 });
