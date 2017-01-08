@@ -9,6 +9,7 @@
 		var page = this;
 
 		pageFactory.FromPageData.call(page);
+		pageFactory.Error.call(page);
 
 		page.genresCount = parseInt(page.genresCount, 10);
 		page.sortPosition = parseInt(page.sortPosition, 10);
@@ -17,14 +18,14 @@
 			page.sortPosition = Math.max(Math.floor(page.genresCount/2), 1);
 		}
 
-		var getGenreJSON = function(onError) {
+		var getGenreJSON = function(errorCallback) {
 			$.ajax(
 				{
 					url: "/genres/" + page.sortPosition,
 					method: "GET",
 					dataType: "json",
 					success: page.onGetGenreJSON,
-					error: onError
+					error: errorCallback
 				}
 			);
 		};
@@ -59,22 +60,21 @@
 
 		}, 500, true);
 
-		var onPreviousModelClickError = function(errorJSON) {
+		var onRecordNotProcessed = function(error, errorJqXHR, recordNotFoundCallback, self) {
+			console.log("Status %s: %s", error.status, error.title);
+			console.log("This should not be possible on this page.");
+		}
 
-			console.log(errorJSON);
-			var recordNotFound = false;
-			errorJSON.responseJSON.errors.forEach(function(error) {
-				if (error.status === 404) {
-					recordNotFound = true;
-				}
-			});
-
-			if (recordNotFound && page.sortPosition >= 2) {
+		var onPreviousRecordNotFound = function(error, errorJqXHR, self, recordNotProcessedCallback) {
+			if (page.sortPosition >= 2) {
 				page.sortPosition--;
 				page.genresCount = page.sortPosition;
 				page.getGenreJSON(page.onPreviousModelClickError);
 			}
+		}
 
+		var onPreviousModelClickError = function(errorJqXHR) {
+			page.onError(errorJqXHR, page.onPreviousRecordNotFound, page.onRecordNotProcessed);
 		}
 
 		var onNextModelClick = debounce(function() {
@@ -88,27 +88,26 @@
 
 		}, 500, true);
 
-		var onNextModelClickError = function(errorJSON) {
-			console.log(errorJSON);
-			var recordNotFound = false;
-			errorJSON.responseJSON.errors.forEach(function(error) {
-				if (error.status === 404) {
-					recordNotFound = true;
-				}
-			});
-
-			if (recordNotFound && page.sortPosition >= 2) {
+		var onNextRecordNotFound = function(error, errorJqXHR, self, recordNotProcessedCallback) {
+			if (page.sortPosition >= 2) {
 				page.sortPosition = 1;
 				page.getGenreJSON(page.onNextModelClickError);
 			}
 		}
 
+		var onNextModelClickError = function(errorJqXHR) {
+			page.onError(errorJqXHR, page.onNextRecordNotFound, page.onRecordNotProcessed);
+		}
+
 		page.getGenreJSON = getGenreJSON;
 		page.onGetGenreJSON = onGetGenreJSON;
 		page.setEventListeners = setEventListeners;
+		page.onRecordNotProcessed = onRecordNotProcessed;
+		page.onPreviousRecordNotFound = onPreviousRecordNotFound;
 		page.onPreviousModelClick = onPreviousModelClick;
 		page.onPreviousModelClickError = onPreviousModelClickError;
 		page.onNextModelClick = onNextModelClick;
+		page.onNextRecordNotFound = onNextRecordNotFound;
 		page.onNextModelClickError = onNextModelClickError;
 
 	}
