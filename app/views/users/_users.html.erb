@@ -16,7 +16,7 @@
 					<br>
 					<br>
 					<br>
-					<h3><%= raw("<span class='user-score'>#{user.score}</span><br>(<span class='user-score-per-poem'>#{user.score_per_poem}</span>)")  %></h3>
+					<h3><%= raw("<span class='user-score'>#{user.score}</span><br>(<span class='user-score-per-poem'>#{render_score_per_poem_for(user)}</span>)")  %></h3>
 					<br>
 				</div>
 			</div>
