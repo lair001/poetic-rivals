@@ -1,32 +1,21 @@
 module ApplicationHelper
-	include PagesHelper::Titles
-	include PagesHelper::Taglines
-	include RoutesHelper::Base
-	include RoutesHelper::Mapper
-	include AuthorizationHelper::Access
-	include AuthorizationHelper::Pundit
 
-	include CommentariesHelper
-	include EnvHelper
-	include FlashHelper
-	include GenresHelper
-	include ModelsHelper
-	include UsersHelper
+	include ConcernsHelper::AuthorizationHelper::Access
+	include ConcernsHelper::AuthorizationHelper::Pundit
+	include ConcernsHelper::PagesHelper::Taglines
+	include ConcernsHelper::PagesHelper::Titles
+	include ConcernsHelper::RoutesHelper::Base
+	include ConcernsHelper::RoutesHelper::Mapper
 
-	def display_date(time)
-		time.strftime("%Y/%m/%d")
-	end
-
-	def display_time(time)
-		time.strftime("%H:%M:%S")
-	end
-
-	def format_time(time)
-		time.strftime("%Y/%m/%d<br>@ %H:%M:%S")
-	end
-
-	def render_record_not_found_json
-		render json: { errors: [{ status: 404, title: "Record Not Found" }] }.to_json, status: 404
-	end
+	include ConcernsHelper::CommentariesHelper
+	include ConcernsHelper::EnvHelper
+	include ConcernsHelper::FlashHelper
+	include ConcernsHelper::GenresHelper
+	include ConcernsHelper::HtmlHelper
+	include ConcernsHelper::JsonHelper
+	include ConcernsHelper::ModelsHelper
+	include ConcernsHelper::PoemsHelper
+	include ConcernsHelper::TimeHelper
+	include ConcernsHelper::UsersHelper
 
 end
