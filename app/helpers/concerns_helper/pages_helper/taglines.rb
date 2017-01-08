@@ -13,7 +13,7 @@ module ConcernsHelper
 			end
 
 			def user_page_tagline(user)
-				display_role_for(user)
+				render_role_for(user)
 			end
 
 			def users_page_tagline

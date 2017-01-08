@@ -12,8 +12,8 @@
 			<h3>Email:</h3>
 			<h4><%= user.email %></h4>
 			<h3>Joined:</h3>
-			<h4><%= display_date(user.created_at) %></h4>
-			<h4><%= display_time(user.created_at) %></h4>
+			<h4><%= render_date(user.created_at) %></h4>
+			<h4><%= render_time(user.created_at) %></h4>
 			<h3>Genres:</h3>
 			<h4><%= render_genres_for(user) %></h4>
 		</div>

@@ -6,10 +6,10 @@
 				<div class="col-xs-4">
 					<br>
 					<h3 class="user-username"><%= link_to user.username, user_path(user) %></h3>
-					<h4><em class="user-role"><%= display_role_for(user) %></em></h4>
+					<h4><em class="user-role"><%= render_role_for(user) %></em></h4>
 					<h4>Joined:</h4>
-					<h6 class="user-created-at-date"><%= raw(display_date(user.created_at)) %></h6>
-					<h6 class="user-created-at-time"><%= raw(display_time(user.created_at)) %></h6>
+					<h6 class="user-created-at-date"><%= raw(render_date(user.created_at)) %></h6>
+					<h6 class="user-created-at-time"><%= raw(render_time(user.created_at)) %></h6>
 					<br>
 				</div>
 				<div class="col-xs-8">

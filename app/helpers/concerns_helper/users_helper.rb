@@ -2,13 +2,14 @@ module ConcernsHelper
 	module UsersHelper
 
 		def render_score_per_poem_for(user)
-			# user.score_per_poem.round(2)
 			sprintf("%.2f", user.score_per_poem)
 		end
 
-		def display_role_for(user)
+		def render_role_for(user)
 			user.role.capitalize
 		end
+
+		alias_method :display_role_for, :render_role_for
 
 		def sort_users_by_score
 			@users ||= User.ordered_by_descending_score
