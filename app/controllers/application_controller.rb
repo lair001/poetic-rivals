@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
 
 protected
 
+	include ActionView::Helpers::UrlHelper
+
 	include ApplicationHelper
 
 	def remove_empty_keys_from(hash)
