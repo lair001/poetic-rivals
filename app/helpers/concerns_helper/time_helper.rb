@@ -1,13 +1,17 @@
 module ConcernsHelper
 	module TimeHelper
 
-		def display_date(time)
+		def render_date(time)
 			time.strftime("%Y/%m/%d")
 		end
 
-		def display_time(time)
+		alias_method :display_date, :render_date
+
+		def render_time(time)
 			time.strftime("%H:%M:%S")
 		end
+
+		alias_method :display_time, :render_time
 
 		def format_time(time)
 			time.strftime("%Y/%m/%d<br>@ %H:%M:%S")
