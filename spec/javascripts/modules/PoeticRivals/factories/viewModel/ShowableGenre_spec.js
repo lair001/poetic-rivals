@@ -33,6 +33,7 @@ describe('PoeticRivals.factories.viewModel#ShowableGenre', function() {
 			expect($("#page_tagline")).to.contain.$html(JSON.show_page_tagline);
 			expect($("#poems_link")).to.have.$attr("href", "/genres/" + JSON.id + "/poems");
 			expect($("#authors_link")).to.have.$attr("href", "/genres/" + JSON.id + "/authors");
+			expect($("#edit_link")).to.have.$attr("action", "/admin/genres/" + JSON.id + "/edit");
 		});
 	});
 
