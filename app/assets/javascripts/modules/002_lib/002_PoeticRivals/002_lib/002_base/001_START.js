@@ -16,6 +16,8 @@
 			base.runGenrePage(new pageFactory.Genre());
 		} else if (currentPathName === 'leaderboard_users') {
 			base.runLeaderboardUsersPage(new pageFactory.LeaderboardUsers());
+		} else if (currentPathName === 'genre_authors') {
+			base.runGenreAuthorsPage(new pageFactory.GenreAuthors());
 		}
 
 	};
