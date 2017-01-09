@@ -32,7 +32,7 @@
 
 			viewModelFactory.FromJSON.call(genre, JSON);
 
-			this.render = render;
+			genre.render = render;
 
 		}
 
