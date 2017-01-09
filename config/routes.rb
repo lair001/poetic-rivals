@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
 	resources :genres, only: [:show, :index] do
 		resources :poems, only: [:index]
-		resources :authors, only: [:index], controller: :users
+		resources :authors, only: [:index], controller: :genre_authors
 	end
 
 	scope '/admin' do
