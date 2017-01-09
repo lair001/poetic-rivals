@@ -23,7 +23,7 @@
 
 		var onScroll = debounce(function() {
 
-			if (jqWindow.scrollTop(value) > jqBody.height() - jqWindow.height() ) {
+			if (jqWindow.scrollTop() > jqBody.height() - jqWindow.height() ) {
 				page.getModelsJSON(page.onScrollError);
 			}
 
