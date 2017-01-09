@@ -2,8 +2,7 @@
 
 	"use strict";
 
-	var once = modules.Utils.once,
-		pageFactory = modules.PoeticRivals.factories.page,
+	var pageFactory = modules.PoeticRivals.factories.page,
 		jqWindow = $(window),
 		jqBody = $('.body');
 
