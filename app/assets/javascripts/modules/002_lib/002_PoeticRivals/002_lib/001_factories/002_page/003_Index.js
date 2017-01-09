@@ -2,7 +2,8 @@
 
 	"use strict";
 
-	var once = modules.Utils.once,
+	var utils = modules.Utils,
+		once = utils.once,
 		pageFactory = modules.PoeticRivals.factories.page;
 
 	pageFactory.Index = function(indexId, jqTemplateClassName, apiUrl, excludedIds, newModelCallback) {

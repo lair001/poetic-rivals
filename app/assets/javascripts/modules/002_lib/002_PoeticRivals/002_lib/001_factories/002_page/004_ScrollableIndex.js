@@ -4,7 +4,9 @@
 
 	var pageFactory = modules.PoeticRivals.factories.page,
 		jqWindow = $(window),
-		jqBody = $('.body');
+		jqBody = $('.body'),
+		utils = modules.Utils,
+		debounce = utils.debounce;
 
 	pageFactory.ScrollableIndex = function(indexId, jqTemplateClassName, apiUrl, excludedIds, newModelCallback) {
 
