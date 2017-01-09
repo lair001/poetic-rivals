@@ -14,6 +14,8 @@
 			base.runAqmPage(new pageFactory.Aqm());
 		} else if (currentPathName === 'genre') {
 			base.runGenrePage(new pageFactory.Genre());
+		} else if (currentPathName === 'leaderboard_users') {
+			base.runLeaderboardUsersPage(new pageFactory.LeaderboardUsers());
 		}
 
 	};
