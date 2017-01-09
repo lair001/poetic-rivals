@@ -8,7 +8,7 @@ class GenreAuthorsController < ApplicationController
 		respond_to do |f|
 			f.html do
 				excluded_ids = @users.collect{ |user| user.id.to_s }.join(',')
-				render 'users/index', layout: 'application', locals: { model: @genre, page_data: { excluded_ids: excluded_ids } }
+				render 'users/index', layout: 'application', locals: { model: @genre, page_data: { excluded_ids: excluded_ids, genre_id: params[:genre_id] } }
 			end
 			f.json { @users.count > 0 ? render(json: @users, fields: [:id, :username, :role, :created_at_date, :created_at_time, :score, :rounded_score_per_poem]) : render_record_not_found_json }
 		end
