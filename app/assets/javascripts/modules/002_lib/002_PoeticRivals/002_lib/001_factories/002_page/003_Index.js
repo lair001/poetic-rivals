@@ -30,7 +30,7 @@
 
 		var onGetModelsJSON = function(modelsJSON) {
 			modelsJSON.forEach(function(modelJSON) {
-				var model = newModelCallback(modelJSON, page.indexId, page.jqTemplate.clone());
+				var model = newModelCallback(modelJSON, page.indexId, page.jqTemplate().clone());
 				model.updateJqTemplate();
 				model.render();
 				page.excludedIds += "," + model.id;
