@@ -11,7 +11,7 @@ class UserSerializer < ApplicationSerializer
 	end
 
 	def rounded_score_per_poem
-		render_score_per_poem_for(object).to_f
+		render_score_per_poem_for(object)
 	end
 
 end
