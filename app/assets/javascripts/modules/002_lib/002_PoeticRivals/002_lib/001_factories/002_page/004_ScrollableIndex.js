@@ -39,7 +39,7 @@
 
 		page.setEventListeners = setEventListeners;
 		page.onScroll = onScroll;
-		page.onScrollError = onScrollError,
+		page.onScrollError = onScrollError;
 		page.onNextRecordsNotFound = onNextRecordsNotFound;
 
 	}
