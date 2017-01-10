@@ -12,9 +12,13 @@ Rails.application.routes.draw do
 	end
 
 	resources :users, only: [:index, :show] do
-		resources :poems, only: [:index, :show, :new, :edit] do
+		resources :poems, only: [:show, :new, :edit] do
 			resources :commentaries, only: [:index, :new, :edit, :destroy]
 		end
+	end
+
+	resources :users do
+		resources :poems, only: [:index], controller: :user_poems
 	end
 
 	resources :commentaries, only: [:create, :update]
@@ -28,7 +32,7 @@ Rails.application.routes.draw do
 	end
 
 	resources :genres, only: [:show, :index] do
-		resources :poems, only: [:index]
+		resources :poems, only: [:index], controller: :genre_poems
 		resources :authors, only: [:index], controller: :genre_authors
 	end
 
