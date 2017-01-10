@@ -17,7 +17,7 @@
 				usernameLink.html(user.username);
 				usernameLink.attr("href", newUsernameLinkHref);
 
-				user.jqTemplate.find('.role').html(user.role);
+				user.jqTemplate.find('.role').html(user.rendered_role);
 				user.jqTemplate.find('.created-at-date').html(user.created_at_date);
 				user.jqTemplate.find('.created-at-time').html(user.created_at_time);
 				user.jqTemplate.find('.score').html(user.score);
