@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
 	rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 	rescue_from(ActiveRecord::RecordNotFound) { redirect_to previous_path_or_root }
 
+	serialization_scope :view_context
+
 	def after_sign_in_path_for(resource)
 	  request.env['omniauth.origin'] || root_path
 	end
