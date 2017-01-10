@@ -4,7 +4,7 @@
 
 	var viewModelFactory = modules.PoeticRivals.factories.viewModel;
 
-	viewModelFactory.IndexablePoem = function(JSON, indexId, jqTemplate) {
+	viewModelFactory.IndexableCommentary = function(JSON, indexId, jqTemplate) {
 
 			var vm = this;
 
