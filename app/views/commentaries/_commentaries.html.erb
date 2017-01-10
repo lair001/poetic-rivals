@@ -2,7 +2,7 @@
 	<%= render partial: 'commentaries/indexable_commentary_edit_and_delete_buttons_template', locals: { commentary: commentaries.first } %>
 </div>
 <div class="global-jumbotron" id="commentaries_dashboard">
-	<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: new_user_poem_commentary_path(params[:user_id], params[:poem_id]), method: :get, content: "#{fa_icon("pencil-square-o")} Comment" } %>
+	<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: new_user_poem_commentary_path(params[:user_id], params[:poem_id]), method: :get, content: "#{fa_icon("pencil-square-o")} Comment", btn_class: "btn global-form-btn" } %>
 	<div id="commentaries_index">
 		<% commentaries.each do |commentary| %>
 			<%= render partial: 'commentaries/indexable_commentary_template', locals: { commentary: commentary } %>

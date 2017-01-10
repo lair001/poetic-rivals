@@ -1,6 +1,6 @@
 <div class="global-jumbotron" id="genre_dashboard">
 	<% if policy(:access).admin? %>
-		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: edit_admin_genre_path(genre), method: :get, content: "#{fa_icon("pencil-square-o")} Edit", form_id: "edit_link" } %>
+		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: edit_admin_genre_path(genre), method: :get, content: "#{fa_icon("pencil-square-o")} Edit", form_id: "edit_link", btn_class: "btn global-form-btn" } %>
 	<% end %>
 	<%
 		content_left = <<-CONTENT_LEFT

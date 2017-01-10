@@ -1,6 +1,6 @@
 <div class="global-jumbotron" id="poem_details">
 	<% if policy(poem).edit? %>
-		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: edit_user_poem_path(poem.author, poem), method: :get, content: "#{fa_icon("pencil-square-o")} Edit" } %>
+		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: edit_user_poem_path(poem.author, poem), method: :get, content: "#{fa_icon("pencil-square-o")} Edit", btn_class: "btn global-form-btn" } %>
 	<% end %>
 	<div class="align-left global-divider-top" id="poem_body"><%= raw(convert_whitespace_to_html_in(poem.body)) %></div>
 	<div class="row global-divider-top" id="poem_dashboard">
@@ -30,9 +30,9 @@
 		</div>
 	</div>
 	<% if policy(poem).vote? %>
-		<%= render partial: 'layouts/forms/global_row_with_two_half_width_button_only_forms', locals: { action_left: poem_voters_path(poem), method_left: :post, content_left: "#{fa_icon("thumbs-up")} Upvote", value_left: "1", action_right: poem_voters_path(poem), method_right: :post, content_right: "#{fa_icon("thumbs-down")} Downvote", value_right: "-1" } %>
+		<%= render partial: 'layouts/forms/global_row_with_two_half_width_button_only_forms', locals: { action_left: poem_voters_path(poem), method_left: :post, content_left: "#{fa_icon("thumbs-up")} Upvote", value_left: "1", btn_class_left: "btn global-form-btn", action_right: poem_voters_path(poem), method_right: :post, content_right: "#{fa_icon("thumbs-down")} Downvote", value_right: "-1", btn_class_right: "btn global-form-btn" } %>
 	<% elsif current_user.upvoting?(poem) || current_user.downvoting?(poem) %>
-		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: poem_voter_path(poem, current_user), method: :delete, content: "#{fa_icon("bomb")} #{ current_user.upvoting?(poem) ? "Upvote" : "Downvote" }", data: { confirm: data_confirm_message } } %>
+		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: poem_voter_path(poem, current_user), method: :delete, content: "#{fa_icon("bomb")} #{ current_user.upvoting?(poem) ? "Upvote" : "Downvote" }", data: { confirm: data_confirm_message }, btn_class: "btn global-form-btn" } %>
 	<% end %>
-	<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: user_poem_commentaries_path(poem.author, poem), method: :get, content: "#{fa_icon("file-text")} Comments" } %>
+	<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: user_poem_commentaries_path(poem.author, poem), method: :get, content: "#{fa_icon("file-text")} Comments", btn_class: "btn global-form-btn" } %>
 </div>

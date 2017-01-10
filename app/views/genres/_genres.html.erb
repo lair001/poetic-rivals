@@ -1,6 +1,6 @@
 <div class="global-jumbotron" id="genres_dashboard">
 	<% if policy(:access).admin? %>
-		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: new_admin_genre_path, method: :get, content: "#{fa_icon("pencil-square-o")} New Genre" } %>
+		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: new_admin_genre_path, method: :get, content: "#{fa_icon("pencil-square-o")} New Genre", btn_class: "btn global-form-btn" } %>
 	<% end %>
 	<div class="row global-divider-top">
 		<%= paginate @genres %>
@@ -30,6 +30,6 @@
 		<%= paginate @genres %>
 	</div>
 	<% if policy(:access).admin? %>
-		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: new_admin_genre_path, method: :get, content: "#{fa_icon("pencil-square-o")} New Genre" } %>
+		<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: new_admin_genre_path, method: :get, content: "#{fa_icon("pencil-square-o")} New Genre", btn_class: "btn global-form-btn" } %>
 	<% end %>
 </div>

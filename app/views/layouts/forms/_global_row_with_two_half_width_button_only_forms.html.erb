@@ -1,5 +1,11 @@
-<% value_left = nil if !local_assigns.has_key?(:value_left) %>
-<% data_left = {} if !local_assigns.has_key?(:data_left) %>
-<% value_right = nil if !local_assigns.has_key?(:value_right) %>
-<% data_right = {} if !local_assigns.has_key?(:data_right) %>
-<%= render partial: 'layouts/row_with_two_half_width_fields', locals: { content_left: (render partial: 'layouts/forms/form_tag/global_button_only_form', locals: { action: action_left, method: method_left, content: content_left, value: value_left, data: data_left }), content_right: (render partial: 'layouts/forms/form_tag/global_button_only_form', locals: { action: action_right, method: method_right, content: content_right, value: value_right, data: data_right }) } %>
+<%
+value_left = nil if !local_assigns.has_key?(:value_left)
+data_left = {} if !local_assigns.has_key?(:data_left)
+btn_class_left = nil if !local_assigns.has_key?(:btn_class_left)
+btn_id_left = nil if !local_assigns.has_key?(:btn_id_left)
+value_right = nil if !local_assigns.has_key?(:value_right)
+data_right = {} if !local_assigns.has_key?(:data_right)
+btn_class_right = nil if !local_assigns.has_key?(:btn_class_right)
+btn_id_right = nil if !local_assigns.has_key?(:btn_id_right)
+%>
+<%= render partial: 'layouts/row_with_two_half_width_fields', locals: { content_left: (render partial: 'layouts/forms/form_tag/global_button_only_form', locals: { action: action_left, method: method_left, content: content_left, value: value_left, data: data_left, btn_class: btn_class_left, btn_id: btn_id_left }), content_right: (render partial: 'layouts/forms/form_tag/global_button_only_form', locals: { action: action_right, method: method_right, content: content_right, value: value_right, data: data_right, btn_class: btn_class_right, btn_id: btn_id_right }) } %>

@@ -1,9 +1,11 @@
 <%
 value = nil if !local_assigns.has_key?(:value)
 data = {} if !local_assigns.has_key?(:data)
-form_id = nil if !local_assigns.has_key?(:form_id) 
+form_id = nil if !local_assigns.has_key?(:form_id)
+btn_id = nil if !local_assigns.has_key?(:btn_id)
+btn_class = nil if !local_assigns.has_key?(:btn_class)
 %>
 <%= form_tag action, method: method, id: form_id do %>
 	<%= value ? hidden_field_tag('value', value) : "" %>
-	<%= render partial: 'layouts/global_button', locals: { content: content, data: data } %>
+	<%= render partial: 'layouts/global_button', locals: { content: content, data: data, btn_class: btn_class, btn_id: btn_id } %>
 <% end %>
