@@ -24,6 +24,10 @@ class ApplicationSerializer < ActiveModel::Serializer
 		view_context.render_role_for(object)
 	end
 
+	def can_edit
+		view_context.policy(object).edit?
+	end
+
 protected
 
 
