@@ -2,8 +2,15 @@ class UserPoemsController < ApplicationController
 
 	def index
 		@user = User.find(params[:user_id])
-		@poems = policy_scope(@user.poems.order(updated_at: :desc))
-		render 'poems/index', layout: 'application', locals: { model: @user }
+		params[:excluded_ids] ? excluded_ids = params[:excluded_ids].split(',') : excluded_ids = []
+		@poems = policy_scope(@user.poems.order(updated_at: :desc)).page(1).where.not(id: excluded_ids)
+		respond_to do |f|
+			f.html do
+				excluded_ids = @poems.collect{ |poem| poem.id.to_s }.join(',')
+				render 'poems/index', layout: 'application', locals: { model: @user, page_data: { excluded_ids: excluded_ids, user_id: params[:user_id] } }
+			end
+			f.json { @poems.count > 0 ? render(json: @poems, fields: [:id, :title, :genres_list, :created_at_date, :created_at_time, :updated_at_date, :updated_at_time]) : render_record_not_found_json }
+		end
 	end
 
 end
