@@ -1,0 +1,6 @@
+<%
+btn_class = "btn global-form-btn" if !local_assigns.has_key?(:btn_class)
+data = {} if !local_assigns.has_key?(:data)
+btn_id = nil if !local_assigns.has_key?(:form_id)
+%>
+<%= render partial: 'layouts/one_half_width_field_centered', locals: { content: (render partial: 'layouts/global_button', locals: { content: content, data: data, btn_class: btn_class, btn_id: btn_id }) } %>

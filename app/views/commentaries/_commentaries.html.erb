@@ -12,5 +12,5 @@
 		<% end %>
 	</div>
 	<div class="row global-divider-bottom"></div>
-<%= render partial: 'layouts/forms/global_one_centered_half_width_button_only_form', locals: { action: new_user_poem_commentary_path(params[:user_id], params[:poem_id]), method: :get, content: "#{fa_icon("pencil-square-o")} Comment" } %>
+<%= render partial: 'layouts/one_centered_half_width_button', locals: { content: "#{fa_icon("plus")} More Comments", id: "more_comments" } %>
 </div>
