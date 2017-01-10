@@ -25,7 +25,25 @@
 				vm.jqTemplate.find('.comment').html(vm.rendered_comment);
 			};
 
-			vm.updateJqTemplate = updateJqTemplate;
+			var updatejqButtonsTemplate = function() {
+				var editButtonForm = vm.jqButtonsTemplate.find('[method]="get"'),
+					deleteButtonForm = vm.jqButtonsTemplate.find('[method]="post"'),
+					newEditButtonFormAction = editButtonForm.attr("action").replace(/\/commentaries\/(\d)+/, "/commentaries/" + vm.id),
+					newDeleteButtonFormAction = deleteButtonForm.attr("action").replace(/\/commentaries\/(\d)+/, "/commentaries/" + vm.id);
+
+				editButtonForm.attr("action", newEditButtonFormAction);
+				deleteButtonForm.attr("action", newDeleteButtonFormAction);
+			}
+
+			var renderButtons = function() {
+				vm.jqButtonsTemplate.appendTo('#' + vm.indexId);
+			};
+
+			vm.updateJqTemplate = updateJqTemplate,
+			vm.updateJqButtonsTemplate = updatejqButtonsTemplate,
+			vm.renderButtons = renderButtons;
+
+
 
 		}
 
