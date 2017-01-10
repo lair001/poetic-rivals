@@ -7,7 +7,7 @@
 		utils = modules.Utils,
 		debounce = utils.debounce;
 
-	pageFactory.GenreAuthors = function() {
+	pageFactory.GenrePoems = function() {
 
 		var page = this;
 

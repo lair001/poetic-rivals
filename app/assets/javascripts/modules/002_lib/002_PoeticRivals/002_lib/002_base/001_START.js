@@ -18,6 +18,8 @@
 			base.runLeaderboardUsersPage(new pageFactory.LeaderboardUsers());
 		} else if (currentPathName === 'genre_authors') {
 			base.runGenreAuthorsPage(new pageFactory.GenreAuthors());
+		} else if (currentPathName === 'genre_poems') {
+			base.runGenrePoemsPage(new pageFactory.GenrePoems());
 		}
 
 	};
