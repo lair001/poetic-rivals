@@ -3,7 +3,15 @@ class CommentariesController < ApplicationController
 	def index
 		@poem = Poem.find(params[:poem_id])
 		authorize(@poem, :show?)
-		render layout: 'application', locals: { model: @poem }
+		params[:excluded_ids] ? excluded_ids = params[:excluded_ids].split(',') : excluded_ids = []
+		@commentaries = @poem.commentaries.order(created_at: :asc).where.not(id: excluded_ids).limit(5)
+		respond_to do |f|
+			f.html do
+				excluded_ids = @commentaries.collect{ |commentary| commentary.id.to_s }.join(',')
+				render layout: 'application', locals: { model: @poem, page_data: { excluded_ids: excluded_ids, user_id: params[:user_id], poem_id: params[:poem_id] } }
+			end
+			f.json { @commentaries.count > 0 ? render(json: @commentaries) : render_record_not_found_json }
+		end
 	end
 
 	def new
