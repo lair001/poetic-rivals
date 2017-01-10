@@ -1,0 +1,21 @@
+<% commentator = commentary.commentator %>
+<div class="row global-divider-top indexable-commentary-template">
+	<div class="col-xs-4">
+		<br>
+		<h3><%= link_to commentator.username, user_path(commentator), class: "commentator-username" %></h3>
+		<h4><em class="commentator-role"><%= display_role_for(commentator) %></em></h4>
+		<h4>Created:</h4>
+		<h6 class="created-at-date"><%= raw(display_date(commentary.created_at)) %></h6>
+		<h6 class="created-at-time"><%= raw(display_time(commentary.created_at)) %></h6>
+		<h4>Updated:</h4>
+		<h6 class="updated-at-date"><%= raw(display_date(commentary.updated_at)) %></h6>
+		<h6 class="updated-at-time"><%= raw(display_time(commentary.updated_at)) %></h6>
+		<br>
+	</div>
+	<div class="col-xs-8">
+		<br>
+		<br>
+		<div class="align-left comment"><%= render_comment_for(commentary) %></div>
+		<br>
+	</div>
+</div>
