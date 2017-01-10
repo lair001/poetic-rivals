@@ -20,6 +20,10 @@ class ApplicationSerializer < ActiveModel::Serializer
 		view_context.render_genres_for(object)
 	end
 
+	def rendered_role
+		view_context.render_role_for(object)
+	end
+
 protected
 
 

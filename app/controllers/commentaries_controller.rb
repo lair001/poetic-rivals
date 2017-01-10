@@ -10,7 +10,7 @@ class CommentariesController < ApplicationController
 				excluded_ids = @commentaries.collect{ |commentary| commentary.id.to_s }.join(',')
 				render layout: 'application', locals: { model: @poem, page_data: { excluded_ids: excluded_ids, user_id: params[:user_id], poem_id: params[:poem_id] } }
 			end
-			f.json { @commentaries.count > 0 ? render(json: @commentaries) : render_record_not_found_json }
+			f.json { @commentaries.count > 0 ? render(json: @commentaries, fields: [:id, :created_at_date, :created_at_time, :updated_at_date, :updated_at_time, :rendered_comment]  ) : render_record_not_found_json }
 		end
 	end
 

@@ -19,7 +19,7 @@
 				<div class="col-xs-8">
 					<br>
 					<br>
-					<div class="align-left" id="<%="commentary_#{commentary.id}_comment"%>"><%= raw(convert_whitespace_to_html_in(commentary.comment)) %></div>
+					<div class="align-left" id="<%="commentary_#{commentary.id}_comment"%>"><%= render_comment_for(commentary) %></div>
 					<br>
 				</div>
 			</div>

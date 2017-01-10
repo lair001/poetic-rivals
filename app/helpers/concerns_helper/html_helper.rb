@@ -27,6 +27,10 @@ module ConcernsHelper
 			raw(policy_scope(model.genres).collect{ |genre| link_to genre.name, genre_path(genre)}.join(", "))
 		end
 
+		def render_comment_for(commentary)
+			raw(convert_whitespace_to_html_in(commentary.comment))
+		end
+
 		def data_confirm_message
 			"Are you sure?"
 		end
