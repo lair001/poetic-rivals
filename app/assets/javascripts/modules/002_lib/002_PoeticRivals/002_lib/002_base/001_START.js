@@ -20,6 +20,8 @@
 			base.runGenreAuthorsPage(new pageFactory.GenreAuthors());
 		} else if (currentPathName === 'genre_poems') {
 			base.runGenrePoemsPage(new pageFactory.GenrePoems());
+		} else if (currentPathName === 'user_poems') {
+			base.runUserPoemsPage(new pageFactory.UserPoems());
 		}
 
 	};
