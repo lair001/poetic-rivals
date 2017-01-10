@@ -1,0 +1,19 @@
+<div class="row global-divider-top indexable-poem-template">
+	<div class="col-xs-4">
+		<br>
+		<h4>Created:</h4>
+		<h6 class="created-at-date"><%= raw(display_date(poem.created_at)) %></h6>
+		<h6 class="created-at-time"><%= raw(display_time(poem.created_at)) %></h6>
+		<h4>Updated:</h4>
+		<h6 class="updated-at-date"><%= raw(display_date(poem.updated_at)) %></h6>
+		<h6 class="updated-at-time"><%= raw(display_time(poem.updated_at)) %></h6>
+		<br>
+	</div>
+	<div class="col-xs-8">
+		<br>
+		<h3><%= link_to poem.title, user_poem_path(poem.author, poem), class: "title" %></h3>
+		<h4>Genres:</h4>
+		<h6 class="genres"><%= render_genres_for(poem) %></h6>
+		<br>
+	</div>
+</div>
