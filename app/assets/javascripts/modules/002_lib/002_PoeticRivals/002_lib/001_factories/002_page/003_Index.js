@@ -33,6 +33,9 @@
 				var model = newModelCallback(modelJSON, page.indexId, page.jqTemplate().clone());
 				model.updateJqTemplate();
 				model.render();
+				if (page.afterModelRender) {
+					page.afterModelRender(model);
+				}
 				page.excludedIds += "," + model.id;
 			});
 		};
