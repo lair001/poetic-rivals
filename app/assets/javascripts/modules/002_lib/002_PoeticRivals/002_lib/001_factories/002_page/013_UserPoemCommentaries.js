@@ -19,8 +19,10 @@
 		});
 
 		var setEventListeners = function() {
-			var clickableCommentaryIndexPage = new pageFactory.ClickableIndex(page.indexId, page.jqTemplateClassName, page.indexApiUrl, page.excludedIds, page.indexPageNewModelCallback, page.clickId, page.indexPageAfterModelRender);
+			var clickableCommentaryIndexPage = new pageFactory.ClickableIndex(page.indexId, page.jqTemplateClassName, page.indexApiUrl, page.excludedIds, page.indexPageNewModelCallback, page.clickId, page.indexPageAfterModelRender),
+			submitCommentaryFormPage = new pageFactory.SubmitCommentaryForm(page.indexId, page.jqTemplateClassName, page.submitApiUrl, page.indexPageNewModelCallback, page.formId, page.indexPageAfterModelRender);
 			clickableCommentaryIndexPage.setEventListeners();
+			submitCommentaryFormPage.setEventListeners();
 		}
 
 		var indexPageAfterModelRender = function(model) {
@@ -44,6 +46,8 @@
 		page.clickId = "more_comments";
 		page.jqButtonsTemplate = jqButtonsTemplate;
 		page.indexPageAfterModelRender = indexPageAfterModelRender;
+		page.formId = "new_commentary";
+		page.submitApiUrl = "/commentaries";
 
 	}
 
