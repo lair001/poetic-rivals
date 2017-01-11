@@ -20,7 +20,7 @@
 
 		var setEventListeners = function() {
 			var clickableCommentaryIndexPage = new pageFactory.ClickableIndex(page.indexId, page.jqTemplateClassName, page.indexApiUrl, page.excludedIds, page.indexPageNewModelCallback, page.clickId, page.indexPageAfterModelRender),
-			submitCommentaryFormPage = new pageFactory.SubmitCommentaryForm(page.indexId, page.jqTemplateClassName, page.submitApiUrl, page.indexPageNewModelCallback, page.formId, page.indexPageAfterModelRender);
+				submitCommentaryFormPage = new pageFactory.SubmitCommentaryForm(page.indexId, page.jqTemplateClassName, page.submitApiUrl, page.indexPageNewModelCallback, page.formId, page.indexPageAfterModelRender, clickableCommentaryIndexPage);
 			clickableCommentaryIndexPage.setEventListeners();
 			submitCommentaryFormPage.setEventListeners();
 		}

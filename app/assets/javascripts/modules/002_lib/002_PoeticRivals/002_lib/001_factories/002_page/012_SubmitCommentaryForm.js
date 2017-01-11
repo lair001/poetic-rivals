@@ -9,10 +9,11 @@
 		once = utils.once,
 		debounce = utils.debounce;
 
-	pageFactory.SubmitCommentaryForm = function(indexId, jqTemplateClassName, apiUrl, newModelCallback, formId, afterModelRenderCallback) {
+	pageFactory.SubmitCommentaryForm = function(indexId, jqTemplateClassName, apiUrl, newModelCallback, formId, afterModelRenderCallback, indexPage) {
 
 		var page = this,
-			jqForm = $('#' + formId);
+			jqForm = $('#' + formId),
+			jqFormSubmitButton = $('#' + formId + ' input[type="submit"]');
 
 		pageFactory.Index.call(page, indexId, jqTemplateClassName, apiUrl, newModelCallback);
 
@@ -32,19 +33,28 @@
 					url: page.apiUrl,
 					method: "POST",
 					data: data,
+					dataType: "json",
 					success: page.onPost,
 					error: page.onError
 				}
 			);
 		}, 5000, true);
 
-		var onPost = function(JSON) {
-			console.log(JSON);
+		var onPost = function(modelJSON) {
+			var model = newModelCallback(modelJSON, page.indexId, page.jqTemplate().clone());
+			model.updateJqTemplate();
+			model.render();
+			if (page.afterModelRender) {
+				page.afterModelRender(model);
+			}
+			page.indexPage.excludedIds += "," + model.id;
+			jqFormSubmitButton.prop("disabled", false);
 		};
 
 		var onError = function(jqXHR) {
 			console.log(jqXHR);
 			console.log(jqXHR.responseJSON);
+			jqFormSubmitButton.prop("disabled", false);
 		}
 
 		page.indexId = indexId;
@@ -52,9 +62,13 @@
 		page.apiUrl = apiUrl;
 		page.newModelCallback = newModelCallback;
 		page.formId = formId;
-		page.afterModelRenderCallback = afterModelRenderCallback;
+		if (typeof(afterModelRenderCallback) === "function") {
+			page.afterModelRender = afterModelRenderCallback;
+		}
+		page.indexPage = indexPage;
 		page.setEventListeners = setEventListeners;
 		page.jqTemplate = jqTemplate;
+		page.onSubmit = onSubmit;
 		page.onPost = onPost;
 		page.onError = onError;
 
