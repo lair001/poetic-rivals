@@ -4,7 +4,7 @@ class CommentariesController < ApplicationController
 		@poem = Poem.find(params[:poem_id])
 		authorize(@poem, :show?)
 		params[:excluded_ids] ? excluded_ids = params[:excluded_ids].split(',') : excluded_ids = []
-		@commentaries = @poem.commentaries.order(created_at: :asc).where.not(id: excluded_ids).limit(5)
+		@commentaries = @poem.commentaries.order(created_at: :desc).where.not(id: excluded_ids).limit(5)
 		respond_to do |f|
 			f.html do
 				@commentary = Commentary.new(commentator_id: current_user.id, poem_id: params[:poem_id])
