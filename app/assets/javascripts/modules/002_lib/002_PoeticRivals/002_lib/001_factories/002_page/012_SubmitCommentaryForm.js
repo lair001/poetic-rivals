@@ -28,18 +28,22 @@
 
 		var onSubmit = function(event) {
 			event.preventDefault();
-			var data = $(this).serialize();
+			page.data = $(this).serialize();
+			page.postCommentary();
+		};
+
+		var postCommentary = debounce(function() {
 			$.ajax(
 				{
 					url: page.apiUrl,
 					method: "POST",
-					data: data,
+					data: page.data,
 					dataType: "json",
 					success: page.onPost,
 					error: page.onError
 				}
 			);
-		};
+		}, 5000, true);
 
 		var onPost = function(modelJSON) {
 			var model = newModelCallback(modelJSON, page.indexId, page.jqTemplate().clone());
@@ -73,6 +77,7 @@
 		page.setEventListeners = setEventListeners;
 		page.jqTemplate = jqTemplate;
 		page.onSubmit = onSubmit;
+		page.postCommentary = postCommentary;
 		page.onPost = onPost;
 		page.onError = onError;
 
