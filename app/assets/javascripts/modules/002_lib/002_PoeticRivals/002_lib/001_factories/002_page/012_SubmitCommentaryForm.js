@@ -27,6 +27,10 @@
 			return $($("." + page.jqTemplateClassName)[0]).clone();
 		});
 
+		var jqModelErrorsTemplate = once(function() {
+			return $("#" + page.modelErrorsTemplateId).children().clone();
+		});
+
 		var onSubmit = function(event) {
 			event.preventDefault();
 			page.data = $(this).serialize();
@@ -66,6 +70,10 @@
 		};
 
 		var onRecordNotProcessed = function(error, errorJqXHR, recordNotFoundCallback, self) {
+			var newJqModelErrorsElement = page.jqModelErrorsTemplate().clone();
+			newJqModelErrorsElement.find(".error-messages").html(error.detail);
+			newJqModelErrorsElement.prependTo('#' + page.formJumbotronId);
+
 			$('#' + page.formId + ' label').wrap('<div class = "field_with_errors"></div>');
 			$('#' + page.formId + ' textarea').wrap('<div class = "field_with_errors"></div>');
 		};
@@ -75,6 +83,8 @@
 			console.log("This should not be possible on this page.");
 		};
 
+		page.modelErrorsTemplateId = 'model_errors_template';
+		page.formJumbotronId = 'commentary_form';
 		page.indexId = indexId;
 		page.jqTemplateClassName = jqTemplateClassName;
 		page.apiUrl = apiUrl;
@@ -86,6 +96,7 @@
 		page.indexPage = indexPage;
 		page.setEventListeners = setEventListeners;
 		page.jqTemplate = jqTemplate;
+		page.jqModelErrorsTemplate = jqModelErrorsTemplate;
 		page.onSubmit = onSubmit;
 		page.onSubmitError = onSubmitError;
 		page.postCommentary = postCommentary;
