@@ -7,6 +7,7 @@ class CommentariesController < ApplicationController
 		@commentaries = @poem.commentaries.order(created_at: :asc).where.not(id: excluded_ids).limit(5)
 		respond_to do |f|
 			f.html do
+				@commentary = Commentary.new(commentator_id: current_user.id, poem_id: params[:poem_id])
 				excluded_ids = @commentaries.collect{ |commentary| commentary.id.to_s }.join(',')
 				render layout: 'application', locals: { model: @poem, page_data: { excluded_ids: excluded_ids, user_id: params[:user_id], poem_id: params[:poem_id] } }
 			end

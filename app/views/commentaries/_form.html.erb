@@ -15,7 +15,7 @@
 	    </div>
 
 	    <div class="actions">
-	      <%= f.submit current_path_name.match(/new_/) ? "Create" : "Update", class: "btn global-form-btn" %>
+	      <%= f.submit !current_path_name.match(/edit/) ? "Create" : "Update", class: "btn global-form-btn" %>
 	    </div>
 
 
