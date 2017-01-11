@@ -1,13 +1,17 @@
 class RecordNotProcessedSerializer < ActiveModel::Serializer::ErrorSerializer
 
-	attributes :status, :title
+	attributes :errors
 
-	def status
-		"422"
+	def errors
+		[{ status: 422, title: "Record not processed.", detail: view_context.model_error_messages_as_html(object) }]
 	end
 
-	def title
-		"Record not processed."
-	end
+	# def status
+	# 	"422"
+	# end
+
+	# def title
+	# 	"Record not processed."
+	# end
 
 end
