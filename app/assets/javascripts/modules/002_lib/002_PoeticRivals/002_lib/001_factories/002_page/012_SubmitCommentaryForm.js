@@ -6,6 +6,7 @@
 		jqWindow = $(window),
 		jqBody = $('.body'),
 		utils = modules.Utils,
+		once = utils.once,
 		debounce = utils.debounce;
 
 	pageFactory.SubmitCommentaryForm = function(indexId, jqTemplateClassName, apiUrl, newModelCallback, formId, afterModelRenderCallback) {
