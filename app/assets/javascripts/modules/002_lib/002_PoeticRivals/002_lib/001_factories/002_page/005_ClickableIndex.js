@@ -28,7 +28,8 @@
 		};
 
 		var onNextRecordsNotFound = function(error, errorJqXHR, self, recordNotProcessedCallback) {
-			jqClickElement.off("click", page.onClick);
+			// jqClickElement.off("click", page.onClick);
+			jqClickElement.remove();
 		};
 
 
