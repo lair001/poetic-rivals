@@ -19,13 +19,14 @@
 
 		var setEventListeners = function() {
 			jqForm.on("submit", page.onSubmit);
+			jqFormSubmitButton.removeAttr("data-disable-with");
 		};
 
 		var jqTemplate = once(function() {
 			return $($("." + page.jqTemplateClassName)[0]).clone();
 		});
 
-		var onSubmit = debounce(function(event) {
+		var onSubmit = function(event) {
 			event.preventDefault();
 			var data = $(this).serialize();
 			$.ajax(
@@ -38,7 +39,7 @@
 					error: page.onError
 				}
 			);
-		}, 5000, true);
+		};
 
 		var onPost = function(modelJSON) {
 			var model = newModelCallback(modelJSON, page.indexId, page.jqTemplate().clone());
@@ -48,13 +49,16 @@
 				page.afterModelRender(model);
 			}
 			page.indexPage.excludedIds += "," + model.id;
-			jqFormSubmitButton.prop("disabled", false);
+			// jqFormSubmitButton.prop("disabled", false);
 		};
 
 		var onError = function(jqXHR) {
 			console.log(jqXHR);
 			console.log(jqXHR.responseJSON);
-			jqFormSubmitButton.prop("disabled", false);
+			console.log(page.formId);
+			$('#' + page.formId + ' label').wrap('<div class = "field_with_errors"></div>');
+			$('#' + page.formId + ' textarea').wrap('<div class = "field_with_errors"></div>');
+			$( "input" ).prop( "disabled", false );
 		}
 
 		page.indexId = indexId;
