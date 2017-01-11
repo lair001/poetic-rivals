@@ -24,11 +24,21 @@ class CommentariesController < ApplicationController
 	def create
 		@commentary = Commentary.new(commentary_params(:comment, :commentator_id, :poem_id))
 		authorize(@commentary)
-		if @commentary.save
-			redirect_to user_poem_commentaries_path(@commentary.poem_author, @commentary.poem)
-		else
-			@current_path_name = "new_user_poem_commentary" # need to manually set this for the title block to display
-			render :new, layout: 'application', locals: { model: @commentary }
+		respond_to do |f|
+			f.html do
+				if @commentary.save
+					redirect_to user_poem_commentaries_path(@commentary.poem_author, @commentary.poem)
+				else
+					@current_path_name = "new_user_poem_commentary" # need to manually set this for the title block to display
+					render :new, layout: 'application', locals: { model: @commentary }
+				end
+			end
+			f.json do
+				if @commentary.save
+					render json: @commentary, fields: [:id, :created_at_date, :created_at_time, :updated_at_date, :updated_at_time, :rendered_comment, :can_edit]
+				else
+				end
+			end
 		end
 	end
 
