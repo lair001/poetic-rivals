@@ -37,6 +37,7 @@ class CommentariesController < ApplicationController
 				if @commentary.save
 					render json: @commentary, fields: [:id, :created_at_date, :created_at_time, :updated_at_date, :updated_at_time, :rendered_comment, :can_edit]
 				else
+					render json: @commentary, status: 422, serializer: RecordNotProcessedSerializer
 				end
 			end
 		end
