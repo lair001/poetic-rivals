@@ -60,6 +60,7 @@
 				page.afterModelRender(model);
 			}
 			page.indexPage.excludedIds += "," + model.id;
+			$('div.field_with_errors').children().unwrap();
 			// jqFormSubmitButton.prop("disabled", false);
 		};
 
