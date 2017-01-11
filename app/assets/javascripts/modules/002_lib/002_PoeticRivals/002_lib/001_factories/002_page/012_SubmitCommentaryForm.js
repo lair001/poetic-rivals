@@ -61,6 +61,7 @@
 			}
 			page.indexPage.excludedIds += "," + model.id;
 			$('div.field_with_errors').children().unwrap();
+			$('#' + page.formId + ' textarea').val("");
 			// jqFormSubmitButton.prop("disabled", false);
 		};
 
