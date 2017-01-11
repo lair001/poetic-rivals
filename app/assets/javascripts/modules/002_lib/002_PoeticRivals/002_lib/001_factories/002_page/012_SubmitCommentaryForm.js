@@ -16,6 +16,7 @@
 			jqFormSubmitButton = $('#' + formId + ' input[type="submit"]');
 
 		pageFactory.Index.call(page, indexId, jqTemplateClassName, apiUrl, newModelCallback);
+		pageFactory.Error.call(page);
 
 		var setEventListeners = function() {
 			jqForm.on("submit", page.onSubmit);
@@ -32,6 +33,12 @@
 			page.postCommentary();
 		};
 
+		var onSubmitError = function(errorJqXHR) {
+			console.log(errorJqXHR);
+			console.log(errorJqXHR.responseJSON);
+			page.onError(errorJqXHR, page.onRecordNotFound, page.onRecordNotProcessed);
+		};
+
 		var postCommentary = debounce(function() {
 			$.ajax(
 				{
@@ -40,7 +47,7 @@
 					data: page.data,
 					dataType: "json",
 					success: page.onPost,
-					error: page.onError
+					error: page.onSubmitError
 				}
 			);
 		}, 5000, true);
@@ -56,14 +63,15 @@
 			// jqFormSubmitButton.prop("disabled", false);
 		};
 
-		var onError = function(jqXHR) {
-			console.log(jqXHR);
-			console.log(jqXHR.responseJSON);
-			console.log(page.formId);
+		var onRecordNotProcessed = function(error, errorJqXHR, recordNotFoundCallback, self) {
 			$('#' + page.formId + ' label').wrap('<div class = "field_with_errors"></div>');
 			$('#' + page.formId + ' textarea').wrap('<div class = "field_with_errors"></div>');
-			$( "input" ).prop( "disabled", false );
-		}
+		};
+
+		var onRecordNotFound = function(error, errorJqXHR, self, recordNotProcessedCallback) {
+			console.log("Status %s: %s", error.status, error.title);
+			console.log("This should not be possible on this page.");
+		};
 
 		page.indexId = indexId;
 		page.jqTemplateClassName = jqTemplateClassName;
@@ -77,10 +85,11 @@
 		page.setEventListeners = setEventListeners;
 		page.jqTemplate = jqTemplate;
 		page.onSubmit = onSubmit;
+		page.onSubmitError = onSubmitError;
 		page.postCommentary = postCommentary;
 		page.onPost = onPost;
-		page.onError = onError;
-
+		page.onRecordNotProcessed = onRecordNotProcessed;
+		page.onRecordNotFound = onRecordNotFound;
 	}
 
 })();
