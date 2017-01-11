@@ -1,2 +1,5 @@
+<div style="display: none;" id="model_errors_template">
+	<%= render partial: 'layouts/model_errors', locals: { model: Commentary.new } %>
+</div>
 <%= render partial: 'commentaries', locals: { commentaries: @commentaries } %>
 <%= render partial: 'form', locals: { commentary: @commentary } %>
