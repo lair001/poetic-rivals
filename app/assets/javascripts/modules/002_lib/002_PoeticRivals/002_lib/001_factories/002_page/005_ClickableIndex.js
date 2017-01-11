@@ -16,9 +16,6 @@
 		pageFactory.Index.call(page, indexId, jqTemplateClassName, apiUrl, excludedIds, newModelCallback);
 
 		var setEventListeners = function() {
-			if (jqWindow.height() > jqBody.height()) {
-				page.getModelsJSON(page.onClickError);
-			}
 			jqClickElement.on("click", page.onClick);
 		};
 
@@ -41,7 +38,7 @@
 		page.clickId = clickId;
 		page.setEventListeners = setEventListeners;
 		page.onClick = onClick;
-		page.onClickError = onScrollError;
+		page.onClickError = onClickError;
 		page.onNextRecordsNotFound = onNextRecordsNotFound;
 
 	}

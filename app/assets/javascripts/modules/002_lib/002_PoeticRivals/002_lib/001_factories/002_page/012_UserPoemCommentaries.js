@@ -19,7 +19,7 @@
 		});
 
 		var setEventListeners = function() {
-			var clickableCommentaryIndexPage = new pageFactory.ClickableIndex(page.indexId, page.jqTemplateClassName, page.apiUrl, page.excludedIds, page.indexPageNewModelCallback, page.clickId, page.indexPageAfterModelRender);
+			var clickableCommentaryIndexPage = new pageFactory.ClickableIndex(page.indexId, page.jqTemplateClassName, page.indexApiUrl, page.excludedIds, page.indexPageNewModelCallback, page.clickId, page.indexPageAfterModelRender);
 			clickableCommentaryIndexPage.setEventListeners();
 		}
 
@@ -35,9 +35,9 @@
 		}
 
 		page.setEventListeners = setEventListeners;
-		page.indexId = 'poems_index';
-		page.jqTemplateClassName = 'indexable-poem-template';
-		page.apiUrl = '/users/' + page.userId + '/poems';
+		page.indexId = 'commentaries_index';
+		page.jqTemplateClassName = 'indexable-commentary-template';
+		page.indexApiUrl = '/users/' + page.userId + '/poems/' + page.poemId + '/commentaries';
 		page.indexPageNewModelCallback = indexPageNewModelCallback;
 		page.jqButtonsTemplateId = "indexable_commentary_edit_and_delete_buttons_template";
 		page.clickId = "more_comments";

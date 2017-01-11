@@ -8,11 +8,11 @@
 
 			var vm = this;
 
-			viewModelFactory.Indexable.call(vm, JSON, indexId, jqTemplate, jqButtonsTemplate);
+			viewModelFactory.Indexable.call(vm, JSON, indexId, jqTemplate);
 
 			var updateJqTemplate = function() {
 				var commentatorUsernameLink = vm.jqTemplate.find('.commentator-username'),
-					newCommentatorUsernameLinkHref = commentatorUsernameLink.attr("href").replace(/\/poems\/(\d)+/, "/userss/" + vm.commentator.id);
+					newCommentatorUsernameLinkHref = commentatorUsernameLink.attr("href").replace(/\/users\/(\d)+/, "/users/" + vm.commentator.id);
 
 				commentatorUsernameLink.html(vm.commentator.username);
 				commentatorUsernameLink.attr("href", newCommentatorUsernameLinkHref);

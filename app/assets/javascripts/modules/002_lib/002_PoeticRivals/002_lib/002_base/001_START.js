@@ -22,6 +22,8 @@
 			base.runGenrePoemsPage(new pageFactory.GenrePoems());
 		} else if (currentPathName === 'user_poems') {
 			base.runUserPoemsPage(new pageFactory.UserPoems());
+		} else if (currentPathName === 'user_poem_commentaries' ) {
+			base.runUserPoemCommentariesPage(new pageFactory.UserPoemCommentaries());
 		}
 
 	};
