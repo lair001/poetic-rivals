@@ -4,7 +4,7 @@
 
 	var viewModelFactory = modules.PoeticRivals.factories.viewModel;
 
-	viewModelFactory.IndexableCommentary = function(JSON, indexId, jqTemplate) {
+	viewModelFactory.IndexableCommentary = function(JSON, indexId, jqTemplate, jqButtonsTemplate) {
 
 			var vm = this;
 
@@ -25,9 +25,9 @@
 				vm.jqTemplate.find('.comment').html(vm.rendered_comment);
 			};
 
-			var updatejqButtonsTemplate = function() {
-				var editButtonForm = vm.jqButtonsTemplate.find('[method]="get"'),
-					deleteButtonForm = vm.jqButtonsTemplate.find('[method]="post"'),
+			var updateJqButtonsTemplate = function() {
+				var editButtonForm = vm.jqButtonsTemplate.find('[method="get"]'),
+					deleteButtonForm = vm.jqButtonsTemplate.find('[method="post"]'),
 					newEditButtonFormAction = editButtonForm.attr("action").replace(/\/commentaries\/(\d)+/, "/commentaries/" + vm.id),
 					newDeleteButtonFormAction = deleteButtonForm.attr("action").replace(/\/commentaries\/(\d)+/, "/commentaries/" + vm.id);
 
@@ -40,8 +40,9 @@
 			};
 
 			vm.updateJqTemplate = updateJqTemplate,
-			vm.updateJqButtonsTemplate = updatejqButtonsTemplate,
+			vm.updateJqButtonsTemplate = updateJqButtonsTemplate,
 			vm.renderButtons = renderButtons;
+			vm.jqButtonsTemplate = jqButtonsTemplate;
 
 
 

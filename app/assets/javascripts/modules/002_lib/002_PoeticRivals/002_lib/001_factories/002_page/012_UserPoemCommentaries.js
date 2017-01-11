@@ -25,6 +25,7 @@
 
 		var indexPageAfterModelRender = function(model) {
 			if (model.can_edit) {
+				model.updateJqButtonsTemplate();
 				model.renderButtons();
 			}
 		}
@@ -42,7 +43,7 @@
 		page.jqButtonsTemplateId = "indexable_commentary_edit_and_delete_buttons_template";
 		page.clickId = "more_comments";
 		page.jqButtonsTemplate = jqButtonsTemplate;
-		page.indexPageAfterModelRenderCallback = indexPageAfterModelRender;
+		page.indexPageAfterModelRender = indexPageAfterModelRender;
 
 	}
 

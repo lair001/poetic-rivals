@@ -31,6 +31,7 @@
 			jqClickElement.off("click", page.onClick);
 		};
 
+
 		if (typeof(afterModelRenderCallback) === "function") {
 			page.afterModelRender = afterModelRenderCallback;
 		}
