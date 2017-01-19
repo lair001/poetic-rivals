@@ -6,15 +6,11 @@
 		once = utils.once,
 		pageFactory = modules.PoeticRivals.factories.page;
 
-	pageFactory.Index = function(indexId, jqTemplateClassName, apiUrl, excludedIds, newModelCallback) {
+	pageFactory.Index = function(indexId, apiUrl, excludedIds, newModelCallback) {
 
 		var page = this;
 
 		pageFactory.Error.call(page);
-
-		var jqTemplate = once(function() {
-			return $($("." + page.jqTemplateClassName)[0]).clone();
-		});
 
 		var getModelsJSON = function(errorCallback) {
 			$.ajax(
@@ -30,7 +26,7 @@
 
 		var onGetModelsJSON = function(modelsJSON) {
 			modelsJSON.forEach(function(modelJSON) {
-				var model = newModelCallback(modelJSON, page.indexId, page.jqTemplate().clone());
+				var model = newModelCallback(modelJSON, page.indexId);
 				model.updateJqTemplate();
 				model.render();
 				if (page.afterModelRender) {
@@ -46,10 +42,8 @@
 		}
 
 		page.indexId = indexId;
-		page.jqTemplateClassName = jqTemplateClassName;
 		page.apiUrl = apiUrl;
 		page.excludedIds = excludedIds;
-		page.jqTemplate = jqTemplate;
 		page.newModelCallback = newModelCallback;
 		page.getModelsJSON = getModelsJSON;
 		page.onGetModelsJSON = onGetModelsJSON;

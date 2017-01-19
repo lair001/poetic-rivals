@@ -8,12 +8,12 @@
 		utils = modules.Utils,
 		debounce = utils.debounce;
 
-	pageFactory.ClickableIndex = function(indexId, jqTemplateClassName, apiUrl, excludedIds, newModelCallback, clickId, afterModelRenderCallback) {
+	pageFactory.ClickableIndex = function(indexId, apiUrl, excludedIds, newModelCallback, clickId, afterModelRenderCallback) {
 
 		var page = this,
 			jqClickElement = $('#' + clickId);
 
-		pageFactory.Index.call(page, indexId, jqTemplateClassName, apiUrl, excludedIds, newModelCallback);
+		pageFactory.Index.call(page, indexId, apiUrl, excludedIds, newModelCallback);
 
 		var setEventListeners = function() {
 			jqClickElement.on("click", page.onClick);

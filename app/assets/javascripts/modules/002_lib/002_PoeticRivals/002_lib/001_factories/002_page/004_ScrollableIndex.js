@@ -8,11 +8,11 @@
 		utils = modules.Utils,
 		debounce = utils.debounce;
 
-	pageFactory.ScrollableIndex = function(indexId, jqTemplateClassName, apiUrl, excludedIds, newModelCallback) {
+	pageFactory.ScrollableIndex = function(indexId, apiUrl, excludedIds, newModelCallback) {
 
 		var page = this;
 
-		pageFactory.Index.call(page, indexId, jqTemplateClassName, apiUrl, excludedIds, newModelCallback);
+		pageFactory.Index.call(page, indexId, apiUrl, excludedIds, newModelCallback);
 
 		var setEventListeners = function() {
 			if (jqWindow.height() > jqBody.height()) {

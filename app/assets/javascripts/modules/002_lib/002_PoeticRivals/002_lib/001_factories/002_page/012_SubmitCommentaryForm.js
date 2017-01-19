@@ -9,23 +9,19 @@
 		once = utils.once,
 		debounce = utils.debounce;
 
-	pageFactory.SubmitCommentaryForm = function(indexId, jqTemplateClassName, apiUrl, newModelCallback, formId, afterModelRenderCallback, indexPage) {
+	pageFactory.SubmitCommentaryForm = function(indexId, apiUrl, newModelCallback, formId, afterModelRenderCallback, indexPage) {
 
 		var page = this,
 			jqForm = $('#' + formId),
 			jqFormSubmitButton = $('#' + formId + ' input[type="submit"]');
 
-		pageFactory.Index.call(page, indexId, jqTemplateClassName, apiUrl, newModelCallback);
+		pageFactory.Index.call(page, indexId, apiUrl, newModelCallback);
 		pageFactory.Error.call(page);
 
 		var setEventListeners = function() {
 			jqForm.on("submit", page.onSubmit);
 			jqFormSubmitButton.removeAttr("data-disable-with");
 		};
-
-		var jqTemplate = once(function() {
-			return $($("." + page.jqTemplateClassName)[0]).clone();
-		});
 
 		var jqModelErrorsTemplate = once(function() {
 			return $("#" + page.modelErrorsTemplateId).children().clone();
@@ -57,7 +53,7 @@
 		}, 5000, true);
 
 		var onPost = function(modelJSON) {
-			var model = newModelCallback(modelJSON, page.indexId, page.jqTemplate().clone());
+			var model = newModelCallback(modelJSON, page.indexId);
 			model.updateJqTemplate();
 			model.render();
 			if (page.afterModelRender) {
@@ -87,7 +83,6 @@
 		page.modelErrorsTemplateId = 'model_errors_template';
 		page.formJumbotronId = 'commentary_form';
 		page.indexId = indexId;
-		page.jqTemplateClassName = jqTemplateClassName;
 		page.apiUrl = apiUrl;
 		page.newModelCallback = newModelCallback;
 		page.formId = formId;
@@ -96,7 +91,6 @@
 		}
 		page.indexPage = indexPage;
 		page.setEventListeners = setEventListeners;
-		page.jqTemplate = jqTemplate;
 		page.jqModelErrorsTemplate = jqModelErrorsTemplate;
 		page.onSubmit = onSubmit;
 		page.onSubmitError = onSubmitError;
