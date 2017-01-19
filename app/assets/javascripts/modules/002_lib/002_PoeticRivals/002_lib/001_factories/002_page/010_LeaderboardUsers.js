@@ -8,31 +8,29 @@
 		once = utils.once,
 		debounce = utils.debounce;
 
-	pageFactory.UserPoems = function() {
+	pageFactory.LeaderboardUsers = function() {
 
 		var page = this;
 
+		page.jqTemplateClassName = 'indexable-user-template';
+		page.jqTemplateProperty = 'jqTemplate';
+
 		pageFactory.FromPageData.call(page);
+		pageFactory.JqTemplateByClassName.call(page, page.jqTemplateClassName, page.jqTemplateProperty);
 
 		var setEventListeners = function() {
 			var scrollableUserIndexPage = new pageFactory.ScrollableIndex(page.indexId, page.apiUrl, page.excludedIds, page.newModelCallback);
 			scrollableUserIndexPage.setEventListeners();
 		};
 
-		var jqTemplate = once(function() {
-			return $($("." + page.jqTemplateClassName)[0]).clone();
-		});
-
 		var newModelCallback = function(modelJSON, indexId) {
-			var indexablePoem = new viewModelFactory.IndexablePoem(modelJSON, indexId, page.jqTemplate().clone());
-			return indexablePoem;
+			var indexableUser = new viewModelFactory.IndexableUser(modelJSON, indexId, page.jqTemplate().clone());
+			return indexableUser;
 		};
 
 		page.setEventListeners = setEventListeners;
-		page.jqTemplate = jqTemplate;
-		page.indexId = 'poems_index';
-		page.jqTemplateClassName = 'indexable-poem-template';
-		page.apiUrl = '/users/' + page.userId + '/poems';
+		page.indexId = 'users_index';
+		page.apiUrl = '/leaderboard/users';
 		page.newModelCallback = newModelCallback;
 
 	}

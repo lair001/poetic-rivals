@@ -5,22 +5,20 @@
 	var pageFactory = modules.PoeticRivals.factories.page,
 		viewModelFactory = modules.PoeticRivals.factories.viewModel,
 		utils = modules.Utils,
-		once = utils.once,
 		debounce = utils.debounce;
 
 	pageFactory.UserPoemCommentaries = function() {
 
 		var page = this;
 
+		page.jqTemplateClassName = 'indexable-commentary-template';
+		page.jqTemplateProperty = 'jqTemplate';
+		page.jqButtonsTemplateId = "indexable_commentary_edit_and_delete_buttons_template";
+		page.jqButtonsTemplateProperty = 'jqButtonsTemplate';
+
 		pageFactory.FromPageData.call(page);
-
-		var jqTemplate = once(function() {
-			return $($("." + page.jqTemplateClassName)[0]).clone();
-		});
-
-		var jqButtonsTemplate = once(function() {
-			return $("#" + page.jqButtonsTemplateId).children().clone();
-		});
+		pageFactory.JqTemplateByClassName.call(page, page.jqTemplateClassName, page.jqTemplateProperty);
+		pageFactory.JqTemplateById.call(page, page.jqButtonsTemplateId, page.jqButtonsTemplateProperty);
 
 		var setEventListeners = function() {
 			var clickableCommentaryIndexPage = new pageFactory.ClickableIndex(page.indexId, page.indexApiUrl, page.excludedIds, page.indexPageNewModelCallback, page.clickId, page.indexPageAfterModelRender),
@@ -43,13 +41,9 @@
 
 		page.setEventListeners = setEventListeners;
 		page.indexId = 'commentaries_index';
-		page.jqTemplateClassName = 'indexable-commentary-template';
 		page.indexApiUrl = '/users/' + page.userId + '/poems/' + page.poemId + '/commentaries';
 		page.indexPageNewModelCallback = indexPageNewModelCallback;
-		page.jqButtonsTemplateId = "indexable_commentary_edit_and_delete_buttons_template";
 		page.clickId = "more_comments";
-		page.jqTemplate = jqTemplate;
-		page.jqButtonsTemplate = jqButtonsTemplate;
 		page.indexPageAfterModelRender = indexPageAfterModelRender;
 		page.formId = "new_commentary";
 		page.submitApiUrl = "/commentaries";
