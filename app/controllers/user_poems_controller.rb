@@ -3,7 +3,7 @@ class UserPoemsController < ApplicationController
 	def index
 		@user = User.find(params[:user_id])
 		params[:excluded_ids] ? excluded_ids = params[:excluded_ids].split(',') : excluded_ids = []
-		@poems = policy_scope(@user.poems.order(updated_at: :desc)).page(1).where.not(id: excluded_ids)
+		@poems = policy_scope(@user.poems.where.not(id: excluded_ids).order(updated_at: :desc)).limit(Kaminari.config.default_per_page)
 		respond_to do |f|
 			f.html do
 				excluded_ids = @poems.collect{ |poem| poem.id.to_s }.join(',')
