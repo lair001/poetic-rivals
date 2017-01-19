@@ -4,7 +4,7 @@ class GenrePoemsController < ApplicationController
 		@genre = Genre.find(params[:genre_id])
 		authorize @genre, :show?
 		params[:excluded_ids] ? excluded_ids = params[:excluded_ids].split(',') : excluded_ids = []
-		@poems = policy_scope(@genre.poems_ordered_by_descending_updated_at).page(1).where.not(id: excluded_ids)
+		@poems = policy_scope(@genre.poems_ordered_by_descending_updated_at).where.not(id: excluded_ids).limit(Kaminari.config.default_per_page)
 		respond_to do |f|
 			f.html do
 				excluded_ids = @poems.collect{ |poem| poem.id.to_s }.join(',')
